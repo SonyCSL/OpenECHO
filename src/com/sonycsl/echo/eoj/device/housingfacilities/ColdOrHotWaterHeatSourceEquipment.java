@@ -33,14 +33,14 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x027A;
 
-	public static final byte EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_X000A_EXIT_WATER_TEMPERATURE_ = (byte)0xE3;
+	public static final byte EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_X000A_EXIT_WATER_TEMPERATURE = (byte)0xE3;
 	public static final byte EPC_WATER_TEMPERATURE_SETTING_2 = (byte)0xE2;
 	public static final byte EPC_WATER_TEMPERATURE_SETTING_1 = (byte)0xE1;
 	public static final byte EPC_OPERATION_MODE_SETTING = (byte)0xE0;
 	public static final byte EPC_DAILY_TIMER_SETTING_1 = (byte)0xE7;
 	public static final byte EPC_DAILY_TIMER_SETTING = (byte)0xE6;
 	public static final byte EPC_SPECIAL_OPERATION_SETTING = (byte)0xE5;
-	public static final byte EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_X000A_ENTRANCE_WATER_TEMPERATURE_ = (byte)0xE4;
+	public static final byte EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_X000A_ENTRANCE_WATER_TEMPERATURE = (byte)0xE4;
 	public static final byte EPC_DAILY_TIMER_SETTING_2 = (byte)0xE8;
 	public static final byte EPC_RELATIVE_OFF_TIMER_SETTING = (byte)0x96;
 	public static final byte EPC_TIME_SET_BY_OFF_TIMER = (byte)0x95;
@@ -1211,14 +1211,14 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_X000A_EXIT_WATER_TEMPERATURE_ : return getMeasuredTemperatureOfOutwardWaterX000AExitWaterTemperature();
+		case EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_X000A_EXIT_WATER_TEMPERATURE : return getMeasuredTemperatureOfOutwardWaterX000AExitWaterTemperature();
 		case EPC_WATER_TEMPERATURE_SETTING_2 : return getWaterTemperatureSetting2();
 		case EPC_WATER_TEMPERATURE_SETTING_1 : return getWaterTemperatureSetting1();
 		case EPC_OPERATION_MODE_SETTING : return getOperationModeSetting();
 		case EPC_DAILY_TIMER_SETTING_1 : return getDailyTimerSetting1();
 		case EPC_DAILY_TIMER_SETTING : return getDailyTimerSetting();
 		case EPC_SPECIAL_OPERATION_SETTING : return getSpecialOperationSetting();
-		case EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_X000A_ENTRANCE_WATER_TEMPERATURE_ : return getMeasuredTemperatureOfInwardWaterX000AEntranceWaterTemperature();
+		case EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_X000A_ENTRANCE_WATER_TEMPERATURE : return getMeasuredTemperatureOfInwardWaterX000AEntranceWaterTemperature();
 		case EPC_DAILY_TIMER_SETTING_2 : return getDailyTimerSetting2();
 		case EPC_RELATIVE_OFF_TIMER_SETTING : return getRelativeOffTimerSetting();
 		case EPC_TIME_SET_BY_OFF_TIMER : return getTimeSetByOffTimer();
@@ -1237,14 +1237,14 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_X000A_EXIT_WATER_TEMPERATURE_ : return isValidMeasuredTemperatureOfOutwardWaterX000AExitWaterTemperature(property.edt);
+		case EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_X000A_EXIT_WATER_TEMPERATURE : return isValidMeasuredTemperatureOfOutwardWaterX000AExitWaterTemperature(property.edt);
 		case EPC_WATER_TEMPERATURE_SETTING_2 : return isValidWaterTemperatureSetting2(property.edt);
 		case EPC_WATER_TEMPERATURE_SETTING_1 : return isValidWaterTemperatureSetting1(property.edt);
 		case EPC_OPERATION_MODE_SETTING : return isValidOperationModeSetting(property.edt);
 		case EPC_DAILY_TIMER_SETTING_1 : return isValidDailyTimerSetting1(property.edt);
 		case EPC_DAILY_TIMER_SETTING : return isValidDailyTimerSetting(property.edt);
 		case EPC_SPECIAL_OPERATION_SETTING : return isValidSpecialOperationSetting(property.edt);
-		case EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_X000A_ENTRANCE_WATER_TEMPERATURE_ : return isValidMeasuredTemperatureOfInwardWaterX000AEntranceWaterTemperature(property.edt);
+		case EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_X000A_ENTRANCE_WATER_TEMPERATURE : return isValidMeasuredTemperatureOfInwardWaterX000AEntranceWaterTemperature(property.edt);
 		case EPC_DAILY_TIMER_SETTING_2 : return isValidDailyTimerSetting2(property.edt);
 		case EPC_RELATIVE_OFF_TIMER_SETTING : return isValidRelativeOffTimerSetting(property.edt);
 		case EPC_TIME_SET_BY_OFF_TIMER : return isValidTimeSetByOffTimer(property.edt);
@@ -1352,7 +1352,7 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_X000A_EXIT_WATER_TEMPERATURE_ : 
+			case EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_X000A_EXIT_WATER_TEMPERATURE : 
 				onGetMeasuredTemperatureOfOutwardWaterX000AExitWaterTemperature(eoj, tid, esv, property, success);
 				return true;
 			case EPC_WATER_TEMPERATURE_SETTING_2 : 
@@ -1373,7 +1373,7 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 			case EPC_SPECIAL_OPERATION_SETTING : 
 				onGetSpecialOperationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_X000A_ENTRANCE_WATER_TEMPERATURE_ : 
+			case EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_X000A_ENTRANCE_WATER_TEMPERATURE : 
 				onGetMeasuredTemperatureOfInwardWaterX000AEntranceWaterTemperature(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DAILY_TIMER_SETTING_2 : 
@@ -2614,7 +2614,7 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredTemperatureOfOutwardWaterX000AExitWaterTemperature() {
-			reqGetProperty(EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_X000A_EXIT_WATER_TEMPERATURE_);
+			reqGetProperty(EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_X000A_EXIT_WATER_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -2796,7 +2796,7 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredTemperatureOfInwardWaterX000AEntranceWaterTemperature() {
-			reqGetProperty(EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_X000A_ENTRANCE_WATER_TEMPERATURE_);
+			reqGetProperty(EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_X000A_ENTRANCE_WATER_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -3115,7 +3115,7 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredTemperatureOfOutwardWaterX000AExitWaterTemperature() {
-			reqInformProperty(EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_X000A_EXIT_WATER_TEMPERATURE_);
+			reqInformProperty(EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_X000A_EXIT_WATER_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -3297,7 +3297,7 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredTemperatureOfInwardWaterX000AEntranceWaterTemperature() {
-			reqInformProperty(EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_X000A_ENTRANCE_WATER_TEMPERATURE_);
+			reqInformProperty(EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_X000A_ENTRANCE_WATER_TEMPERATURE);
 			return this;
 		}
 		/**

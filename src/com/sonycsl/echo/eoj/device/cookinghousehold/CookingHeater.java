@@ -34,12 +34,12 @@ public abstract class CookingHeater extends DeviceObject {
 	public static final short ECHO_CLASS_CODE = (short)0x03B9;
 
 	public static final byte EPC_HEATING_TEMPERATURE_SETTING = (byte)0xE3;
-	public static final byte EPC__HEATING_MODES_OF_STOVES_SETTING = (byte)0xE0;
+	public static final byte EPC_HEATING_MODES_OF_STOVES_SETTING = (byte)0xE0;
 	public static final byte EPC_HEATING_POWER_SETTING = (byte)0xE7;
 	public static final byte EPC_RADIANT_HEATER_LOCK_SETTING = (byte)0xA2;
 	public static final byte EPC_CHILD_LOCK_SETTING = (byte)0xA1;
 	public static final byte EPC_HEATING_SETTING = (byte)0xB2;
-	public static final byte EPC__ALL_STOP_SETTING = (byte)0xB3;
+	public static final byte EPC_ALL_STOP_SETTING = (byte)0xB3;
 	public static final byte EPC_HEATING_STATUS = (byte)0xB1;
 	public static final byte EPC_RELATIVE_TIME_SETTINGS_OF_OFF_TIMERS = (byte)0x96;
 
@@ -50,7 +50,7 @@ public abstract class CookingHeater extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-		addSetProperty(EPC__ALL_STOP_SETTING);
+		addSetProperty(EPC_ALL_STOP_SETTING);
 		addGetProperty(EPC_HEATING_STATUS);
 
 	}
@@ -748,12 +748,12 @@ public abstract class CookingHeater extends DeviceObject {
 
 		switch(property.epc) {
 		case EPC_HEATING_TEMPERATURE_SETTING : return setHeatingTemperatureSetting(property.edt);
-		case EPC__HEATING_MODES_OF_STOVES_SETTING : return setHeatingModesOfStovesSetting(property.edt);
+		case EPC_HEATING_MODES_OF_STOVES_SETTING : return setHeatingModesOfStovesSetting(property.edt);
 		case EPC_HEATING_POWER_SETTING : return setHeatingPowerSetting(property.edt);
 		case EPC_RADIANT_HEATER_LOCK_SETTING : return setRadiantHeaterLockSetting(property.edt);
 		case EPC_CHILD_LOCK_SETTING : return setChildLockSetting(property.edt);
 		case EPC_HEATING_SETTING : return setHeatingSetting(property.edt);
-		case EPC__ALL_STOP_SETTING : return setAllStopSetting(property.edt);
+		case EPC_ALL_STOP_SETTING : return setAllStopSetting(property.edt);
 		case EPC_RELATIVE_TIME_SETTINGS_OF_OFF_TIMERS : return setRelativeTimeSettingsOfOffTimers(property.edt);
 
 		default : return false;
@@ -767,7 +767,7 @@ public abstract class CookingHeater extends DeviceObject {
 		
 		switch(epc) {
 		case EPC_HEATING_TEMPERATURE_SETTING : return getHeatingTemperatureSetting();
-		case EPC__HEATING_MODES_OF_STOVES_SETTING : return getHeatingModesOfStovesSetting();
+		case EPC_HEATING_MODES_OF_STOVES_SETTING : return getHeatingModesOfStovesSetting();
 		case EPC_HEATING_POWER_SETTING : return getHeatingPowerSetting();
 		case EPC_RADIANT_HEATER_LOCK_SETTING : return getRadiantHeaterLockSetting();
 		case EPC_CHILD_LOCK_SETTING : return getChildLockSetting();
@@ -786,12 +786,12 @@ public abstract class CookingHeater extends DeviceObject {
 		
 		switch(property.epc) {
 		case EPC_HEATING_TEMPERATURE_SETTING : return isValidHeatingTemperatureSetting(property.edt);
-		case EPC__HEATING_MODES_OF_STOVES_SETTING : return isValidHeatingModesOfStovesSetting(property.edt);
+		case EPC_HEATING_MODES_OF_STOVES_SETTING : return isValidHeatingModesOfStovesSetting(property.edt);
 		case EPC_HEATING_POWER_SETTING : return isValidHeatingPowerSetting(property.edt);
 		case EPC_RADIANT_HEATER_LOCK_SETTING : return isValidRadiantHeaterLockSetting(property.edt);
 		case EPC_CHILD_LOCK_SETTING : return isValidChildLockSetting(property.edt);
 		case EPC_HEATING_SETTING : return isValidHeatingSetting(property.edt);
-		case EPC__ALL_STOP_SETTING : return isValidAllStopSetting(property.edt);
+		case EPC_ALL_STOP_SETTING : return isValidAllStopSetting(property.edt);
 		case EPC_HEATING_STATUS : return isValidHeatingStatus(property.edt);
 		case EPC_RELATIVE_TIME_SETTINGS_OF_OFF_TIMERS : return isValidRelativeTimeSettingsOfOffTimers(property.edt);
 
@@ -845,7 +845,7 @@ public abstract class CookingHeater extends DeviceObject {
 			case EPC_HEATING_TEMPERATURE_SETTING : 
 				onSetHeatingTemperatureSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__HEATING_MODES_OF_STOVES_SETTING : 
+			case EPC_HEATING_MODES_OF_STOVES_SETTING : 
 				onSetHeatingModesOfStovesSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_HEATING_POWER_SETTING : 
@@ -860,7 +860,7 @@ public abstract class CookingHeater extends DeviceObject {
 			case EPC_HEATING_SETTING : 
 				onSetHeatingSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__ALL_STOP_SETTING : 
+			case EPC_ALL_STOP_SETTING : 
 				onSetAllStopSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RELATIVE_TIME_SETTINGS_OF_OFF_TIMERS : 
@@ -882,7 +882,7 @@ public abstract class CookingHeater extends DeviceObject {
 			case EPC_HEATING_TEMPERATURE_SETTING : 
 				onGetHeatingTemperatureSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__HEATING_MODES_OF_STOVES_SETTING : 
+			case EPC_HEATING_MODES_OF_STOVES_SETTING : 
 				onGetHeatingModesOfStovesSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_HEATING_POWER_SETTING : 
@@ -1420,7 +1420,7 @@ public abstract class CookingHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetHeatingModesOfStovesSetting(byte[] edt) {
-			reqSetProperty(EPC__HEATING_MODES_OF_STOVES_SETTING, edt);
+			reqSetProperty(EPC_HEATING_MODES_OF_STOVES_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1550,7 +1550,7 @@ public abstract class CookingHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetAllStopSetting(byte[] edt) {
-			reqSetProperty(EPC__ALL_STOP_SETTING, edt);
+			reqSetProperty(EPC_ALL_STOP_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1740,7 +1740,7 @@ public abstract class CookingHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetHeatingModesOfStovesSetting() {
-			reqGetProperty(EPC__HEATING_MODES_OF_STOVES_SETTING);
+			reqGetProperty(EPC_HEATING_MODES_OF_STOVES_SETTING);
 			return this;
 		}
 		/**
@@ -2059,7 +2059,7 @@ public abstract class CookingHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformHeatingModesOfStovesSetting() {
-			reqInformProperty(EPC__HEATING_MODES_OF_STOVES_SETTING);
+			reqInformProperty(EPC_HEATING_MODES_OF_STOVES_SETTING);
 			return this;
 		}
 		/**

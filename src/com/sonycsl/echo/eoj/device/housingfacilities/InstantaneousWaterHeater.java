@@ -42,7 +42,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	public static final byte EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING = (byte)0xE4;
 	public static final byte EPC_BATHROOM_PRIORITY_SETTING = (byte)0xE9;
 	public static final byte EPC_BATH_HOT_WATER_VOLUME_SETTING_2 = (byte)0xE8;
-	public static final byte EPC__DURATION_OF_AUTOMATIC_OPERATION_SETTING = (byte)0xDA;
+	public static final byte EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING = (byte)0xDA;
 	public static final byte EPC_REMAINING_AUTOMATIC_OPERATION_TIME = (byte)0xDB;
 	public static final byte EPC_HOT_WATER_HEATING_STATUS = (byte)0xD0;
 	public static final byte EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE = (byte)0xD1;
@@ -1637,7 +1637,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		case EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING : return setBathAdditionalBoilUpOperationSetting(property.edt);
 		case EPC_BATHROOM_PRIORITY_SETTING : return setBathroomPrioritySetting(property.edt);
 		case EPC_BATH_HOT_WATER_VOLUME_SETTING_2 : return setBathHotWaterVolumeSetting2(property.edt);
-		case EPC__DURATION_OF_AUTOMATIC_OPERATION_SETTING : return setDurationOfAutomaticOperationSetting(property.edt);
+		case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : return setDurationOfAutomaticOperationSetting(property.edt);
 		case EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE : return setSetValueOfHotWaterTemperature(property.edt);
 		case EPC_HOT_WATER_WARMER_SETTING : return setHotWaterWarmerSetting(property.edt);
 		case EPC_SET_VALUE_OF_ON_TIMER_TIME : return setSetValueOfOnTimerTime(property.edt);
@@ -1666,7 +1666,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		case EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING : return getBathAdditionalBoilUpOperationSetting();
 		case EPC_BATHROOM_PRIORITY_SETTING : return getBathroomPrioritySetting();
 		case EPC_BATH_HOT_WATER_VOLUME_SETTING_2 : return getBathHotWaterVolumeSetting2();
-		case EPC__DURATION_OF_AUTOMATIC_OPERATION_SETTING : return getDurationOfAutomaticOperationSetting();
+		case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : return getDurationOfAutomaticOperationSetting();
 		case EPC_REMAINING_AUTOMATIC_OPERATION_TIME : return getRemainingAutomaticOperationTime();
 		case EPC_HOT_WATER_HEATING_STATUS : return getHotWaterHeatingStatus();
 		case EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE : return getSetValueOfHotWaterTemperature();
@@ -1699,7 +1699,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		case EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING : return isValidBathAdditionalBoilUpOperationSetting(property.edt);
 		case EPC_BATHROOM_PRIORITY_SETTING : return isValidBathroomPrioritySetting(property.edt);
 		case EPC_BATH_HOT_WATER_VOLUME_SETTING_2 : return isValidBathHotWaterVolumeSetting2(property.edt);
-		case EPC__DURATION_OF_AUTOMATIC_OPERATION_SETTING : return isValidDurationOfAutomaticOperationSetting(property.edt);
+		case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : return isValidDurationOfAutomaticOperationSetting(property.edt);
 		case EPC_REMAINING_AUTOMATIC_OPERATION_TIME : return isValidRemainingAutomaticOperationTime(property.edt);
 		case EPC_HOT_WATER_HEATING_STATUS : return isValidHotWaterHeatingStatus(property.edt);
 		case EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE : return isValidSetValueOfHotWaterTemperature(property.edt);
@@ -1784,7 +1784,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			case EPC_BATH_HOT_WATER_VOLUME_SETTING_2 : 
 				onSetBathHotWaterVolumeSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC__DURATION_OF_AUTOMATIC_OPERATION_SETTING : 
+			case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : 
 				onSetDurationOfAutomaticOperationSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE : 
@@ -1851,7 +1851,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			case EPC_BATH_HOT_WATER_VOLUME_SETTING_2 : 
 				onGetBathHotWaterVolumeSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC__DURATION_OF_AUTOMATIC_OPERATION_SETTING : 
+			case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : 
 				onGetDurationOfAutomaticOperationSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_REMAINING_AUTOMATIC_OPERATION_TIME : 
@@ -3118,7 +3118,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetDurationOfAutomaticOperationSetting(byte[] edt) {
-			reqSetProperty(EPC__DURATION_OF_AUTOMATIC_OPERATION_SETTING, edt);
+			reqSetProperty(EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3698,7 +3698,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDurationOfAutomaticOperationSetting() {
-			reqGetProperty(EPC__DURATION_OF_AUTOMATIC_OPERATION_SETTING);
+			reqGetProperty(EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -4381,7 +4381,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDurationOfAutomaticOperationSetting() {
-			reqInformProperty(EPC__DURATION_OF_AUTOMATIC_OPERATION_SETTING);
+			reqInformProperty(EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING);
 			return this;
 		}
 		/**

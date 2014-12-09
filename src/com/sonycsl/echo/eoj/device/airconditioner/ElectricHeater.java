@@ -39,10 +39,10 @@ public abstract class ElectricHeater extends DeviceObject {
 	public static final byte EPC_TEMPERATURE_SETTING = (byte)0xB3;
 	public static final byte EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING = (byte)0xB1;
 	public static final byte EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME = (byte)0x96;
-	public static final byte EPC_OFF_TIMER_SETTING_TIME_ = (byte)0x95;
+	public static final byte EPC_OFF_TIMER_SETTING_TIME = (byte)0x95;
 	public static final byte EPC_OFF_TIMER_BASED_RESERVATION_SETTING = (byte)0x94;
-	public static final byte EPC_ON_TIMER_SETTING_RELATIVE_TIME_ = (byte)0x92;
-	public static final byte EPC_ON_TIMER_SETTING_TIME_ = (byte)0x91;
+	public static final byte EPC_ON_TIMER_SETTING_RELATIVE_TIME = (byte)0x92;
+	public static final byte EPC_ON_TIMER_SETTING_TIME = (byte)0x91;
 	public static final byte EPC_ON_TIMER_BASED_RESERVATION_SETTING = (byte)0x90;
 
 	@Override
@@ -897,10 +897,10 @@ public abstract class ElectricHeater extends DeviceObject {
 		case EPC_TEMPERATURE_SETTING : return setTemperatureSetting(property.edt);
 		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING : return setAutomaticTemperatureControlSetting(property.edt);
 		case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME : return setSetValueOfOffTimerRelativeTime(property.edt);
-		case EPC_OFF_TIMER_SETTING_TIME_ : return setOffTimerSettingTime(property.edt);
+		case EPC_OFF_TIMER_SETTING_TIME : return setOffTimerSettingTime(property.edt);
 		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return setOffTimerBasedReservationSetting(property.edt);
-		case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : return setOnTimerSettingRelativeTime(property.edt);
-		case EPC_ON_TIMER_SETTING_TIME_ : return setOnTimerSettingTime(property.edt);
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return setOnTimerSettingRelativeTime(property.edt);
+		case EPC_ON_TIMER_SETTING_TIME : return setOnTimerSettingTime(property.edt);
 		case EPC_ON_TIMER_BASED_RESERVATION_SETTING : return setOnTimerBasedReservationSetting(property.edt);
 
 		default : return false;
@@ -919,10 +919,10 @@ public abstract class ElectricHeater extends DeviceObject {
 		case EPC_TEMPERATURE_SETTING : return getTemperatureSetting();
 		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING : return getAutomaticTemperatureControlSetting();
 		case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME : return getSetValueOfOffTimerRelativeTime();
-		case EPC_OFF_TIMER_SETTING_TIME_ : return getOffTimerSettingTime();
+		case EPC_OFF_TIMER_SETTING_TIME : return getOffTimerSettingTime();
 		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return getOffTimerBasedReservationSetting();
-		case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : return getOnTimerSettingRelativeTime();
-		case EPC_ON_TIMER_SETTING_TIME_ : return getOnTimerSettingTime();
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return getOnTimerSettingRelativeTime();
+		case EPC_ON_TIMER_SETTING_TIME : return getOnTimerSettingTime();
 		case EPC_ON_TIMER_BASED_RESERVATION_SETTING : return getOnTimerBasedReservationSetting();
 
 		default : return null;
@@ -941,10 +941,10 @@ public abstract class ElectricHeater extends DeviceObject {
 		case EPC_TEMPERATURE_SETTING : return isValidTemperatureSetting(property.edt);
 		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING : return isValidAutomaticTemperatureControlSetting(property.edt);
 		case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME : return isValidSetValueOfOffTimerRelativeTime(property.edt);
-		case EPC_OFF_TIMER_SETTING_TIME_ : return isValidOffTimerSettingTime(property.edt);
+		case EPC_OFF_TIMER_SETTING_TIME : return isValidOffTimerSettingTime(property.edt);
 		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return isValidOffTimerBasedReservationSetting(property.edt);
-		case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : return isValidOnTimerSettingRelativeTime(property.edt);
-		case EPC_ON_TIMER_SETTING_TIME_ : return isValidOnTimerSettingTime(property.edt);
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return isValidOnTimerSettingRelativeTime(property.edt);
+		case EPC_ON_TIMER_SETTING_TIME : return isValidOnTimerSettingTime(property.edt);
 		case EPC_ON_TIMER_BASED_RESERVATION_SETTING : return isValidOnTimerBasedReservationSetting(property.edt);
 
 		default : return false;
@@ -1006,16 +1006,16 @@ public abstract class ElectricHeater extends DeviceObject {
 			case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME : 
 				onSetSetValueOfOffTimerRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OFF_TIMER_SETTING_TIME_ : 
+			case EPC_OFF_TIMER_SETTING_TIME : 
 				onSetOffTimerSettingTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : 
 				onSetOffTimerBasedReservationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : 
+			case EPC_ON_TIMER_SETTING_RELATIVE_TIME : 
 				onSetOnTimerSettingRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_TIME_ : 
+			case EPC_ON_TIMER_SETTING_TIME : 
 				onSetOnTimerSettingTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_BASED_RESERVATION_SETTING : 
@@ -1052,16 +1052,16 @@ public abstract class ElectricHeater extends DeviceObject {
 			case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME : 
 				onGetSetValueOfOffTimerRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OFF_TIMER_SETTING_TIME_ : 
+			case EPC_OFF_TIMER_SETTING_TIME : 
 				onGetOffTimerSettingTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : 
 				onGetOffTimerBasedReservationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : 
+			case EPC_ON_TIMER_SETTING_RELATIVE_TIME : 
 				onGetOnTimerSettingRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_TIME_ : 
+			case EPC_ON_TIMER_SETTING_TIME : 
 				onGetOnTimerSettingTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_BASED_RESERVATION_SETTING : 
@@ -1754,7 +1754,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOffTimerSettingTime(byte[] edt) {
-			reqSetProperty(EPC_OFF_TIMER_SETTING_TIME_, edt);
+			reqSetProperty(EPC_OFF_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
@@ -1806,7 +1806,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt) {
-			reqSetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME_, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
@@ -1832,7 +1832,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOnTimerSettingTime(byte[] edt) {
-			reqSetProperty(EPC_ON_TIMER_SETTING_TIME_, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
@@ -2152,7 +2152,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOffTimerSettingTime() {
-			reqGetProperty(EPC_OFF_TIMER_SETTING_TIME_);
+			reqGetProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -2204,7 +2204,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOnTimerSettingRelativeTime() {
-			reqGetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME_);
+			reqGetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -2230,7 +2230,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOnTimerSettingTime() {
-			reqGetProperty(EPC_ON_TIMER_SETTING_TIME_);
+			reqGetProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -2549,7 +2549,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOffTimerSettingTime() {
-			reqInformProperty(EPC_OFF_TIMER_SETTING_TIME_);
+			reqInformProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -2601,7 +2601,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOnTimerSettingRelativeTime() {
-			reqInformProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME_);
+			reqInformProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -2627,7 +2627,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOnTimerSettingTime() {
-			reqInformProperty(EPC_ON_TIMER_SETTING_TIME_);
+			reqInformProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**

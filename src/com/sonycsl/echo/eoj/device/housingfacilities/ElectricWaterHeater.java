@@ -33,29 +33,29 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x026B;
 
-	public static final byte EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING = (byte)0xE3;
+	public static final byte EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING = (byte)0xE3;
 	public static final byte EPC_TANK_CAPACITY = (byte)0xE2;
 	public static final byte EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK = (byte)0xE1;
 	public static final byte EPC_BATH_WATER_VOLUME_SETTING = (byte)0xE0;
 	public static final byte EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER = (byte)0xC1;
-	public static final byte EPC__DAYTIME_REHEATING_PERMISSION_SETTING = (byte)0xC0;
-	public static final byte EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING = (byte)0xE5;
+	public static final byte EPC_DAYTIME_REHEATING_PERMISSION_SETTING = (byte)0xC0;
+	public static final byte EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING = (byte)0xE5;
 	public static final byte EPC_ALARM_STATUS = (byte)0xC2;
 	public static final byte EPC_BATH_WATER_VOLUME_SETTING_2 = (byte)0xE8;
 	public static final byte EPC_BATH_WATER_VOLUME_SETTING_1 = (byte)0xE7;
-	public static final byte EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING = (byte)0xE6;
+	public static final byte EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING = (byte)0xE6;
 	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME = (byte)0xDD;
 	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME = (byte)0xDB;
 	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_X000A_IN_BETWEEN_SEASONS = (byte)0xDC;
 	public static final byte EPC_ON_TIMER_SETTING = (byte)0x91;
-	public static final byte EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING = (byte)0xD1;
+	public static final byte EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING = (byte)0xD1;
 	public static final byte EPC_BATH_WATER_TEMPERATURE_SETTING = (byte)0xD3;
 	public static final byte EPC_BATH_WATER_VOLUME_SETTING_4 = (byte)0xD4;
 	public static final byte EPC_BATH_WATER_VOLUME_SETTING_4_MAXIMUM_SETTABLE_LEVEL = (byte)0xD5;
 	public static final byte EPC_WATER_HEATER_STATUS = (byte)0xB2;
 	public static final byte EPC_WATER_HEATING_TEMPERATURE_SETTING = (byte)0xB3;
-	public static final byte EPC__AUTOMATIC_WATER_HEATING_SETTING = (byte)0xB0;
-	public static final byte EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING = (byte)0xB1;
+	public static final byte EPC_AUTOMATIC_WATER_HEATING_SETTING = (byte)0xB0;
+	public static final byte EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING = (byte)0xB1;
 	public static final byte EPC_BATH_WATER_VOLUME_SETTING_3 = (byte)0xEE;
 	public static final byte EPC_ON_TIMER_RESERVATION_SETTING = (byte)0x90;
 
@@ -63,16 +63,16 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addSetProperty(EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
-		addGetProperty(EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
+		addSetProperty(EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
+		addGetProperty(EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
 		addStatusChangeAnnouncementProperty(EPC_ALARM_STATUS);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING);
 		addGetProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING);
-		addSetProperty(EPC__AUTOMATIC_WATER_HEATING_SETTING);
-		addGetProperty(EPC__AUTOMATIC_WATER_HEATING_SETTING);
+		addSetProperty(EPC_AUTOMATIC_WATER_HEATING_SETTING);
+		addGetProperty(EPC_AUTOMATIC_WATER_HEATING_SETTING);
 
 	}
 
@@ -1759,20 +1759,20 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : return setAutomaticBathWaterHeatingModeSetting(property.edt);
+		case EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : return setAutomaticBathWaterHeatingModeSetting(property.edt);
 		case EPC_BATH_WATER_VOLUME_SETTING : return setBathWaterVolumeSetting(property.edt);
-		case EPC__DAYTIME_REHEATING_PERMISSION_SETTING : return setDaytimeReheatingPermissionSetting(property.edt);
-		case EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING : return setAdditionOfHotWaterFunctionSetting(property.edt);
+		case EPC_DAYTIME_REHEATING_PERMISSION_SETTING : return setDaytimeReheatingPermissionSetting(property.edt);
+		case EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING : return setAdditionOfHotWaterFunctionSetting(property.edt);
 		case EPC_BATH_WATER_VOLUME_SETTING_2 : return setBathWaterVolumeSetting2(property.edt);
 		case EPC_BATH_WATER_VOLUME_SETTING_1 : return setBathWaterVolumeSetting1(property.edt);
-		case EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : return setSlightBathWaterTemperatureLoweringFunctionSetting(property.edt);
+		case EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : return setSlightBathWaterTemperatureLoweringFunctionSetting(property.edt);
 		case EPC_ON_TIMER_SETTING : return setOnTimerSetting(property.edt);
-		case EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING : return setTemperatureOfSuppliedWaterSetting(property.edt);
+		case EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING : return setTemperatureOfSuppliedWaterSetting(property.edt);
 		case EPC_BATH_WATER_TEMPERATURE_SETTING : return setBathWaterTemperatureSetting(property.edt);
 		case EPC_BATH_WATER_VOLUME_SETTING_4 : return setBathWaterVolumeSetting4(property.edt);
 		case EPC_WATER_HEATING_TEMPERATURE_SETTING : return setWaterHeatingTemperatureSetting(property.edt);
-		case EPC__AUTOMATIC_WATER_HEATING_SETTING : return setAutomaticWaterHeatingSetting(property.edt);
-		case EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : return setAutomaticWaterTemperatureControlSetting(property.edt);
+		case EPC_AUTOMATIC_WATER_HEATING_SETTING : return setAutomaticWaterHeatingSetting(property.edt);
+		case EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : return setAutomaticWaterTemperatureControlSetting(property.edt);
 		case EPC_BATH_WATER_VOLUME_SETTING_3 : return setBathWaterVolumeSetting3(property.edt);
 		case EPC_ON_TIMER_RESERVATION_SETTING : return setOnTimerReservationSetting(property.edt);
 
@@ -1786,29 +1786,29 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : return getAutomaticBathWaterHeatingModeSetting();
+		case EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : return getAutomaticBathWaterHeatingModeSetting();
 		case EPC_TANK_CAPACITY : return getTankCapacity();
 		case EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK : return getMeasuredAmountOfWaterRemainingInTank();
 		case EPC_BATH_WATER_VOLUME_SETTING : return getBathWaterVolumeSetting();
 		case EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER : return getMeasuredTemperatureOfWaterInWaterHeater();
-		case EPC__DAYTIME_REHEATING_PERMISSION_SETTING : return getDaytimeReheatingPermissionSetting();
-		case EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING : return getAdditionOfHotWaterFunctionSetting();
+		case EPC_DAYTIME_REHEATING_PERMISSION_SETTING : return getDaytimeReheatingPermissionSetting();
+		case EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING : return getAdditionOfHotWaterFunctionSetting();
 		case EPC_ALARM_STATUS : return getAlarmStatus();
 		case EPC_BATH_WATER_VOLUME_SETTING_2 : return getBathWaterVolumeSetting2();
 		case EPC_BATH_WATER_VOLUME_SETTING_1 : return getBathWaterVolumeSetting1();
-		case EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : return getSlightBathWaterTemperatureLoweringFunctionSetting();
+		case EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : return getSlightBathWaterTemperatureLoweringFunctionSetting();
 		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME : return getRatedPowerConsumptionOfHPUnitInSummertime();
 		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME : return getRatedPowerConsumptionOfHPUnitInWintertime();
 		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_X000A_IN_BETWEEN_SEASONS : return getRatedPowerConsumptionOfHPUnitInX000AInBetweenSeasons();
 		case EPC_ON_TIMER_SETTING : return getOnTimerSetting();
-		case EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING : return getTemperatureOfSuppliedWaterSetting();
+		case EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING : return getTemperatureOfSuppliedWaterSetting();
 		case EPC_BATH_WATER_TEMPERATURE_SETTING : return getBathWaterTemperatureSetting();
 		case EPC_BATH_WATER_VOLUME_SETTING_4 : return getBathWaterVolumeSetting4();
 		case EPC_BATH_WATER_VOLUME_SETTING_4_MAXIMUM_SETTABLE_LEVEL : return getBathWaterVolumeSetting4MaximumSettableLevel();
 		case EPC_WATER_HEATER_STATUS : return getWaterHeaterStatus();
 		case EPC_WATER_HEATING_TEMPERATURE_SETTING : return getWaterHeatingTemperatureSetting();
-		case EPC__AUTOMATIC_WATER_HEATING_SETTING : return getAutomaticWaterHeatingSetting();
-		case EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : return getAutomaticWaterTemperatureControlSetting();
+		case EPC_AUTOMATIC_WATER_HEATING_SETTING : return getAutomaticWaterHeatingSetting();
+		case EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : return getAutomaticWaterTemperatureControlSetting();
 		case EPC_BATH_WATER_VOLUME_SETTING_3 : return getBathWaterVolumeSetting3();
 		case EPC_ON_TIMER_RESERVATION_SETTING : return getOnTimerReservationSetting();
 
@@ -1822,29 +1822,29 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : return isValidAutomaticBathWaterHeatingModeSetting(property.edt);
+		case EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : return isValidAutomaticBathWaterHeatingModeSetting(property.edt);
 		case EPC_TANK_CAPACITY : return isValidTankCapacity(property.edt);
 		case EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK : return isValidMeasuredAmountOfWaterRemainingInTank(property.edt);
 		case EPC_BATH_WATER_VOLUME_SETTING : return isValidBathWaterVolumeSetting(property.edt);
 		case EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER : return isValidMeasuredTemperatureOfWaterInWaterHeater(property.edt);
-		case EPC__DAYTIME_REHEATING_PERMISSION_SETTING : return isValidDaytimeReheatingPermissionSetting(property.edt);
-		case EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING : return isValidAdditionOfHotWaterFunctionSetting(property.edt);
+		case EPC_DAYTIME_REHEATING_PERMISSION_SETTING : return isValidDaytimeReheatingPermissionSetting(property.edt);
+		case EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING : return isValidAdditionOfHotWaterFunctionSetting(property.edt);
 		case EPC_ALARM_STATUS : return isValidAlarmStatus(property.edt);
 		case EPC_BATH_WATER_VOLUME_SETTING_2 : return isValidBathWaterVolumeSetting2(property.edt);
 		case EPC_BATH_WATER_VOLUME_SETTING_1 : return isValidBathWaterVolumeSetting1(property.edt);
-		case EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : return isValidSlightBathWaterTemperatureLoweringFunctionSetting(property.edt);
+		case EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : return isValidSlightBathWaterTemperatureLoweringFunctionSetting(property.edt);
 		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME : return isValidRatedPowerConsumptionOfHPUnitInSummertime(property.edt);
 		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME : return isValidRatedPowerConsumptionOfHPUnitInWintertime(property.edt);
 		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_X000A_IN_BETWEEN_SEASONS : return isValidRatedPowerConsumptionOfHPUnitInX000AInBetweenSeasons(property.edt);
 		case EPC_ON_TIMER_SETTING : return isValidOnTimerSetting(property.edt);
-		case EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING : return isValidTemperatureOfSuppliedWaterSetting(property.edt);
+		case EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING : return isValidTemperatureOfSuppliedWaterSetting(property.edt);
 		case EPC_BATH_WATER_TEMPERATURE_SETTING : return isValidBathWaterTemperatureSetting(property.edt);
 		case EPC_BATH_WATER_VOLUME_SETTING_4 : return isValidBathWaterVolumeSetting4(property.edt);
 		case EPC_BATH_WATER_VOLUME_SETTING_4_MAXIMUM_SETTABLE_LEVEL : return isValidBathWaterVolumeSetting4MaximumSettableLevel(property.edt);
 		case EPC_WATER_HEATER_STATUS : return isValidWaterHeaterStatus(property.edt);
 		case EPC_WATER_HEATING_TEMPERATURE_SETTING : return isValidWaterHeatingTemperatureSetting(property.edt);
-		case EPC__AUTOMATIC_WATER_HEATING_SETTING : return isValidAutomaticWaterHeatingSetting(property.edt);
-		case EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : return isValidAutomaticWaterTemperatureControlSetting(property.edt);
+		case EPC_AUTOMATIC_WATER_HEATING_SETTING : return isValidAutomaticWaterHeatingSetting(property.edt);
+		case EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : return isValidAutomaticWaterTemperatureControlSetting(property.edt);
 		case EPC_BATH_WATER_VOLUME_SETTING_3 : return isValidBathWaterVolumeSetting3(property.edt);
 		case EPC_ON_TIMER_RESERVATION_SETTING : return isValidOnTimerReservationSetting(property.edt);
 
@@ -1895,16 +1895,16 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : 
+			case EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : 
 				onSetAutomaticBathWaterHeatingModeSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_BATH_WATER_VOLUME_SETTING : 
 				onSetBathWaterVolumeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__DAYTIME_REHEATING_PERMISSION_SETTING : 
+			case EPC_DAYTIME_REHEATING_PERMISSION_SETTING : 
 				onSetDaytimeReheatingPermissionSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING : 
+			case EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING : 
 				onSetAdditionOfHotWaterFunctionSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_BATH_WATER_VOLUME_SETTING_2 : 
@@ -1913,13 +1913,13 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 			case EPC_BATH_WATER_VOLUME_SETTING_1 : 
 				onSetBathWaterVolumeSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : 
+			case EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : 
 				onSetSlightBathWaterTemperatureLoweringFunctionSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_SETTING : 
 				onSetOnTimerSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING : 
+			case EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING : 
 				onSetTemperatureOfSuppliedWaterSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_BATH_WATER_TEMPERATURE_SETTING : 
@@ -1931,10 +1931,10 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 			case EPC_WATER_HEATING_TEMPERATURE_SETTING : 
 				onSetWaterHeatingTemperatureSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__AUTOMATIC_WATER_HEATING_SETTING : 
+			case EPC_AUTOMATIC_WATER_HEATING_SETTING : 
 				onSetAutomaticWaterHeatingSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : 
+			case EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : 
 				onSetAutomaticWaterTemperatureControlSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_BATH_WATER_VOLUME_SETTING_3 : 
@@ -1956,7 +1956,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : 
+			case EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : 
 				onGetAutomaticBathWaterHeatingModeSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_TANK_CAPACITY : 
@@ -1971,10 +1971,10 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 			case EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER : 
 				onGetMeasuredTemperatureOfWaterInWaterHeater(eoj, tid, esv, property, success);
 				return true;
-			case EPC__DAYTIME_REHEATING_PERMISSION_SETTING : 
+			case EPC_DAYTIME_REHEATING_PERMISSION_SETTING : 
 				onGetDaytimeReheatingPermissionSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING : 
+			case EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING : 
 				onGetAdditionOfHotWaterFunctionSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ALARM_STATUS : 
@@ -1986,7 +1986,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 			case EPC_BATH_WATER_VOLUME_SETTING_1 : 
 				onGetBathWaterVolumeSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : 
+			case EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : 
 				onGetSlightBathWaterTemperatureLoweringFunctionSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME : 
@@ -2001,7 +2001,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 			case EPC_ON_TIMER_SETTING : 
 				onGetOnTimerSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING : 
+			case EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING : 
 				onGetTemperatureOfSuppliedWaterSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_BATH_WATER_TEMPERATURE_SETTING : 
@@ -2019,10 +2019,10 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 			case EPC_WATER_HEATING_TEMPERATURE_SETTING : 
 				onGetWaterHeatingTemperatureSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__AUTOMATIC_WATER_HEATING_SETTING : 
+			case EPC_AUTOMATIC_WATER_HEATING_SETTING : 
 				onGetAutomaticWaterHeatingSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : 
+			case EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : 
 				onGetAutomaticWaterTemperatureControlSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_BATH_WATER_VOLUME_SETTING_3 : 
@@ -3097,7 +3097,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetAutomaticBathWaterHeatingModeSetting(byte[] edt) {
-			reqSetProperty(EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING, edt);
+			reqSetProperty(EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3149,7 +3149,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetDaytimeReheatingPermissionSetting(byte[] edt) {
-			reqSetProperty(EPC__DAYTIME_REHEATING_PERMISSION_SETTING, edt);
+			reqSetProperty(EPC_DAYTIME_REHEATING_PERMISSION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3175,7 +3175,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetAdditionOfHotWaterFunctionSetting(byte[] edt) {
-			reqSetProperty(EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3253,7 +3253,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetSlightBathWaterTemperatureLoweringFunctionSetting(byte[] edt) {
-			reqSetProperty(EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3305,7 +3305,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetTemperatureOfSuppliedWaterSetting(byte[] edt) {
-			reqSetProperty(EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING, edt);
+			reqSetProperty(EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3409,7 +3409,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetAutomaticWaterHeatingSetting(byte[] edt) {
-			reqSetProperty(EPC__AUTOMATIC_WATER_HEATING_SETTING, edt);
+			reqSetProperty(EPC_AUTOMATIC_WATER_HEATING_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3435,7 +3435,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetAutomaticWaterTemperatureControlSetting(byte[] edt) {
-			reqSetProperty(EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING, edt);
+			reqSetProperty(EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3625,7 +3625,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetAutomaticBathWaterHeatingModeSetting() {
-			reqGetProperty(EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
+			reqGetProperty(EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -3755,7 +3755,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDaytimeReheatingPermissionSetting() {
-			reqGetProperty(EPC__DAYTIME_REHEATING_PERMISSION_SETTING);
+			reqGetProperty(EPC_DAYTIME_REHEATING_PERMISSION_SETTING);
 			return this;
 		}
 		/**
@@ -3781,7 +3781,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetAdditionOfHotWaterFunctionSetting() {
-			reqGetProperty(EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING);
+			reqGetProperty(EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -3885,7 +3885,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSlightBathWaterTemperatureLoweringFunctionSetting() {
-			reqGetProperty(EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING);
+			reqGetProperty(EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -4015,7 +4015,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetTemperatureOfSuppliedWaterSetting() {
-			reqGetProperty(EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING);
+			reqGetProperty(EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING);
 			return this;
 		}
 		/**
@@ -4171,7 +4171,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetAutomaticWaterHeatingSetting() {
-			reqGetProperty(EPC__AUTOMATIC_WATER_HEATING_SETTING);
+			reqGetProperty(EPC_AUTOMATIC_WATER_HEATING_SETTING);
 			return this;
 		}
 		/**
@@ -4197,7 +4197,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetAutomaticWaterTemperatureControlSetting() {
-			reqGetProperty(EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING);
+			reqGetProperty(EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING);
 			return this;
 		}
 		/**
@@ -4386,7 +4386,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformAutomaticBathWaterHeatingModeSetting() {
-			reqInformProperty(EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
+			reqInformProperty(EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -4516,7 +4516,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDaytimeReheatingPermissionSetting() {
-			reqInformProperty(EPC__DAYTIME_REHEATING_PERMISSION_SETTING);
+			reqInformProperty(EPC_DAYTIME_REHEATING_PERMISSION_SETTING);
 			return this;
 		}
 		/**
@@ -4542,7 +4542,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformAdditionOfHotWaterFunctionSetting() {
-			reqInformProperty(EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING);
+			reqInformProperty(EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -4646,7 +4646,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSlightBathWaterTemperatureLoweringFunctionSetting() {
-			reqInformProperty(EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING);
+			reqInformProperty(EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -4776,7 +4776,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformTemperatureOfSuppliedWaterSetting() {
-			reqInformProperty(EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING);
+			reqInformProperty(EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING);
 			return this;
 		}
 		/**
@@ -4932,7 +4932,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformAutomaticWaterHeatingSetting() {
-			reqInformProperty(EPC__AUTOMATIC_WATER_HEATING_SETTING);
+			reqInformProperty(EPC_AUTOMATIC_WATER_HEATING_SETTING);
 			return this;
 		}
 		/**
@@ -4958,7 +4958,7 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformAutomaticWaterTemperatureControlSetting() {
-			reqInformProperty(EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING);
+			reqInformProperty(EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING);
 			return this;
 		}
 		/**

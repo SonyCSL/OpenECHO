@@ -47,10 +47,10 @@ public abstract class Battery extends DeviceObject {
 	public static final byte EPC_MINIMUM_MAXIM_UM_CHARGE_ELECTRIC_ENERGY = (byte)0xC8;
 	public static final byte EPC_OPERATION_MODE_SETTING = (byte)0xDA;
 	public static final byte EPC_SYSTEM_INTERCONN_ECTED_TYPE = (byte)0xDB;
-	public static final byte EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT_ = (byte)0xDC;
-	public static final byte EPC_MINIMUM_MAXIMUM_DISCHARGING_POWER_INDEPENDENT_ = (byte)0xDD;
-	public static final byte EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT_ = (byte)0xDE;
-	public static final byte EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT_ = (byte)0xDF;
+	public static final byte EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT = (byte)0xDC;
+	public static final byte EPC_MINIMUM_MAXIMUM_DISCHARGING_POWER_INDEPENDENT = (byte)0xDD;
+	public static final byte EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT = (byte)0xDE;
+	public static final byte EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT = (byte)0xDF;
 	public static final byte EPC_RATED_ELECTRIC_ENERGY = (byte)0xD0;
 	public static final byte EPC_RATED_CAPACITY = (byte)0xD1;
 	public static final byte EPC_RATED_VOLTAGE = (byte)0xD2;
@@ -58,15 +58,15 @@ public abstract class Battery extends DeviceObject {
 	public static final byte EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_CURRENT = (byte)0xD4;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_VOLTAGE = (byte)0xD5;
 	public static final byte EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY = (byte)0xD6;
-	public static final byte EPC__MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING = (byte)0xD7;
+	public static final byte EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING = (byte)0xD7;
 	public static final byte EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY = (byte)0xD8;
-	public static final byte EPC__MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING = (byte)0xD9;
+	public static final byte EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING = (byte)0xD9;
 	public static final byte EPC_CHARGE_CURRENT_SETTING = (byte)0xED;
 	public static final byte EPC_DISCHARGE_ELECTRIC_ENERGY_SETTING = (byte)0xEC;
 	public static final byte EPC_CHARGE_ELECTRIC_ENERGY_SETTING = (byte)0xEB;
 	public static final byte EPC_DISCHARGING_AMOUNT_SETTING_2 = (byte)0xEA;
 	public static final byte EPC_MINIMUM_MAXIM_UM_CHARGE_CURRENT = (byte)0xCA;
-	public static final byte EPC_RATED_VOLTAGE_INDEPENDENT_ = (byte)0xEF;
+	public static final byte EPC_RATED_VOLTAGE_INDEPENDENT = (byte)0xEF;
 	public static final byte EPC_DISCHARGE_CURRENT_SETTING = (byte)0xEE;
 	public static final byte EPC_MINIMUM_MAXIM_UM_DISCHARGE_CURRENT = (byte)0xCB;
 
@@ -2200,8 +2200,8 @@ public abstract class Battery extends DeviceObject {
 		case EPC_CHARGING_AMOUNT_SETTING_2 : return setChargingAmountSetting2(property.edt);
 		case EPC_DISCHARGING_AMOUNT_SETTING_1 : return setDischargingAmountSetting1(property.edt);
 		case EPC_OPERATION_MODE_SETTING : return setOperationModeSetting(property.edt);
-		case EPC__MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : return setMeasuredCumulativeDischargeElectricEnergyResetSetting(property.edt);
-		case EPC__MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : return setMeasuredCumulativeChargeElectricEnergyResetSetting(property.edt);
+		case EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : return setMeasuredCumulativeDischargeElectricEnergyResetSetting(property.edt);
+		case EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : return setMeasuredCumulativeChargeElectricEnergyResetSetting(property.edt);
 		case EPC_CHARGE_CURRENT_SETTING : return setChargeCurrentSetting(property.edt);
 		case EPC_DISCHARGE_ELECTRIC_ENERGY_SETTING : return setDischargeElectricEnergySetting(property.edt);
 		case EPC_CHARGE_ELECTRIC_ENERGY_SETTING : return setChargeElectricEnergySetting(property.edt);
@@ -2232,10 +2232,10 @@ public abstract class Battery extends DeviceObject {
 		case EPC_MINIMUM_MAXIM_UM_CHARGE_ELECTRIC_ENERGY : return getMinimumMaximUmChargeElectricEnergy();
 		case EPC_OPERATION_MODE_SETTING : return getOperationModeSetting();
 		case EPC_SYSTEM_INTERCONN_ECTED_TYPE : return getSystemInterconnEctedType();
-		case EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT_ : return getMinimumMaximumChargingPowerIndependent();
-		case EPC_MINIMUM_MAXIMUM_DISCHARGING_POWER_INDEPENDENT_ : return getMinimumMaximumDischargingPowerIndependent();
-		case EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT_ : return getMinimumMaximUmChargingCurrentIndependent();
-		case EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT_ : return getMinimumMaximUmDischargingCurrentIndependent();
+		case EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT : return getMinimumMaximumChargingPowerIndependent();
+		case EPC_MINIMUM_MAXIMUM_DISCHARGING_POWER_INDEPENDENT : return getMinimumMaximumDischargingPowerIndependent();
+		case EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT : return getMinimumMaximUmChargingCurrentIndependent();
+		case EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT : return getMinimumMaximUmDischargingCurrentIndependent();
 		case EPC_RATED_ELECTRIC_ENERGY : return getRatedElectricEnergy();
 		case EPC_RATED_CAPACITY : return getRatedCapacity();
 		case EPC_RATED_VOLTAGE : return getRatedVoltage();
@@ -2249,7 +2249,7 @@ public abstract class Battery extends DeviceObject {
 		case EPC_CHARGE_ELECTRIC_ENERGY_SETTING : return getChargeElectricEnergySetting();
 		case EPC_DISCHARGING_AMOUNT_SETTING_2 : return getDischargingAmountSetting2();
 		case EPC_MINIMUM_MAXIM_UM_CHARGE_CURRENT : return getMinimumMaximUmChargeCurrent();
-		case EPC_RATED_VOLTAGE_INDEPENDENT_ : return getRatedVoltageIndependent();
+		case EPC_RATED_VOLTAGE_INDEPENDENT : return getRatedVoltageIndependent();
 		case EPC_DISCHARGE_CURRENT_SETTING : return getDischargeCurrentSetting();
 		case EPC_MINIMUM_MAXIM_UM_DISCHARGE_CURRENT : return getMinimumMaximUmDischargeCurrent();
 
@@ -2277,10 +2277,10 @@ public abstract class Battery extends DeviceObject {
 		case EPC_MINIMUM_MAXIM_UM_CHARGE_ELECTRIC_ENERGY : return isValidMinimumMaximUmChargeElectricEnergy(property.edt);
 		case EPC_OPERATION_MODE_SETTING : return isValidOperationModeSetting(property.edt);
 		case EPC_SYSTEM_INTERCONN_ECTED_TYPE : return isValidSystemInterconnEctedType(property.edt);
-		case EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT_ : return isValidMinimumMaximumChargingPowerIndependent(property.edt);
-		case EPC_MINIMUM_MAXIMUM_DISCHARGING_POWER_INDEPENDENT_ : return isValidMinimumMaximumDischargingPowerIndependent(property.edt);
-		case EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT_ : return isValidMinimumMaximUmChargingCurrentIndependent(property.edt);
-		case EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT_ : return isValidMinimumMaximUmDischargingCurrentIndependent(property.edt);
+		case EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT : return isValidMinimumMaximumChargingPowerIndependent(property.edt);
+		case EPC_MINIMUM_MAXIMUM_DISCHARGING_POWER_INDEPENDENT : return isValidMinimumMaximumDischargingPowerIndependent(property.edt);
+		case EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT : return isValidMinimumMaximUmChargingCurrentIndependent(property.edt);
+		case EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT : return isValidMinimumMaximUmDischargingCurrentIndependent(property.edt);
 		case EPC_RATED_ELECTRIC_ENERGY : return isValidRatedElectricEnergy(property.edt);
 		case EPC_RATED_CAPACITY : return isValidRatedCapacity(property.edt);
 		case EPC_RATED_VOLTAGE : return isValidRatedVoltage(property.edt);
@@ -2288,15 +2288,15 @@ public abstract class Battery extends DeviceObject {
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_CURRENT : return isValidMeasuredInstantaneousChargeDischargeCurrent(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_VOLTAGE : return isValidMeasuredInstantaneousChargeDischargeVoltage(property.edt);
 		case EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY : return isValidMeasuredCumulativeDischargeElectricEnergy(property.edt);
-		case EPC__MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : return isValidMeasuredCumulativeDischargeElectricEnergyResetSetting(property.edt);
+		case EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : return isValidMeasuredCumulativeDischargeElectricEnergyResetSetting(property.edt);
 		case EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY : return isValidMeasuredCumulativeChargeElectricEnergy(property.edt);
-		case EPC__MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : return isValidMeasuredCumulativeChargeElectricEnergyResetSetting(property.edt);
+		case EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : return isValidMeasuredCumulativeChargeElectricEnergyResetSetting(property.edt);
 		case EPC_CHARGE_CURRENT_SETTING : return isValidChargeCurrentSetting(property.edt);
 		case EPC_DISCHARGE_ELECTRIC_ENERGY_SETTING : return isValidDischargeElectricEnergySetting(property.edt);
 		case EPC_CHARGE_ELECTRIC_ENERGY_SETTING : return isValidChargeElectricEnergySetting(property.edt);
 		case EPC_DISCHARGING_AMOUNT_SETTING_2 : return isValidDischargingAmountSetting2(property.edt);
 		case EPC_MINIMUM_MAXIM_UM_CHARGE_CURRENT : return isValidMinimumMaximUmChargeCurrent(property.edt);
-		case EPC_RATED_VOLTAGE_INDEPENDENT_ : return isValidRatedVoltageIndependent(property.edt);
+		case EPC_RATED_VOLTAGE_INDEPENDENT : return isValidRatedVoltageIndependent(property.edt);
 		case EPC_DISCHARGE_CURRENT_SETTING : return isValidDischargeCurrentSetting(property.edt);
 		case EPC_MINIMUM_MAXIM_UM_DISCHARGE_CURRENT : return isValidMinimumMaximUmDischargeCurrent(property.edt);
 
@@ -2365,10 +2365,10 @@ public abstract class Battery extends DeviceObject {
 			case EPC_OPERATION_MODE_SETTING : 
 				onSetOperationModeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : 
+			case EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : 
 				onSetMeasuredCumulativeDischargeElectricEnergyResetSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : 
+			case EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : 
 				onSetMeasuredCumulativeChargeElectricEnergyResetSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_CHARGE_CURRENT_SETTING : 
@@ -2441,16 +2441,16 @@ public abstract class Battery extends DeviceObject {
 			case EPC_SYSTEM_INTERCONN_ECTED_TYPE : 
 				onGetSystemInterconnEctedType(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT_ : 
+			case EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT : 
 				onGetMinimumMaximumChargingPowerIndependent(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MINIMUM_MAXIMUM_DISCHARGING_POWER_INDEPENDENT_ : 
+			case EPC_MINIMUM_MAXIMUM_DISCHARGING_POWER_INDEPENDENT : 
 				onGetMinimumMaximumDischargingPowerIndependent(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT_ : 
+			case EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT : 
 				onGetMinimumMaximUmChargingCurrentIndependent(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT_ : 
+			case EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT : 
 				onGetMinimumMaximUmDischargingCurrentIndependent(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RATED_ELECTRIC_ENERGY : 
@@ -2492,7 +2492,7 @@ public abstract class Battery extends DeviceObject {
 			case EPC_MINIMUM_MAXIM_UM_CHARGE_CURRENT : 
 				onGetMinimumMaximUmChargeCurrent(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RATED_VOLTAGE_INDEPENDENT_ : 
+			case EPC_RATED_VOLTAGE_INDEPENDENT : 
 				onGetRatedVoltageIndependent(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DISCHARGE_CURRENT_SETTING : 
@@ -3861,7 +3861,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetMeasuredCumulativeDischargeElectricEnergyResetSetting(byte[] edt) {
-			reqSetProperty(EPC__MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING, edt);
+			reqSetProperty(EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3887,7 +3887,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetMeasuredCumulativeChargeElectricEnergyResetSetting(byte[] edt) {
-			reqSetProperty(EPC__MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING, edt);
+			reqSetProperty(EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING, edt);
 			return this;
 		}
 		/**
@@ -4519,7 +4519,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMinimumMaximumChargingPowerIndependent() {
-			reqGetProperty(EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT_);
+			reqGetProperty(EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT);
 			return this;
 		}
 		/**
@@ -4545,7 +4545,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMinimumMaximumDischargingPowerIndependent() {
-			reqGetProperty(EPC_MINIMUM_MAXIMUM_DISCHARGING_POWER_INDEPENDENT_);
+			reqGetProperty(EPC_MINIMUM_MAXIMUM_DISCHARGING_POWER_INDEPENDENT);
 			return this;
 		}
 		/**
@@ -4571,7 +4571,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMinimumMaximUmChargingCurrentIndependent() {
-			reqGetProperty(EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT_);
+			reqGetProperty(EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT);
 			return this;
 		}
 		/**
@@ -4597,7 +4597,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMinimumMaximUmDischargingCurrentIndependent() {
-			reqGetProperty(EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT_);
+			reqGetProperty(EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT);
 			return this;
 		}
 		/**
@@ -4961,7 +4961,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetRatedVoltageIndependent() {
-			reqGetProperty(EPC_RATED_VOLTAGE_INDEPENDENT_);
+			reqGetProperty(EPC_RATED_VOLTAGE_INDEPENDENT);
 			return this;
 		}
 		/**
@@ -5514,7 +5514,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMinimumMaximumChargingPowerIndependent() {
-			reqInformProperty(EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT_);
+			reqInformProperty(EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT);
 			return this;
 		}
 		/**
@@ -5540,7 +5540,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMinimumMaximumDischargingPowerIndependent() {
-			reqInformProperty(EPC_MINIMUM_MAXIMUM_DISCHARGING_POWER_INDEPENDENT_);
+			reqInformProperty(EPC_MINIMUM_MAXIMUM_DISCHARGING_POWER_INDEPENDENT);
 			return this;
 		}
 		/**
@@ -5566,7 +5566,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMinimumMaximUmChargingCurrentIndependent() {
-			reqInformProperty(EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT_);
+			reqInformProperty(EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT);
 			return this;
 		}
 		/**
@@ -5592,7 +5592,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMinimumMaximUmDischargingCurrentIndependent() {
-			reqInformProperty(EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT_);
+			reqInformProperty(EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT);
 			return this;
 		}
 		/**
@@ -5956,7 +5956,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformRatedVoltageIndependent() {
-			reqInformProperty(EPC_RATED_VOLTAGE_INDEPENDENT_);
+			reqInformProperty(EPC_RATED_VOLTAGE_INDEPENDENT);
 			return this;
 		}
 		/**

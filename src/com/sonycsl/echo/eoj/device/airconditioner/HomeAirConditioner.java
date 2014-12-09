@@ -46,7 +46,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	public static final byte EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING = (byte)0xA3;
 	public static final byte EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING = (byte)0xA1;
 	public static final byte EPC_AIR_FLOW_RATE_SETTING = (byte)0xA0;
-	public static final byte EPC_OFF_TIMER_SETTING_RELATIVE_TIME_ = (byte)0x96;
+	public static final byte EPC_OFF_TIMER_SETTING_RELATIVE_TIME = (byte)0x96;
 	public static final byte EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE = (byte)0xBB;
 	public static final byte EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL = (byte)0xBC;
 	public static final byte EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY = (byte)0xBA;
@@ -54,7 +54,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	public static final byte EPC_MEASURED_COOLED_AIR_TEMPERATURE = (byte)0xBD;
 	public static final byte EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE = (byte)0xBE;
 	public static final byte EPC_OFF_TIMER_BASED_RESERVATION_SETTING = (byte)0x94;
-	public static final byte EPC_ON_TIMER_SETTING_TIME_ = (byte)0x91;
+	public static final byte EPC_ON_TIMER_SETTING_TIME = (byte)0x91;
 	public static final byte EPC_ON_TIMER_BASED_RESERVATION_SETTING = (byte)0x90;
 	public static final byte EPC_RATED_POWER_CONSUMPTION = (byte)0xB8;
 	public static final byte EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION = (byte)0xB9;
@@ -70,10 +70,10 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	public static final byte EPC_SPECIAL_STATE = (byte)0xAA;
 	public static final byte EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION = (byte)0xCE;
 	public static final byte EPC_OPERATION_STATUS_OF_COMPONENTS = (byte)0xCD;
-	public static final byte EPC_OFF_TIMER_SETTING_TIME_ = (byte)0x95;
+	public static final byte EPC_OFF_TIMER_SETTING_TIME = (byte)0x95;
 	public static final byte EPC_AIR_PURIFICATION_MODE_SETTING = (byte)0xCF;
 	public static final byte EPC_MOUNTED_SELF_CLEANING_METHOD = (byte)0xCA;
-	public static final byte EPC_ON_TIMER_SETTING_RELATIVE_TIME_ = (byte)0x92;
+	public static final byte EPC_ON_TIMER_SETTING_RELATIVE_TIME = (byte)0x92;
 	public static final byte EPC_SPECIAL_FUNCTION_SETTING = (byte)0xCC;
 	public static final byte EPC_SELF_CLEANING_FUNCTION_SETTING = (byte)0xCB;
 
@@ -2967,10 +2967,10 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		case EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING : return setAutomaticSwingOfAirFlowSetting(property.edt);
 		case EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING : return setAutomaticControlOfAirFlowDirectionSetting(property.edt);
 		case EPC_AIR_FLOW_RATE_SETTING : return setAirFlowRateSetting(property.edt);
-		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME_ : return setOffTimerSettingRelativeTime(property.edt);
+		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return setOffTimerSettingRelativeTime(property.edt);
 		case EPC_RELATIVE_TEMPERATURE_SETTING : return setRelativeTemperatureSetting(property.edt);
 		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return setOffTimerBasedReservationSetting(property.edt);
-		case EPC_ON_TIMER_SETTING_TIME_ : return setOnTimerSettingTime(property.edt);
+		case EPC_ON_TIMER_SETTING_TIME : return setOnTimerSettingTime(property.edt);
 		case EPC_ON_TIMER_BASED_RESERVATION_SETTING : return setOnTimerBasedReservationSetting(property.edt);
 		case EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING : return setNormalHighSpeedSilentOperationSetting(property.edt);
 		case EPC_SET_TEMPERATURE_VALUE : return setSetTemperatureValue(property.edt);
@@ -2981,9 +2981,9 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		case EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE : return setSetValueOfRelativeHumidityInDehumidifyingMode(property.edt);
 		case EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE : return setSetTemperatureValueInCoolingMode(property.edt);
 		case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION : return setThermostatSettingOverrideFunction(property.edt);
-		case EPC_OFF_TIMER_SETTING_TIME_ : return setOffTimerSettingTime(property.edt);
+		case EPC_OFF_TIMER_SETTING_TIME : return setOffTimerSettingTime(property.edt);
 		case EPC_AIR_PURIFICATION_MODE_SETTING : return setAirPurificationModeSetting(property.edt);
-		case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : return setOnTimerSettingRelativeTime(property.edt);
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return setOnTimerSettingRelativeTime(property.edt);
 		case EPC_SPECIAL_FUNCTION_SETTING : return setSpecialFunctionSetting(property.edt);
 		case EPC_SELF_CLEANING_FUNCTION_SETTING : return setSelfCleaningFunctionSetting(property.edt);
 
@@ -3010,7 +3010,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		case EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING : return getAutomaticSwingOfAirFlowSetting();
 		case EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING : return getAutomaticControlOfAirFlowDirectionSetting();
 		case EPC_AIR_FLOW_RATE_SETTING : return getAirFlowRateSetting();
-		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME_ : return getOffTimerSettingRelativeTime();
+		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return getOffTimerSettingRelativeTime();
 		case EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE : return getMeasuredValueOfRoomTemperature();
 		case EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL : return getSetTemperatureValueOfUserRemoteControl();
 		case EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY : return getMeasuredValueOfRoomRelativeHumidity();
@@ -3018,7 +3018,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		case EPC_MEASURED_COOLED_AIR_TEMPERATURE : return getMeasuredCooledAirTemperature();
 		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE : return getMeasuredOutdoorAirTemperature();
 		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return getOffTimerBasedReservationSetting();
-		case EPC_ON_TIMER_SETTING_TIME_ : return getOnTimerSettingTime();
+		case EPC_ON_TIMER_SETTING_TIME : return getOnTimerSettingTime();
 		case EPC_ON_TIMER_BASED_RESERVATION_SETTING : return getOnTimerBasedReservationSetting();
 		case EPC_RATED_POWER_CONSUMPTION : return getRatedPowerConsumption();
 		case EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION : return getMeasuredValueOfCurrentConsumption();
@@ -3033,10 +3033,10 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		case EPC_NON_PRIORITY_STATE : return getNonPriorityState();
 		case EPC_SPECIAL_STATE : return getSpecialState();
 		case EPC_OPERATION_STATUS_OF_COMPONENTS : return getOperationStatusOfComponents();
-		case EPC_OFF_TIMER_SETTING_TIME_ : return getOffTimerSettingTime();
+		case EPC_OFF_TIMER_SETTING_TIME : return getOffTimerSettingTime();
 		case EPC_AIR_PURIFICATION_MODE_SETTING : return getAirPurificationModeSetting();
 		case EPC_MOUNTED_SELF_CLEANING_METHOD : return getMountedSelfCleaningMethod();
-		case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : return getOnTimerSettingRelativeTime();
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return getOnTimerSettingRelativeTime();
 		case EPC_SPECIAL_FUNCTION_SETTING : return getSpecialFunctionSetting();
 		case EPC_SELF_CLEANING_FUNCTION_SETTING : return getSelfCleaningFunctionSetting();
 
@@ -3063,7 +3063,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		case EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING : return isValidAutomaticSwingOfAirFlowSetting(property.edt);
 		case EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING : return isValidAutomaticControlOfAirFlowDirectionSetting(property.edt);
 		case EPC_AIR_FLOW_RATE_SETTING : return isValidAirFlowRateSetting(property.edt);
-		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME_ : return isValidOffTimerSettingRelativeTime(property.edt);
+		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return isValidOffTimerSettingRelativeTime(property.edt);
 		case EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE : return isValidMeasuredValueOfRoomTemperature(property.edt);
 		case EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL : return isValidSetTemperatureValueOfUserRemoteControl(property.edt);
 		case EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY : return isValidMeasuredValueOfRoomRelativeHumidity(property.edt);
@@ -3071,7 +3071,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		case EPC_MEASURED_COOLED_AIR_TEMPERATURE : return isValidMeasuredCooledAirTemperature(property.edt);
 		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE : return isValidMeasuredOutdoorAirTemperature(property.edt);
 		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return isValidOffTimerBasedReservationSetting(property.edt);
-		case EPC_ON_TIMER_SETTING_TIME_ : return isValidOnTimerSettingTime(property.edt);
+		case EPC_ON_TIMER_SETTING_TIME : return isValidOnTimerSettingTime(property.edt);
 		case EPC_ON_TIMER_BASED_RESERVATION_SETTING : return isValidOnTimerBasedReservationSetting(property.edt);
 		case EPC_RATED_POWER_CONSUMPTION : return isValidRatedPowerConsumption(property.edt);
 		case EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION : return isValidMeasuredValueOfCurrentConsumption(property.edt);
@@ -3087,10 +3087,10 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		case EPC_SPECIAL_STATE : return isValidSpecialState(property.edt);
 		case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION : return isValidThermostatSettingOverrideFunction(property.edt);
 		case EPC_OPERATION_STATUS_OF_COMPONENTS : return isValidOperationStatusOfComponents(property.edt);
-		case EPC_OFF_TIMER_SETTING_TIME_ : return isValidOffTimerSettingTime(property.edt);
+		case EPC_OFF_TIMER_SETTING_TIME : return isValidOffTimerSettingTime(property.edt);
 		case EPC_AIR_PURIFICATION_MODE_SETTING : return isValidAirPurificationModeSetting(property.edt);
 		case EPC_MOUNTED_SELF_CLEANING_METHOD : return isValidMountedSelfCleaningMethod(property.edt);
-		case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : return isValidOnTimerSettingRelativeTime(property.edt);
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return isValidOnTimerSettingRelativeTime(property.edt);
 		case EPC_SPECIAL_FUNCTION_SETTING : return isValidSpecialFunctionSetting(property.edt);
 		case EPC_SELF_CLEANING_FUNCTION_SETTING : return isValidSelfCleaningFunctionSetting(property.edt);
 
@@ -3174,7 +3174,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			case EPC_AIR_FLOW_RATE_SETTING : 
 				onSetAirFlowRateSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME_ : 
+			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : 
 				onSetOffTimerSettingRelativeTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RELATIVE_TEMPERATURE_SETTING : 
@@ -3183,7 +3183,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : 
 				onSetOffTimerBasedReservationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_TIME_ : 
+			case EPC_ON_TIMER_SETTING_TIME : 
 				onSetOnTimerSettingTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_BASED_RESERVATION_SETTING : 
@@ -3216,13 +3216,13 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION : 
 				onSetThermostatSettingOverrideFunction(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OFF_TIMER_SETTING_TIME_ : 
+			case EPC_OFF_TIMER_SETTING_TIME : 
 				onSetOffTimerSettingTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_AIR_PURIFICATION_MODE_SETTING : 
 				onSetAirPurificationModeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : 
+			case EPC_ON_TIMER_SETTING_RELATIVE_TIME : 
 				onSetOnTimerSettingRelativeTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SPECIAL_FUNCTION_SETTING : 
@@ -3283,7 +3283,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			case EPC_AIR_FLOW_RATE_SETTING : 
 				onGetAirFlowRateSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME_ : 
+			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : 
 				onGetOffTimerSettingRelativeTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE : 
@@ -3307,7 +3307,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : 
 				onGetOffTimerBasedReservationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_TIME_ : 
+			case EPC_ON_TIMER_SETTING_TIME : 
 				onGetOnTimerSettingTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_BASED_RESERVATION_SETTING : 
@@ -3352,7 +3352,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			case EPC_OPERATION_STATUS_OF_COMPONENTS : 
 				onGetOperationStatusOfComponents(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OFF_TIMER_SETTING_TIME_ : 
+			case EPC_OFF_TIMER_SETTING_TIME : 
 				onGetOffTimerSettingTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_AIR_PURIFICATION_MODE_SETTING : 
@@ -3361,7 +3361,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			case EPC_MOUNTED_SELF_CLEANING_METHOD : 
 				onGetMountedSelfCleaningMethod(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : 
+			case EPC_ON_TIMER_SETTING_RELATIVE_TIME : 
 				onGetOnTimerSettingRelativeTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SPECIAL_FUNCTION_SETTING : 
@@ -5435,7 +5435,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOffTimerSettingRelativeTime(byte[] edt) {
-			reqSetProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME_, edt);
+			reqSetProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
@@ -5513,7 +5513,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOnTimerSettingTime(byte[] edt) {
-			reqSetProperty(EPC_ON_TIMER_SETTING_TIME_, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
@@ -5799,7 +5799,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOffTimerSettingTime(byte[] edt) {
-			reqSetProperty(EPC_OFF_TIMER_SETTING_TIME_, edt);
+			reqSetProperty(EPC_OFF_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
@@ -5851,7 +5851,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt) {
-			reqSetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME_, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
@@ -6379,7 +6379,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOffTimerSettingRelativeTime() {
-			reqGetProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME_);
+			reqGetProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -6587,7 +6587,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOnTimerSettingTime() {
-			reqGetProperty(EPC_ON_TIMER_SETTING_TIME_);
+			reqGetProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -6977,7 +6977,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOffTimerSettingTime() {
-			reqGetProperty(EPC_OFF_TIMER_SETTING_TIME_);
+			reqGetProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -7055,7 +7055,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOnTimerSettingRelativeTime() {
-			reqGetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME_);
+			reqGetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -7582,7 +7582,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOffTimerSettingRelativeTime() {
-			reqInformProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME_);
+			reqInformProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -7790,7 +7790,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOnTimerSettingTime() {
-			reqInformProperty(EPC_ON_TIMER_SETTING_TIME_);
+			reqInformProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -8180,7 +8180,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOffTimerSettingTime() {
-			reqInformProperty(EPC_OFF_TIMER_SETTING_TIME_);
+			reqInformProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -8258,7 +8258,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOnTimerSettingRelativeTime() {
-			reqInformProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME_);
+			reqInformProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**

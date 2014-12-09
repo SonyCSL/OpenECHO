@@ -41,8 +41,8 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	public static final byte EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_2 = (byte)0xE6;
 	public static final byte EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_1 = (byte)0xE5;
 	public static final byte EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD = (byte)0xE4;
-	public static final byte EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_ = (byte)0xE9;
-	public static final byte EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_ = (byte)0xE8;
+	public static final byte EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT = (byte)0xE9;
+	public static final byte EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED = (byte)0xE8;
 	public static final byte EPC_SYSTEM_INTERCONN_ECTED_TYPE = (byte)0xD0;
 
 	@Override
@@ -806,8 +806,8 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_2 : return setPowerGenerationOutputLimitSetting2(property.edt);
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_1 : return setPowerGenerationOutputLimitSetting1(property.edt);
 		case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD : return setResettingCumulativeAmountOfElectricitySold(property.edt);
-		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_ : return setRatedPowerGenerationOutputIndependent(property.edt);
-		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_ : return setRatedPowerGenerationOutputSystemInterconnected(property.edt);
+		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : return setRatedPowerGenerationOutputIndependent(property.edt);
+		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : return setRatedPowerGenerationOutputSystemInterconnected(property.edt);
 
 		default : return false;
 		}
@@ -825,8 +825,8 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD : return getLimitSettingForTheAmountOfElectricitySold();
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_2 : return getPowerGenerationOutputLimitSetting2();
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_1 : return getPowerGenerationOutputLimitSetting1();
-		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_ : return getRatedPowerGenerationOutputIndependent();
-		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_ : return getRatedPowerGenerationOutputSystemInterconnected();
+		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : return getRatedPowerGenerationOutputIndependent();
+		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : return getRatedPowerGenerationOutputSystemInterconnected();
 		case EPC_SYSTEM_INTERCONN_ECTED_TYPE : return getSystemInterconnEctedType();
 
 		default : return null;
@@ -847,8 +847,8 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_2 : return isValidPowerGenerationOutputLimitSetting2(property.edt);
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_1 : return isValidPowerGenerationOutputLimitSetting1(property.edt);
 		case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD : return isValidResettingCumulativeAmountOfElectricitySold(property.edt);
-		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_ : return isValidRatedPowerGenerationOutputIndependent(property.edt);
-		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_ : return isValidRatedPowerGenerationOutputSystemInterconnected(property.edt);
+		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : return isValidRatedPowerGenerationOutputIndependent(property.edt);
+		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : return isValidRatedPowerGenerationOutputSystemInterconnected(property.edt);
 		case EPC_SYSTEM_INTERCONN_ECTED_TYPE : return isValidSystemInterconnEctedType(property.edt);
 
 		default : return false;
@@ -913,10 +913,10 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 			case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD : 
 				onSetResettingCumulativeAmountOfElectricitySold(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_ : 
+			case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : 
 				onSetRatedPowerGenerationOutputIndependent(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_ : 
+			case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : 
 				onSetRatedPowerGenerationOutputSystemInterconnected(eoj, tid, esv, property, success);
 				return true;
 
@@ -950,10 +950,10 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_1 : 
 				onGetPowerGenerationOutputLimitSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_ : 
+			case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : 
 				onGetRatedPowerGenerationOutputIndependent(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_ : 
+			case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : 
 				onGetRatedPowerGenerationOutputSystemInterconnected(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SYSTEM_INTERCONN_ECTED_TYPE : 
@@ -1580,7 +1580,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetRatedPowerGenerationOutputIndependent(byte[] edt) {
-			reqSetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_, edt);
+			reqSetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT, edt);
 			return this;
 		}
 		/**
@@ -1606,7 +1606,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetRatedPowerGenerationOutputSystemInterconnected(byte[] edt) {
-			reqSetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_, edt);
+			reqSetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED, edt);
 			return this;
 		}
 
@@ -1900,7 +1900,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetRatedPowerGenerationOutputIndependent() {
-			reqGetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_);
+			reqGetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT);
 			return this;
 		}
 		/**
@@ -1926,7 +1926,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetRatedPowerGenerationOutputSystemInterconnected() {
-			reqGetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_);
+			reqGetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED);
 			return this;
 		}
 		/**
@@ -2245,7 +2245,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformRatedPowerGenerationOutputIndependent() {
-			reqInformProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_);
+			reqInformProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT);
 			return this;
 		}
 		/**
@@ -2271,7 +2271,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformRatedPowerGenerationOutputSystemInterconnected() {
-			reqInformProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_);
+			reqInformProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED);
 			return this;
 		}
 		/**

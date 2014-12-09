@@ -40,7 +40,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	public static final byte EPC_MICROWAVE_HEATING_POWER_SETTING = (byte)0xE7;
 	public static final byte EPC_REMAINING_HEATING_TIME_SETTING = (byte)0xE6;
 	public static final byte EPC_HEATING_TIME_SETTING = (byte)0xE5;
-	public static final byte EPC__ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING = (byte)0xE9;
+	public static final byte EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING = (byte)0xE9;
 	public static final byte EPC_PROMPT_MESSAGE_SETTING = (byte)0xE8;
 	public static final byte EPC_FOOD_TEMPERATURE_SETTING = (byte)0xE4;
 	public static final byte EPC_AUTOMATIC_HEATING_MENU_SETTING = (byte)0xD0;
@@ -50,8 +50,8 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	public static final byte EPC_HEATING_SETTING = (byte)0xB2;
 	public static final byte EPC_DOOR_OPEN_CLOSE_STATUS = (byte)0xB0;
 	public static final byte EPC_HEATING_STATUS = (byte)0xB1;
-	public static final byte EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER_ = (byte)0xEC;
-	public static final byte EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION_ = (byte)0xEB;
+	public static final byte EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER = (byte)0xEC;
+	public static final byte EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION = (byte)0xEB;
 	public static final byte EPC_DISPLAY_CHARACTER_STRING_SETTING = (byte)0xEA;
 
 	@Override
@@ -1532,7 +1532,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		case EPC_MICROWAVE_HEATING_POWER_SETTING : return setMicrowaveHeatingPowerSetting(property.edt);
 		case EPC_REMAINING_HEATING_TIME_SETTING : return setRemainingHeatingTimeSetting(property.edt);
 		case EPC_HEATING_TIME_SETTING : return setHeatingTimeSetting(property.edt);
-		case EPC__ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : return setAccessoriesToCombinationMicrowaveOvenSetting(property.edt);
+		case EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : return setAccessoriesToCombinationMicrowaveOvenSetting(property.edt);
 		case EPC_PROMPT_MESSAGE_SETTING : return setPromptMessageSetting(property.edt);
 		case EPC_FOOD_TEMPERATURE_SETTING : return setFoodTemperatureSetting(property.edt);
 		case EPC_AUTOMATIC_HEATING_MENU_SETTING : return setAutomaticHeatingMenuSetting(property.edt);
@@ -1540,8 +1540,8 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		case EPC_OVEN_PREHEATING_SETTING : return setOvenPreheatingSetting(property.edt);
 		case EPC_FERMENTING_MODE_SETTING : return setFermentingModeSetting(property.edt);
 		case EPC_HEATING_SETTING : return setHeatingSetting(property.edt);
-		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER_ : return setTwoStageMicrowaveHeatingSettingHeatingPower(property.edt);
-		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION_ : return setTwoStageMicrowaveHeatingSettingDuration(property.edt);
+		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER : return setTwoStageMicrowaveHeatingSettingHeatingPower(property.edt);
+		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION : return setTwoStageMicrowaveHeatingSettingDuration(property.edt);
 		case EPC_DISPLAY_CHARACTER_STRING_SETTING : return setDisplayCharacterStringSetting(property.edt);
 
 		default : return false;
@@ -1561,7 +1561,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		case EPC_MICROWAVE_HEATING_POWER_SETTING : return getMicrowaveHeatingPowerSetting();
 		case EPC_REMAINING_HEATING_TIME_SETTING : return getRemainingHeatingTimeSetting();
 		case EPC_HEATING_TIME_SETTING : return getHeatingTimeSetting();
-		case EPC__ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : return getAccessoriesToCombinationMicrowaveOvenSetting();
+		case EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : return getAccessoriesToCombinationMicrowaveOvenSetting();
 		case EPC_PROMPT_MESSAGE_SETTING : return getPromptMessageSetting();
 		case EPC_FOOD_TEMPERATURE_SETTING : return getFoodTemperatureSetting();
 		case EPC_AUTOMATIC_HEATING_MENU_SETTING : return getAutomaticHeatingMenuSetting();
@@ -1571,8 +1571,8 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		case EPC_HEATING_SETTING : return getHeatingSetting();
 		case EPC_DOOR_OPEN_CLOSE_STATUS : return getDoorOpenCloseStatus();
 		case EPC_HEATING_STATUS : return getHeatingStatus();
-		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER_ : return getTwoStageMicrowaveHeatingSettingHeatingPower();
-		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION_ : return getTwoStageMicrowaveHeatingSettingDuration();
+		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER : return getTwoStageMicrowaveHeatingSettingHeatingPower();
+		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION : return getTwoStageMicrowaveHeatingSettingDuration();
 
 		default : return null;
 		}
@@ -1591,7 +1591,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		case EPC_MICROWAVE_HEATING_POWER_SETTING : return isValidMicrowaveHeatingPowerSetting(property.edt);
 		case EPC_REMAINING_HEATING_TIME_SETTING : return isValidRemainingHeatingTimeSetting(property.edt);
 		case EPC_HEATING_TIME_SETTING : return isValidHeatingTimeSetting(property.edt);
-		case EPC__ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : return isValidAccessoriesToCombinationMicrowaveOvenSetting(property.edt);
+		case EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : return isValidAccessoriesToCombinationMicrowaveOvenSetting(property.edt);
 		case EPC_PROMPT_MESSAGE_SETTING : return isValidPromptMessageSetting(property.edt);
 		case EPC_FOOD_TEMPERATURE_SETTING : return isValidFoodTemperatureSetting(property.edt);
 		case EPC_AUTOMATIC_HEATING_MENU_SETTING : return isValidAutomaticHeatingMenuSetting(property.edt);
@@ -1601,8 +1601,8 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		case EPC_HEATING_SETTING : return isValidHeatingSetting(property.edt);
 		case EPC_DOOR_OPEN_CLOSE_STATUS : return isValidDoorOpenCloseStatus(property.edt);
 		case EPC_HEATING_STATUS : return isValidHeatingStatus(property.edt);
-		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER_ : return isValidTwoStageMicrowaveHeatingSettingHeatingPower(property.edt);
-		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION_ : return isValidTwoStageMicrowaveHeatingSettingDuration(property.edt);
+		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER : return isValidTwoStageMicrowaveHeatingSettingHeatingPower(property.edt);
+		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION : return isValidTwoStageMicrowaveHeatingSettingDuration(property.edt);
 		case EPC_DISPLAY_CHARACTER_STRING_SETTING : return isValidDisplayCharacterStringSetting(property.edt);
 
 		default : return false;
@@ -1673,7 +1673,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 			case EPC_HEATING_TIME_SETTING : 
 				onSetHeatingTimeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : 
+			case EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : 
 				onSetAccessoriesToCombinationMicrowaveOvenSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_PROMPT_MESSAGE_SETTING : 
@@ -1697,10 +1697,10 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 			case EPC_HEATING_SETTING : 
 				onSetHeatingSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER_ : 
+			case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER : 
 				onSetTwoStageMicrowaveHeatingSettingHeatingPower(eoj, tid, esv, property, success);
 				return true;
-			case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION_ : 
+			case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION : 
 				onSetTwoStageMicrowaveHeatingSettingDuration(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DISPLAY_CHARACTER_STRING_SETTING : 
@@ -1740,7 +1740,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 			case EPC_HEATING_TIME_SETTING : 
 				onGetHeatingTimeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : 
+			case EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : 
 				onGetAccessoriesToCombinationMicrowaveOvenSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_PROMPT_MESSAGE_SETTING : 
@@ -1770,10 +1770,10 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 			case EPC_HEATING_STATUS : 
 				onGetHeatingStatus(eoj, tid, esv, property, success);
 				return true;
-			case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER_ : 
+			case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER : 
 				onGetTwoStageMicrowaveHeatingSettingHeatingPower(eoj, tid, esv, property, success);
 				return true;
-			case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION_ : 
+			case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION : 
 				onGetTwoStageMicrowaveHeatingSettingDuration(eoj, tid, esv, property, success);
 				return true;
 
@@ -2932,7 +2932,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetAccessoriesToCombinationMicrowaveOvenSetting(byte[] edt) {
-			reqSetProperty(EPC__ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING, edt);
+			reqSetProperty(EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3140,7 +3140,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetTwoStageMicrowaveHeatingSettingHeatingPower(byte[] edt) {
-			reqSetProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER_, edt);
+			reqSetProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER, edt);
 			return this;
 		}
 		/**
@@ -3166,7 +3166,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetTwoStageMicrowaveHeatingSettingDuration(byte[] edt) {
-			reqSetProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION_, edt);
+			reqSetProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION, edt);
 			return this;
 		}
 		/**
@@ -3512,7 +3512,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetAccessoriesToCombinationMicrowaveOvenSetting() {
-			reqGetProperty(EPC__ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING);
+			reqGetProperty(EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING);
 			return this;
 		}
 		/**
@@ -3772,7 +3772,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetTwoStageMicrowaveHeatingSettingHeatingPower() {
-			reqGetProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER_);
+			reqGetProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER);
 			return this;
 		}
 		/**
@@ -3798,7 +3798,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetTwoStageMicrowaveHeatingSettingDuration() {
-			reqGetProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION_);
+			reqGetProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION);
 			return this;
 		}
 
@@ -4117,7 +4117,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformAccessoriesToCombinationMicrowaveOvenSetting() {
-			reqInformProperty(EPC__ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING);
+			reqInformProperty(EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING);
 			return this;
 		}
 		/**
@@ -4377,7 +4377,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformTwoStageMicrowaveHeatingSettingHeatingPower() {
-			reqInformProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER_);
+			reqInformProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER);
 			return this;
 		}
 		/**
@@ -4403,7 +4403,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformTwoStageMicrowaveHeatingSettingDuration() {
-			reqInformProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION_);
+			reqInformProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION);
 			return this;
 		}
 

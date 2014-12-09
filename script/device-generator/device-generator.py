@@ -173,7 +173,9 @@ class DeviceProperty:
         self.is_redefined = False
 
     def split_property_name(self):
-        return re.split('[^a-zA-Z0-9]+', self.name_en)
+        ss = re.split('[^a-zA-Z0-9]+', self.name_en)
+        while '' in ss: ss.remove('')
+        return ss;
 
     def create_field_name(self):
         ss = self.split_property_name()
@@ -494,21 +496,21 @@ def load_echo_device_class_name_dict():
     return class_name_dict
 
 
-def scan_top(dir):
+def scan_top(src_dir, dst_dir):
 
     #device_list_en_path = os.path.join(dir,"en","DeviceList.csv")
-    device_object_en_path = os.path.join(dir,"en","DeviceObject.csv")
+    device_object_en_path = os.path.join(src_dir,"en","DeviceObject.csv")
     device_object_en_reader = csv.reader(open(device_object_en_path, 'r'))
     #device_list_ja_path = os.path.join(dir,"ja","DeviceList.csv")
-    device_object_ja_path = os.path.join(dir,"ja","DeviceObject.csv")
+    device_object_ja_path = os.path.join(src_dir,"ja","DeviceObject.csv")
     device_object_ja_reader = csv.reader(open(device_object_ja_path, 'r'))
 
     class_name_dict = load_echo_device_class_name_dict();
 
     parser = Parser()
     device_object = parser.parse(list(device_object_en_reader), list(device_object_ja_reader))
-    devices_dir_path_en = os.path.join(dir,"en")
-    devices_dir_path_ja = os.path.join(dir,"ja")
+    devices_dir_path_en = os.path.join(src_dir,"en")
+    devices_dir_path_ja = os.path.join(src_dir,"ja")
     csv_files_en = list_csv_files(devices_dir_path_en)
     csv_files_ja = list_csv_files(devices_dir_path_ja)
     deivce_object_epc_list = device_object.property_dict.keys()
@@ -533,7 +535,7 @@ def scan_top(dir):
                 else:
                     device.property_dict[epc] = device_object.property_dict[epc]
                 device.property_dict[epc].is_device_object_definition = True
-            generate_java_code(device)
+            generate_java_code(dst_dir, device)
             #print str(len(device.properties.keys()))
             #device.show()
     controller = copy.deepcopy(device_object)
@@ -547,13 +549,13 @@ def scan_top(dir):
     property_dict = controller.property_dict
     for p in property_dict.values():
         p.is_device_object_definition = True
-    generate_java_code(controller)
+    generate_java_code(dst_dir, controller)
 
-def generate_java_code(device):
+def generate_java_code(dst_dir, device):
     generator = JavaCodeGenerator(device)
     code = generator.generate()
     package_name = generate_package_name(device)
-    dst_dir_path = "dst/"+package_name
+    dst_dir_path = dst_dir+"/"+package_name
     if not os.path.exists(dst_dir_path):
         os.makedirs(dst_dir_path)
     dst_path = dst_dir_path + "/" + device.class_name+".java"
@@ -565,10 +567,11 @@ def generate_java_code(device):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("target_directory",
+    parser.add_argument("src_dir",
                         help="directory that contains csv directory(ja,en,..).")
+    parser.add_argument("dst_dir")
     args = parser.parse_args()
-    scan_top(args.target_directory)
+    scan_top(args.src_dir, args.dst_dir)
 
 
 if __name__ == "__main__":

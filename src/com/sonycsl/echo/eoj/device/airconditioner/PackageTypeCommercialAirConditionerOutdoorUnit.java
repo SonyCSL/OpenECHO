@@ -41,7 +41,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT = (byte)0xB8;
 	public static final byte EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT = (byte)0xB9;
 	public static final byte EPC_OPERATION_MODE_SETTING = (byte)0xB0;
-	public static final byte EPC__SPECIAL_STATE = (byte)0xAA;
+	public static final byte EPC_SPECIAL_STATE = (byte)0xAA;
 	public static final byte EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_2 = (byte)0xEE;
 
 	@Override
@@ -679,7 +679,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		case EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT : return getRatedPowerConsumptionOfOutdoorUnit();
 		case EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT : return getMeasuredElectricCurrentConsumptionOfOutdoorUnit();
 		case EPC_OPERATION_MODE_SETTING : return getOperationModeSetting();
-		case EPC__SPECIAL_STATE : return getSpecialState();
+		case EPC_SPECIAL_STATE : return getSpecialState();
 		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_2 : return getMeasuredOutdoorAirTemperature2();
 
 		default : return null;
@@ -700,7 +700,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		case EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT : return isValidRatedPowerConsumptionOfOutdoorUnit(property.edt);
 		case EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT : return isValidMeasuredElectricCurrentConsumptionOfOutdoorUnit(property.edt);
 		case EPC_OPERATION_MODE_SETTING : return isValidOperationModeSetting(property.edt);
-		case EPC__SPECIAL_STATE : return isValidSpecialState(property.edt);
+		case EPC_SPECIAL_STATE : return isValidSpecialState(property.edt);
 		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_2 : return isValidMeasuredOutdoorAirTemperature2(property.edt);
 
 		default : return false;
@@ -790,7 +790,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 			case EPC_OPERATION_MODE_SETTING : 
 				onGetOperationModeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__SPECIAL_STATE : 
+			case EPC_SPECIAL_STATE : 
 				onGetSpecialState(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_2 : 
@@ -1518,7 +1518,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSpecialState() {
-			reqGetProperty(EPC__SPECIAL_STATE);
+			reqGetProperty(EPC_SPECIAL_STATE);
 			return this;
 		}
 		/**
@@ -1889,7 +1889,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSpecialState() {
-			reqInformProperty(EPC__SPECIAL_STATE);
+			reqInformProperty(EPC_SPECIAL_STATE);
 			return this;
 		}
 		/**

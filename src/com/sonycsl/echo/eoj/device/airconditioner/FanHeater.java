@@ -41,11 +41,11 @@ public abstract class FanHeater extends DeviceObject {
 	public static final byte EPC_ION_EMISSION_SETTING = (byte)0xC2;
 	public static final byte EPC_TEMPERATURE_SETTING_VALUE = (byte)0xB3;
 	public static final byte EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING = (byte)0xB1;
-	public static final byte EPC_OFF_TIMER_VALUE_RELATIVE_TIME_ = (byte)0x96;
-	public static final byte EPC_OFF_TIMER_SETTING_VALUE_TIME_ = (byte)0x95;
+	public static final byte EPC_OFF_TIMER_VALUE_RELATIVE_TIME = (byte)0x96;
+	public static final byte EPC_OFF_TIMER_SETTING_VALUE_TIME = (byte)0x95;
 	public static final byte EPC_OFF_TIMER_RESERVATION_SETTING = (byte)0x94;
-	public static final byte EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME_ = (byte)0x92;
-	public static final byte EPC_ON_TIMER_SETTING_VALUE_TIME_ = (byte)0x91;
+	public static final byte EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME = (byte)0x92;
+	public static final byte EPC_ON_TIMER_SETTING_VALUE_TIME = (byte)0x91;
 	public static final byte EPC_ON_TIMER_RESERVATION_SETTING = (byte)0x90;
 
 	@Override
@@ -1094,11 +1094,11 @@ public abstract class FanHeater extends DeviceObject {
 		case EPC_ION_EMISSION_SETTING : return setIonEmissionSetting(property.edt);
 		case EPC_TEMPERATURE_SETTING_VALUE : return setTemperatureSettingValue(property.edt);
 		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING : return setAutomaticTemperatureControlSetting(property.edt);
-		case EPC_OFF_TIMER_VALUE_RELATIVE_TIME_ : return setOffTimerValueRelativeTime(property.edt);
-		case EPC_OFF_TIMER_SETTING_VALUE_TIME_ : return setOffTimerSettingValueTime(property.edt);
+		case EPC_OFF_TIMER_VALUE_RELATIVE_TIME : return setOffTimerValueRelativeTime(property.edt);
+		case EPC_OFF_TIMER_SETTING_VALUE_TIME : return setOffTimerSettingValueTime(property.edt);
 		case EPC_OFF_TIMER_RESERVATION_SETTING : return setOffTimerReservationSetting(property.edt);
-		case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME_ : return setOnTimerSettingValueRelativeTime(property.edt);
-		case EPC_ON_TIMER_SETTING_VALUE_TIME_ : return setOnTimerSettingValueTime(property.edt);
+		case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME : return setOnTimerSettingValueRelativeTime(property.edt);
+		case EPC_ON_TIMER_SETTING_VALUE_TIME : return setOnTimerSettingValueTime(property.edt);
 		case EPC_ON_TIMER_RESERVATION_SETTING : return setOnTimerReservationSetting(property.edt);
 
 		default : return false;
@@ -1119,11 +1119,11 @@ public abstract class FanHeater extends DeviceObject {
 		case EPC_ION_EMISSION_SETTING : return getIonEmissionSetting();
 		case EPC_TEMPERATURE_SETTING_VALUE : return getTemperatureSettingValue();
 		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING : return getAutomaticTemperatureControlSetting();
-		case EPC_OFF_TIMER_VALUE_RELATIVE_TIME_ : return getOffTimerValueRelativeTime();
-		case EPC_OFF_TIMER_SETTING_VALUE_TIME_ : return getOffTimerSettingValueTime();
+		case EPC_OFF_TIMER_VALUE_RELATIVE_TIME : return getOffTimerValueRelativeTime();
+		case EPC_OFF_TIMER_SETTING_VALUE_TIME : return getOffTimerSettingValueTime();
 		case EPC_OFF_TIMER_RESERVATION_SETTING : return getOffTimerReservationSetting();
-		case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME_ : return getOnTimerSettingValueRelativeTime();
-		case EPC_ON_TIMER_SETTING_VALUE_TIME_ : return getOnTimerSettingValueTime();
+		case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME : return getOnTimerSettingValueRelativeTime();
+		case EPC_ON_TIMER_SETTING_VALUE_TIME : return getOnTimerSettingValueTime();
 		case EPC_ON_TIMER_RESERVATION_SETTING : return getOnTimerReservationSetting();
 
 		default : return null;
@@ -1144,11 +1144,11 @@ public abstract class FanHeater extends DeviceObject {
 		case EPC_ION_EMISSION_SETTING : return isValidIonEmissionSetting(property.edt);
 		case EPC_TEMPERATURE_SETTING_VALUE : return isValidTemperatureSettingValue(property.edt);
 		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING : return isValidAutomaticTemperatureControlSetting(property.edt);
-		case EPC_OFF_TIMER_VALUE_RELATIVE_TIME_ : return isValidOffTimerValueRelativeTime(property.edt);
-		case EPC_OFF_TIMER_SETTING_VALUE_TIME_ : return isValidOffTimerSettingValueTime(property.edt);
+		case EPC_OFF_TIMER_VALUE_RELATIVE_TIME : return isValidOffTimerValueRelativeTime(property.edt);
+		case EPC_OFF_TIMER_SETTING_VALUE_TIME : return isValidOffTimerSettingValueTime(property.edt);
 		case EPC_OFF_TIMER_RESERVATION_SETTING : return isValidOffTimerReservationSetting(property.edt);
-		case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME_ : return isValidOnTimerSettingValueRelativeTime(property.edt);
-		case EPC_ON_TIMER_SETTING_VALUE_TIME_ : return isValidOnTimerSettingValueTime(property.edt);
+		case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME : return isValidOnTimerSettingValueRelativeTime(property.edt);
+		case EPC_ON_TIMER_SETTING_VALUE_TIME : return isValidOnTimerSettingValueTime(property.edt);
 		case EPC_ON_TIMER_RESERVATION_SETTING : return isValidOnTimerReservationSetting(property.edt);
 
 		default : return false;
@@ -1213,19 +1213,19 @@ public abstract class FanHeater extends DeviceObject {
 			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING : 
 				onSetAutomaticTemperatureControlSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OFF_TIMER_VALUE_RELATIVE_TIME_ : 
+			case EPC_OFF_TIMER_VALUE_RELATIVE_TIME : 
 				onSetOffTimerValueRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OFF_TIMER_SETTING_VALUE_TIME_ : 
+			case EPC_OFF_TIMER_SETTING_VALUE_TIME : 
 				onSetOffTimerSettingValueTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_OFF_TIMER_RESERVATION_SETTING : 
 				onSetOffTimerReservationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME_ : 
+			case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME : 
 				onSetOnTimerSettingValueRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_VALUE_TIME_ : 
+			case EPC_ON_TIMER_SETTING_VALUE_TIME : 
 				onSetOnTimerSettingValueTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_RESERVATION_SETTING : 
@@ -1268,19 +1268,19 @@ public abstract class FanHeater extends DeviceObject {
 			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING : 
 				onGetAutomaticTemperatureControlSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OFF_TIMER_VALUE_RELATIVE_TIME_ : 
+			case EPC_OFF_TIMER_VALUE_RELATIVE_TIME : 
 				onGetOffTimerValueRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OFF_TIMER_SETTING_VALUE_TIME_ : 
+			case EPC_OFF_TIMER_SETTING_VALUE_TIME : 
 				onGetOffTimerSettingValueTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_OFF_TIMER_RESERVATION_SETTING : 
 				onGetOffTimerReservationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME_ : 
+			case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME : 
 				onGetOnTimerSettingValueRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_VALUE_TIME_ : 
+			case EPC_ON_TIMER_SETTING_VALUE_TIME : 
 				onGetOnTimerSettingValueTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_RESERVATION_SETTING : 
@@ -2114,7 +2114,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOffTimerValueRelativeTime(byte[] edt) {
-			reqSetProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME_, edt);
+			reqSetProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
@@ -2140,7 +2140,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOffTimerSettingValueTime(byte[] edt) {
-			reqSetProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME_, edt);
+			reqSetProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME, edt);
 			return this;
 		}
 		/**
@@ -2192,7 +2192,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOnTimerSettingValueRelativeTime(byte[] edt) {
-			reqSetProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME_, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
@@ -2218,7 +2218,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOnTimerSettingValueTime(byte[] edt) {
-			reqSetProperty(EPC_ON_TIMER_SETTING_VALUE_TIME_, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_VALUE_TIME, edt);
 			return this;
 		}
 		/**
@@ -2590,7 +2590,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOffTimerValueRelativeTime() {
-			reqGetProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME_);
+			reqGetProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -2616,7 +2616,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOffTimerSettingValueTime() {
-			reqGetProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME_);
+			reqGetProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME);
 			return this;
 		}
 		/**
@@ -2668,7 +2668,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOnTimerSettingValueRelativeTime() {
-			reqGetProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME_);
+			reqGetProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -2694,7 +2694,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOnTimerSettingValueTime() {
-			reqGetProperty(EPC_ON_TIMER_SETTING_VALUE_TIME_);
+			reqGetProperty(EPC_ON_TIMER_SETTING_VALUE_TIME);
 			return this;
 		}
 		/**
@@ -3065,7 +3065,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOffTimerValueRelativeTime() {
-			reqInformProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME_);
+			reqInformProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -3091,7 +3091,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOffTimerSettingValueTime() {
-			reqInformProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME_);
+			reqInformProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME);
 			return this;
 		}
 		/**
@@ -3143,7 +3143,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOnTimerSettingValueRelativeTime() {
-			reqInformProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME_);
+			reqInformProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -3169,7 +3169,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOnTimerSettingValueTime() {
-			reqInformProperty(EPC_ON_TIMER_SETTING_VALUE_TIME_);
+			reqInformProperty(EPC_ON_TIMER_SETTING_VALUE_TIME);
 			return this;
 		}
 		/**

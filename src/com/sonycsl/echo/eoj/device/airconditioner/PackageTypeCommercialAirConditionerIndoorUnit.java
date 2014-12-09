@@ -36,41 +36,41 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	public static final byte EPC_TEMPERATURE_SETTING_2 = (byte)0xE3;
 	public static final byte EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER = (byte)0xC1;
 	public static final byte EPC_VENTILATION_MODE_SETTING = (byte)0xC0;
-	public static final byte EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_2 = (byte)0xE5;
+	public static final byte EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_2 = (byte)0xE5;
 	public static final byte EPC_VENTILATION_AIR_FLOW_RATE_SETTING = (byte)0xC2;
-	public static final byte EPC__OFF_X000A_TIMER_BASED_RESERVATION_SETTING = (byte)0x94;
-	public static final byte EPC__TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 = (byte)0xE7;
-	public static final byte EPC__AIR_FLOW_DIRECTION_HORIZONTAL_SETTING = (byte)0xA5;
-	public static final byte EPC__AIR_FLOW_DIRECTION_VERTICAL_SETTING = (byte)0xA4;
+	public static final byte EPC_OFF_X000A_TIMER_BASED_RESERVATION_SETTING = (byte)0x94;
+	public static final byte EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 = (byte)0xE7;
+	public static final byte EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING = (byte)0xA5;
+	public static final byte EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING = (byte)0xA4;
 	public static final byte EPC_AIR_FLOW_RATE_SETTING = (byte)0xA0;
-	public static final byte EPC_OFF_TIMER_SETTING_RELATIVE_TIME_ = (byte)0x96;
+	public static final byte EPC_OFF_TIMER_SETTING_RELATIVE_TIME = (byte)0x96;
 	public static final byte EPC_MEASURED_INDOOR_TEMPERATURE_2 = (byte)0xEB;
 	public static final byte EPC_MEASURED_INDOOR_TEMPERATURE_1 = (byte)0xBB;
 	public static final byte EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY_1 = (byte)0xBA;
 	public static final byte EPC_RELATIVE_TEMPERATURE_SETTING = (byte)0xBF;
-	public static final byte EPC_OFF_TIMER_SETTING_TIME_ = (byte)0x95;
+	public static final byte EPC_OFF_TIMER_SETTING_TIME = (byte)0x95;
 	public static final byte EPC_MEASURED_POWER_CONSUMPTION_OF_INDOOR_UNIT = (byte)0xDB;
 	public static final byte EPC_APERTURE_OF_EXPANSION_VALVE = (byte)0xDC;
-	public static final byte EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_2 = (byte)0xE6;
+	public static final byte EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_2 = (byte)0xE6;
 	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_INDOOR_UNIT = (byte)0xB8;
 	public static final byte EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_INDOOR_UNIT = (byte)0xB9;
 	public static final byte EPC_TEMPERATURE_SETTING_1 = (byte)0xB3;
 	public static final byte EPC_OPERATION_MODE_SETTING = (byte)0xB0;
-	public static final byte EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_1 = (byte)0xB6;
-	public static final byte EPC__TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 = (byte)0xB7;
-	public static final byte EPC__RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 = (byte)0xB4;
-	public static final byte EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_1 = (byte)0xB5;
-	public static final byte EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE_ = (byte)0xAE;
+	public static final byte EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_1 = (byte)0xB6;
+	public static final byte EPC_TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 = (byte)0xB7;
+	public static final byte EPC_RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 = (byte)0xB4;
+	public static final byte EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_1 = (byte)0xB5;
+	public static final byte EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE = (byte)0xAE;
 	public static final byte EPC_THERMOSTAT_STATE = (byte)0xAC;
-	public static final byte EPC__SPECIAL_STATE = (byte)0xAA;
+	public static final byte EPC_SPECIAL_STATE = (byte)0xAA;
 	public static final byte EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION = (byte)0xCE;
-	public static final byte EPC__DISABLING_OF_AIR_CONDITIONER_SETTING = (byte)0xCD;
+	public static final byte EPC_DISABLING_OF_AIR_CONDITIONER_SETTING = (byte)0xCD;
 	public static final byte EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY_2 = (byte)0xEA;
 	public static final byte EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING = (byte)0xCF;
-	public static final byte EPC_ON_TIMER_SETTING_RELATIVE_TIME_ = (byte)0x92;
-	public static final byte EPC_ON_TIMER_SETTING_TIME_ = (byte)0x91;
-	public static final byte EPC__ON_X000A_TIMER_BASED_RESERVATION_SETTING = (byte)0x90;
-	public static final byte EPC__RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 = (byte)0xE4;
+	public static final byte EPC_ON_TIMER_SETTING_RELATIVE_TIME = (byte)0x92;
+	public static final byte EPC_ON_TIMER_SETTING_TIME = (byte)0x91;
+	public static final byte EPC_ON_X000A_TIMER_BASED_RESERVATION_SETTING = (byte)0x90;
+	public static final byte EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 = (byte)0xE4;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -88,10 +88,10 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_MODE_SETTING);
 		addSetProperty(EPC_OPERATION_MODE_SETTING);
 		addGetProperty(EPC_OPERATION_MODE_SETTING);
-		addStatusChangeAnnouncementProperty(EPC__RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1);
-		addStatusChangeAnnouncementProperty(EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE_);
+		addStatusChangeAnnouncementProperty(EPC_RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1);
+		addStatusChangeAnnouncementProperty(EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE);
 		addStatusChangeAnnouncementProperty(EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING);
-		addStatusChangeAnnouncementProperty(EPC__RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2);
+		addStatusChangeAnnouncementProperty(EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2);
 
 	}
 
@@ -2671,30 +2671,30 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		case EPC_TEMPERATURE_SETTING_2 : return setTemperatureSetting2(property.edt);
 		case EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER : return setCombinedOperationOfIndoorUnitAndTotalHeatExchanger(property.edt);
 		case EPC_VENTILATION_MODE_SETTING : return setVentilationModeSetting(property.edt);
-		case EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_2 : return setTemperatureSettingForCoolingMode2(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_2 : return setTemperatureSettingForCoolingMode2(property.edt);
 		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return setVentilationAirFlowRateSetting(property.edt);
-		case EPC__OFF_X000A_TIMER_BASED_RESERVATION_SETTING : return setOffX000ATimerBasedReservationSetting(property.edt);
-		case EPC__TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : return setTemperatureSettingForDehumidificatioNMode2(property.edt);
-		case EPC__AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : return setAirFlowDirectionHorizontalSetting(property.edt);
-		case EPC__AIR_FLOW_DIRECTION_VERTICAL_SETTING : return setAirFlowDirectionVerticalSetting(property.edt);
+		case EPC_OFF_X000A_TIMER_BASED_RESERVATION_SETTING : return setOffX000ATimerBasedReservationSetting(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : return setTemperatureSettingForDehumidificatioNMode2(property.edt);
+		case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : return setAirFlowDirectionHorizontalSetting(property.edt);
+		case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING : return setAirFlowDirectionVerticalSetting(property.edt);
 		case EPC_AIR_FLOW_RATE_SETTING : return setAirFlowRateSetting(property.edt);
-		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME_ : return setOffTimerSettingRelativeTime(property.edt);
+		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return setOffTimerSettingRelativeTime(property.edt);
 		case EPC_RELATIVE_TEMPERATURE_SETTING : return setRelativeTemperatureSetting(property.edt);
-		case EPC_OFF_TIMER_SETTING_TIME_ : return setOffTimerSettingTime(property.edt);
-		case EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_2 : return setTemperatureSettingForHeatingMode2(property.edt);
+		case EPC_OFF_TIMER_SETTING_TIME : return setOffTimerSettingTime(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_2 : return setTemperatureSettingForHeatingMode2(property.edt);
 		case EPC_TEMPERATURE_SETTING_1 : return setTemperatureSetting1(property.edt);
 		case EPC_OPERATION_MODE_SETTING : return setOperationModeSetting(property.edt);
-		case EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_1 : return setTemperatureSettingForHeatingMode1(property.edt);
-		case EPC__TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : return setTemperatureX000ASettingForDehumidificaTionMode1(property.edt);
-		case EPC__RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : return setRelativeX000AHumiditySettingForDehumidificaTionMode1(property.edt);
-		case EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_1 : return setTemperatureSettingForCoolingMode1(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_1 : return setTemperatureSettingForHeatingMode1(property.edt);
+		case EPC_TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : return setTemperatureX000ASettingForDehumidificaTionMode1(property.edt);
+		case EPC_RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : return setRelativeX000AHumiditySettingForDehumidificaTionMode1(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_1 : return setTemperatureSettingForCoolingMode1(property.edt);
 		case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION : return setThermostatSettingOverrideFunction(property.edt);
-		case EPC__DISABLING_OF_AIR_CONDITIONER_SETTING : return setDisablingOfAirConditionerSetting(property.edt);
+		case EPC_DISABLING_OF_AIR_CONDITIONER_SETTING : return setDisablingOfAirConditionerSetting(property.edt);
 		case EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING : return setFilterCleaningReminderLampSetting(property.edt);
-		case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : return setOnTimerSettingRelativeTime(property.edt);
-		case EPC_ON_TIMER_SETTING_TIME_ : return setOnTimerSettingTime(property.edt);
-		case EPC__ON_X000A_TIMER_BASED_RESERVATION_SETTING : return setOnX000ATimerBasedReservationSetting(property.edt);
-		case EPC__RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : return setRelativeHumiditySettingForDehumidificatioNMode2(property.edt);
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return setOnTimerSettingRelativeTime(property.edt);
+		case EPC_ON_TIMER_SETTING_TIME : return setOnTimerSettingTime(property.edt);
+		case EPC_ON_X000A_TIMER_BASED_RESERVATION_SETTING : return setOnX000ATimerBasedReservationSetting(property.edt);
+		case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : return setRelativeHumiditySettingForDehumidificatioNMode2(property.edt);
 
 		default : return false;
 		}
@@ -2709,41 +2709,41 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		case EPC_TEMPERATURE_SETTING_2 : return getTemperatureSetting2();
 		case EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER : return getCombinedOperationOfIndoorUnitAndTotalHeatExchanger();
 		case EPC_VENTILATION_MODE_SETTING : return getVentilationModeSetting();
-		case EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_2 : return getTemperatureSettingForCoolingMode2();
+		case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_2 : return getTemperatureSettingForCoolingMode2();
 		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return getVentilationAirFlowRateSetting();
-		case EPC__OFF_X000A_TIMER_BASED_RESERVATION_SETTING : return getOffX000ATimerBasedReservationSetting();
-		case EPC__TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : return getTemperatureSettingForDehumidificatioNMode2();
-		case EPC__AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : return getAirFlowDirectionHorizontalSetting();
-		case EPC__AIR_FLOW_DIRECTION_VERTICAL_SETTING : return getAirFlowDirectionVerticalSetting();
+		case EPC_OFF_X000A_TIMER_BASED_RESERVATION_SETTING : return getOffX000ATimerBasedReservationSetting();
+		case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : return getTemperatureSettingForDehumidificatioNMode2();
+		case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : return getAirFlowDirectionHorizontalSetting();
+		case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING : return getAirFlowDirectionVerticalSetting();
 		case EPC_AIR_FLOW_RATE_SETTING : return getAirFlowRateSetting();
-		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME_ : return getOffTimerSettingRelativeTime();
+		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return getOffTimerSettingRelativeTime();
 		case EPC_MEASURED_INDOOR_TEMPERATURE_2 : return getMeasuredIndoorTemperature2();
 		case EPC_MEASURED_INDOOR_TEMPERATURE_1 : return getMeasuredIndoorTemperature1();
 		case EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY_1 : return getMeasuredIndoorRelativeHumidity1();
 		case EPC_RELATIVE_TEMPERATURE_SETTING : return getRelativeTemperatureSetting();
-		case EPC_OFF_TIMER_SETTING_TIME_ : return getOffTimerSettingTime();
+		case EPC_OFF_TIMER_SETTING_TIME : return getOffTimerSettingTime();
 		case EPC_MEASURED_POWER_CONSUMPTION_OF_INDOOR_UNIT : return getMeasuredPowerConsumptionOfIndoorUnit();
 		case EPC_APERTURE_OF_EXPANSION_VALVE : return getApertureOfExpansionValve();
-		case EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_2 : return getTemperatureSettingForHeatingMode2();
+		case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_2 : return getTemperatureSettingForHeatingMode2();
 		case EPC_RATED_POWER_CONSUMPTION_OF_INDOOR_UNIT : return getRatedPowerConsumptionOfIndoorUnit();
 		case EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_INDOOR_UNIT : return getMeasuredElectricCurrentConsumptionOfIndoorUnit();
 		case EPC_TEMPERATURE_SETTING_1 : return getTemperatureSetting1();
 		case EPC_OPERATION_MODE_SETTING : return getOperationModeSetting();
-		case EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_1 : return getTemperatureSettingForHeatingMode1();
-		case EPC__TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : return getTemperatureX000ASettingForDehumidificaTionMode1();
-		case EPC__RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : return getRelativeX000AHumiditySettingForDehumidificaTionMode1();
-		case EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_1 : return getTemperatureSettingForCoolingMode1();
-		case EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE_ : return getCurrentFunctionAutomaticOperationMode();
+		case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_1 : return getTemperatureSettingForHeatingMode1();
+		case EPC_TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : return getTemperatureX000ASettingForDehumidificaTionMode1();
+		case EPC_RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : return getRelativeX000AHumiditySettingForDehumidificaTionMode1();
+		case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_1 : return getTemperatureSettingForCoolingMode1();
+		case EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE : return getCurrentFunctionAutomaticOperationMode();
 		case EPC_THERMOSTAT_STATE : return getThermostatState();
-		case EPC__SPECIAL_STATE : return getSpecialState();
+		case EPC_SPECIAL_STATE : return getSpecialState();
 		case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION : return getThermostatSettingOverrideFunction();
-		case EPC__DISABLING_OF_AIR_CONDITIONER_SETTING : return getDisablingOfAirConditionerSetting();
+		case EPC_DISABLING_OF_AIR_CONDITIONER_SETTING : return getDisablingOfAirConditionerSetting();
 		case EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY_2 : return getMeasuredIndoorRelativeHumidity2();
 		case EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING : return getFilterCleaningReminderLampSetting();
-		case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : return getOnTimerSettingRelativeTime();
-		case EPC_ON_TIMER_SETTING_TIME_ : return getOnTimerSettingTime();
-		case EPC__ON_X000A_TIMER_BASED_RESERVATION_SETTING : return getOnX000ATimerBasedReservationSetting();
-		case EPC__RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : return getRelativeHumiditySettingForDehumidificatioNMode2();
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return getOnTimerSettingRelativeTime();
+		case EPC_ON_TIMER_SETTING_TIME : return getOnTimerSettingTime();
+		case EPC_ON_X000A_TIMER_BASED_RESERVATION_SETTING : return getOnX000ATimerBasedReservationSetting();
+		case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : return getRelativeHumiditySettingForDehumidificatioNMode2();
 
 		default : return null;
 		}
@@ -2758,41 +2758,41 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		case EPC_TEMPERATURE_SETTING_2 : return isValidTemperatureSetting2(property.edt);
 		case EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER : return isValidCombinedOperationOfIndoorUnitAndTotalHeatExchanger(property.edt);
 		case EPC_VENTILATION_MODE_SETTING : return isValidVentilationModeSetting(property.edt);
-		case EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_2 : return isValidTemperatureSettingForCoolingMode2(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_2 : return isValidTemperatureSettingForCoolingMode2(property.edt);
 		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return isValidVentilationAirFlowRateSetting(property.edt);
-		case EPC__OFF_X000A_TIMER_BASED_RESERVATION_SETTING : return isValidOffX000ATimerBasedReservationSetting(property.edt);
-		case EPC__TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : return isValidTemperatureSettingForDehumidificatioNMode2(property.edt);
-		case EPC__AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : return isValidAirFlowDirectionHorizontalSetting(property.edt);
-		case EPC__AIR_FLOW_DIRECTION_VERTICAL_SETTING : return isValidAirFlowDirectionVerticalSetting(property.edt);
+		case EPC_OFF_X000A_TIMER_BASED_RESERVATION_SETTING : return isValidOffX000ATimerBasedReservationSetting(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : return isValidTemperatureSettingForDehumidificatioNMode2(property.edt);
+		case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : return isValidAirFlowDirectionHorizontalSetting(property.edt);
+		case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING : return isValidAirFlowDirectionVerticalSetting(property.edt);
 		case EPC_AIR_FLOW_RATE_SETTING : return isValidAirFlowRateSetting(property.edt);
-		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME_ : return isValidOffTimerSettingRelativeTime(property.edt);
+		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return isValidOffTimerSettingRelativeTime(property.edt);
 		case EPC_MEASURED_INDOOR_TEMPERATURE_2 : return isValidMeasuredIndoorTemperature2(property.edt);
 		case EPC_MEASURED_INDOOR_TEMPERATURE_1 : return isValidMeasuredIndoorTemperature1(property.edt);
 		case EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY_1 : return isValidMeasuredIndoorRelativeHumidity1(property.edt);
 		case EPC_RELATIVE_TEMPERATURE_SETTING : return isValidRelativeTemperatureSetting(property.edt);
-		case EPC_OFF_TIMER_SETTING_TIME_ : return isValidOffTimerSettingTime(property.edt);
+		case EPC_OFF_TIMER_SETTING_TIME : return isValidOffTimerSettingTime(property.edt);
 		case EPC_MEASURED_POWER_CONSUMPTION_OF_INDOOR_UNIT : return isValidMeasuredPowerConsumptionOfIndoorUnit(property.edt);
 		case EPC_APERTURE_OF_EXPANSION_VALVE : return isValidApertureOfExpansionValve(property.edt);
-		case EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_2 : return isValidTemperatureSettingForHeatingMode2(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_2 : return isValidTemperatureSettingForHeatingMode2(property.edt);
 		case EPC_RATED_POWER_CONSUMPTION_OF_INDOOR_UNIT : return isValidRatedPowerConsumptionOfIndoorUnit(property.edt);
 		case EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_INDOOR_UNIT : return isValidMeasuredElectricCurrentConsumptionOfIndoorUnit(property.edt);
 		case EPC_TEMPERATURE_SETTING_1 : return isValidTemperatureSetting1(property.edt);
 		case EPC_OPERATION_MODE_SETTING : return isValidOperationModeSetting(property.edt);
-		case EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_1 : return isValidTemperatureSettingForHeatingMode1(property.edt);
-		case EPC__TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : return isValidTemperatureX000ASettingForDehumidificaTionMode1(property.edt);
-		case EPC__RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : return isValidRelativeX000AHumiditySettingForDehumidificaTionMode1(property.edt);
-		case EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_1 : return isValidTemperatureSettingForCoolingMode1(property.edt);
-		case EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE_ : return isValidCurrentFunctionAutomaticOperationMode(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_1 : return isValidTemperatureSettingForHeatingMode1(property.edt);
+		case EPC_TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : return isValidTemperatureX000ASettingForDehumidificaTionMode1(property.edt);
+		case EPC_RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : return isValidRelativeX000AHumiditySettingForDehumidificaTionMode1(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_1 : return isValidTemperatureSettingForCoolingMode1(property.edt);
+		case EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE : return isValidCurrentFunctionAutomaticOperationMode(property.edt);
 		case EPC_THERMOSTAT_STATE : return isValidThermostatState(property.edt);
-		case EPC__SPECIAL_STATE : return isValidSpecialState(property.edt);
+		case EPC_SPECIAL_STATE : return isValidSpecialState(property.edt);
 		case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION : return isValidThermostatSettingOverrideFunction(property.edt);
-		case EPC__DISABLING_OF_AIR_CONDITIONER_SETTING : return isValidDisablingOfAirConditionerSetting(property.edt);
+		case EPC_DISABLING_OF_AIR_CONDITIONER_SETTING : return isValidDisablingOfAirConditionerSetting(property.edt);
 		case EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY_2 : return isValidMeasuredIndoorRelativeHumidity2(property.edt);
 		case EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING : return isValidFilterCleaningReminderLampSetting(property.edt);
-		case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : return isValidOnTimerSettingRelativeTime(property.edt);
-		case EPC_ON_TIMER_SETTING_TIME_ : return isValidOnTimerSettingTime(property.edt);
-		case EPC__ON_X000A_TIMER_BASED_RESERVATION_SETTING : return isValidOnX000ATimerBasedReservationSetting(property.edt);
-		case EPC__RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : return isValidRelativeHumiditySettingForDehumidificatioNMode2(property.edt);
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return isValidOnTimerSettingRelativeTime(property.edt);
+		case EPC_ON_TIMER_SETTING_TIME : return isValidOnTimerSettingTime(property.edt);
+		case EPC_ON_X000A_TIMER_BASED_RESERVATION_SETTING : return isValidOnX000ATimerBasedReservationSetting(property.edt);
+		case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : return isValidRelativeHumiditySettingForDehumidificatioNMode2(property.edt);
 
 		default : return false;
 		}
@@ -2850,37 +2850,37 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 			case EPC_VENTILATION_MODE_SETTING : 
 				onSetVentilationModeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_2 : 
+			case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_2 : 
 				onSetTemperatureSettingForCoolingMode2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : 
 				onSetVentilationAirFlowRateSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__OFF_X000A_TIMER_BASED_RESERVATION_SETTING : 
+			case EPC_OFF_X000A_TIMER_BASED_RESERVATION_SETTING : 
 				onSetOffX000ATimerBasedReservationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : 
+			case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : 
 				onSetTemperatureSettingForDehumidificatioNMode2(eoj, tid, esv, property, success);
 				return true;
-			case EPC__AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : 
+			case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : 
 				onSetAirFlowDirectionHorizontalSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__AIR_FLOW_DIRECTION_VERTICAL_SETTING : 
+			case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING : 
 				onSetAirFlowDirectionVerticalSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_AIR_FLOW_RATE_SETTING : 
 				onSetAirFlowRateSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME_ : 
+			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : 
 				onSetOffTimerSettingRelativeTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RELATIVE_TEMPERATURE_SETTING : 
 				onSetRelativeTemperatureSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OFF_TIMER_SETTING_TIME_ : 
+			case EPC_OFF_TIMER_SETTING_TIME : 
 				onSetOffTimerSettingTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_2 : 
+			case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_2 : 
 				onSetTemperatureSettingForHeatingMode2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_TEMPERATURE_SETTING_1 : 
@@ -2889,37 +2889,37 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 			case EPC_OPERATION_MODE_SETTING : 
 				onSetOperationModeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_1 : 
+			case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_1 : 
 				onSetTemperatureSettingForHeatingMode1(eoj, tid, esv, property, success);
 				return true;
-			case EPC__TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : 
+			case EPC_TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : 
 				onSetTemperatureX000ASettingForDehumidificaTionMode1(eoj, tid, esv, property, success);
 				return true;
-			case EPC__RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : 
+			case EPC_RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : 
 				onSetRelativeX000AHumiditySettingForDehumidificaTionMode1(eoj, tid, esv, property, success);
 				return true;
-			case EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_1 : 
+			case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_1 : 
 				onSetTemperatureSettingForCoolingMode1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION : 
 				onSetThermostatSettingOverrideFunction(eoj, tid, esv, property, success);
 				return true;
-			case EPC__DISABLING_OF_AIR_CONDITIONER_SETTING : 
+			case EPC_DISABLING_OF_AIR_CONDITIONER_SETTING : 
 				onSetDisablingOfAirConditionerSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING : 
 				onSetFilterCleaningReminderLampSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : 
+			case EPC_ON_TIMER_SETTING_RELATIVE_TIME : 
 				onSetOnTimerSettingRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_TIME_ : 
+			case EPC_ON_TIMER_SETTING_TIME : 
 				onSetOnTimerSettingTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC__ON_X000A_TIMER_BASED_RESERVATION_SETTING : 
+			case EPC_ON_X000A_TIMER_BASED_RESERVATION_SETTING : 
 				onSetOnX000ATimerBasedReservationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : 
+			case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : 
 				onSetRelativeHumiditySettingForDehumidificatioNMode2(eoj, tid, esv, property, success);
 				return true;
 
@@ -2944,28 +2944,28 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 			case EPC_VENTILATION_MODE_SETTING : 
 				onGetVentilationModeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_2 : 
+			case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_2 : 
 				onGetTemperatureSettingForCoolingMode2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : 
 				onGetVentilationAirFlowRateSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__OFF_X000A_TIMER_BASED_RESERVATION_SETTING : 
+			case EPC_OFF_X000A_TIMER_BASED_RESERVATION_SETTING : 
 				onGetOffX000ATimerBasedReservationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : 
+			case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : 
 				onGetTemperatureSettingForDehumidificatioNMode2(eoj, tid, esv, property, success);
 				return true;
-			case EPC__AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : 
+			case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : 
 				onGetAirFlowDirectionHorizontalSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__AIR_FLOW_DIRECTION_VERTICAL_SETTING : 
+			case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING : 
 				onGetAirFlowDirectionVerticalSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_AIR_FLOW_RATE_SETTING : 
 				onGetAirFlowRateSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME_ : 
+			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : 
 				onGetOffTimerSettingRelativeTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_INDOOR_TEMPERATURE_2 : 
@@ -2980,7 +2980,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 			case EPC_RELATIVE_TEMPERATURE_SETTING : 
 				onGetRelativeTemperatureSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OFF_TIMER_SETTING_TIME_ : 
+			case EPC_OFF_TIMER_SETTING_TIME : 
 				onGetOffTimerSettingTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_POWER_CONSUMPTION_OF_INDOOR_UNIT : 
@@ -2989,7 +2989,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 			case EPC_APERTURE_OF_EXPANSION_VALVE : 
 				onGetApertureOfExpansionValve(eoj, tid, esv, property, success);
 				return true;
-			case EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_2 : 
+			case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_2 : 
 				onGetTemperatureSettingForHeatingMode2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RATED_POWER_CONSUMPTION_OF_INDOOR_UNIT : 
@@ -3004,31 +3004,31 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 			case EPC_OPERATION_MODE_SETTING : 
 				onGetOperationModeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_1 : 
+			case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_1 : 
 				onGetTemperatureSettingForHeatingMode1(eoj, tid, esv, property, success);
 				return true;
-			case EPC__TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : 
+			case EPC_TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : 
 				onGetTemperatureX000ASettingForDehumidificaTionMode1(eoj, tid, esv, property, success);
 				return true;
-			case EPC__RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : 
+			case EPC_RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1 : 
 				onGetRelativeX000AHumiditySettingForDehumidificaTionMode1(eoj, tid, esv, property, success);
 				return true;
-			case EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_1 : 
+			case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_1 : 
 				onGetTemperatureSettingForCoolingMode1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE_ : 
+			case EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE : 
 				onGetCurrentFunctionAutomaticOperationMode(eoj, tid, esv, property, success);
 				return true;
 			case EPC_THERMOSTAT_STATE : 
 				onGetThermostatState(eoj, tid, esv, property, success);
 				return true;
-			case EPC__SPECIAL_STATE : 
+			case EPC_SPECIAL_STATE : 
 				onGetSpecialState(eoj, tid, esv, property, success);
 				return true;
 			case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION : 
 				onGetThermostatSettingOverrideFunction(eoj, tid, esv, property, success);
 				return true;
-			case EPC__DISABLING_OF_AIR_CONDITIONER_SETTING : 
+			case EPC_DISABLING_OF_AIR_CONDITIONER_SETTING : 
 				onGetDisablingOfAirConditionerSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY_2 : 
@@ -3037,16 +3037,16 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 			case EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING : 
 				onGetFilterCleaningReminderLampSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_RELATIVE_TIME_ : 
+			case EPC_ON_TIMER_SETTING_RELATIVE_TIME : 
 				onGetOnTimerSettingRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING_TIME_ : 
+			case EPC_ON_TIMER_SETTING_TIME : 
 				onGetOnTimerSettingTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC__ON_X000A_TIMER_BASED_RESERVATION_SETTING : 
+			case EPC_ON_X000A_TIMER_BASED_RESERVATION_SETTING : 
 				onGetOnX000ATimerBasedReservationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC__RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : 
+			case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2 : 
 				onGetRelativeHumiditySettingForDehumidificatioNMode2(eoj, tid, esv, property, success);
 				return true;
 
@@ -4745,7 +4745,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetTemperatureSettingForCoolingMode2(byte[] edt) {
-			reqSetProperty(EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_2, edt);
+			reqSetProperty(EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_2, edt);
 			return this;
 		}
 		/**
@@ -4797,7 +4797,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOffX000ATimerBasedReservationSetting(byte[] edt) {
-			reqSetProperty(EPC__OFF_X000A_TIMER_BASED_RESERVATION_SETTING, edt);
+			reqSetProperty(EPC_OFF_X000A_TIMER_BASED_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -4823,7 +4823,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetTemperatureSettingForDehumidificatioNMode2(byte[] edt) {
-			reqSetProperty(EPC__TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2, edt);
+			reqSetProperty(EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2, edt);
 			return this;
 		}
 		/**
@@ -4849,7 +4849,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetAirFlowDirectionHorizontalSetting(byte[] edt) {
-			reqSetProperty(EPC__AIR_FLOW_DIRECTION_HORIZONTAL_SETTING, edt);
+			reqSetProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -4875,7 +4875,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetAirFlowDirectionVerticalSetting(byte[] edt) {
-			reqSetProperty(EPC__AIR_FLOW_DIRECTION_VERTICAL_SETTING, edt);
+			reqSetProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -4927,7 +4927,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOffTimerSettingRelativeTime(byte[] edt) {
-			reqSetProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME_, edt);
+			reqSetProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
@@ -4979,7 +4979,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOffTimerSettingTime(byte[] edt) {
-			reqSetProperty(EPC_OFF_TIMER_SETTING_TIME_, edt);
+			reqSetProperty(EPC_OFF_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
@@ -5005,7 +5005,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetTemperatureSettingForHeatingMode2(byte[] edt) {
-			reqSetProperty(EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_2, edt);
+			reqSetProperty(EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_2, edt);
 			return this;
 		}
 		/**
@@ -5083,7 +5083,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetTemperatureSettingForHeatingMode1(byte[] edt) {
-			reqSetProperty(EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_1, edt);
+			reqSetProperty(EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_1, edt);
 			return this;
 		}
 		/**
@@ -5109,7 +5109,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetTemperatureX000ASettingForDehumidificaTionMode1(byte[] edt) {
-			reqSetProperty(EPC__TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1, edt);
+			reqSetProperty(EPC_TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1, edt);
 			return this;
 		}
 		/**
@@ -5135,7 +5135,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetRelativeX000AHumiditySettingForDehumidificaTionMode1(byte[] edt) {
-			reqSetProperty(EPC__RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1, edt);
+			reqSetProperty(EPC_RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1, edt);
 			return this;
 		}
 		/**
@@ -5161,7 +5161,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetTemperatureSettingForCoolingMode1(byte[] edt) {
-			reqSetProperty(EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_1, edt);
+			reqSetProperty(EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_1, edt);
 			return this;
 		}
 		/**
@@ -5213,7 +5213,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetDisablingOfAirConditionerSetting(byte[] edt) {
-			reqSetProperty(EPC__DISABLING_OF_AIR_CONDITIONER_SETTING, edt);
+			reqSetProperty(EPC_DISABLING_OF_AIR_CONDITIONER_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5265,7 +5265,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt) {
-			reqSetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME_, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
@@ -5291,7 +5291,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOnTimerSettingTime(byte[] edt) {
-			reqSetProperty(EPC_ON_TIMER_SETTING_TIME_, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
@@ -5317,7 +5317,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOnX000ATimerBasedReservationSetting(byte[] edt) {
-			reqSetProperty(EPC__ON_X000A_TIMER_BASED_RESERVATION_SETTING, edt);
+			reqSetProperty(EPC_ON_X000A_TIMER_BASED_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5343,7 +5343,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetRelativeHumiditySettingForDehumidificatioNMode2(byte[] edt) {
-			reqSetProperty(EPC__RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2, edt);
+			reqSetProperty(EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2, edt);
 			return this;
 		}
 
@@ -5559,7 +5559,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetTemperatureSettingForCoolingMode2() {
-			reqGetProperty(EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_2);
+			reqGetProperty(EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_2);
 			return this;
 		}
 		/**
@@ -5611,7 +5611,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOffX000ATimerBasedReservationSetting() {
-			reqGetProperty(EPC__OFF_X000A_TIMER_BASED_RESERVATION_SETTING);
+			reqGetProperty(EPC_OFF_X000A_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -5637,7 +5637,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetTemperatureSettingForDehumidificatioNMode2() {
-			reqGetProperty(EPC__TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2);
+			reqGetProperty(EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2);
 			return this;
 		}
 		/**
@@ -5663,7 +5663,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetAirFlowDirectionHorizontalSetting() {
-			reqGetProperty(EPC__AIR_FLOW_DIRECTION_HORIZONTAL_SETTING);
+			reqGetProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING);
 			return this;
 		}
 		/**
@@ -5689,7 +5689,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetAirFlowDirectionVerticalSetting() {
-			reqGetProperty(EPC__AIR_FLOW_DIRECTION_VERTICAL_SETTING);
+			reqGetProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING);
 			return this;
 		}
 		/**
@@ -5741,7 +5741,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOffTimerSettingRelativeTime() {
-			reqGetProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME_);
+			reqGetProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -5871,7 +5871,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOffTimerSettingTime() {
-			reqGetProperty(EPC_OFF_TIMER_SETTING_TIME_);
+			reqGetProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -5949,7 +5949,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetTemperatureSettingForHeatingMode2() {
-			reqGetProperty(EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_2);
+			reqGetProperty(EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_2);
 			return this;
 		}
 		/**
@@ -6079,7 +6079,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetTemperatureSettingForHeatingMode1() {
-			reqGetProperty(EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_1);
+			reqGetProperty(EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_1);
 			return this;
 		}
 		/**
@@ -6105,7 +6105,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetTemperatureX000ASettingForDehumidificaTionMode1() {
-			reqGetProperty(EPC__TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1);
+			reqGetProperty(EPC_TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1);
 			return this;
 		}
 		/**
@@ -6131,7 +6131,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetRelativeX000AHumiditySettingForDehumidificaTionMode1() {
-			reqGetProperty(EPC__RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1);
+			reqGetProperty(EPC_RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1);
 			return this;
 		}
 		/**
@@ -6157,7 +6157,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetTemperatureSettingForCoolingMode1() {
-			reqGetProperty(EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_1);
+			reqGetProperty(EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_1);
 			return this;
 		}
 		/**
@@ -6183,7 +6183,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetCurrentFunctionAutomaticOperationMode() {
-			reqGetProperty(EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE_);
+			reqGetProperty(EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE);
 			return this;
 		}
 		/**
@@ -6235,7 +6235,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSpecialState() {
-			reqGetProperty(EPC__SPECIAL_STATE);
+			reqGetProperty(EPC_SPECIAL_STATE);
 			return this;
 		}
 		/**
@@ -6287,7 +6287,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDisablingOfAirConditionerSetting() {
-			reqGetProperty(EPC__DISABLING_OF_AIR_CONDITIONER_SETTING);
+			reqGetProperty(EPC_DISABLING_OF_AIR_CONDITIONER_SETTING);
 			return this;
 		}
 		/**
@@ -6365,7 +6365,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOnTimerSettingRelativeTime() {
-			reqGetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME_);
+			reqGetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -6391,7 +6391,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOnTimerSettingTime() {
-			reqGetProperty(EPC_ON_TIMER_SETTING_TIME_);
+			reqGetProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -6417,7 +6417,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOnX000ATimerBasedReservationSetting() {
-			reqGetProperty(EPC__ON_X000A_TIMER_BASED_RESERVATION_SETTING);
+			reqGetProperty(EPC_ON_X000A_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -6443,7 +6443,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetRelativeHumiditySettingForDehumidificatioNMode2() {
-			reqGetProperty(EPC__RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2);
+			reqGetProperty(EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2);
 			return this;
 		}
 
@@ -6658,7 +6658,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformTemperatureSettingForCoolingMode2() {
-			reqInformProperty(EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_2);
+			reqInformProperty(EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_2);
 			return this;
 		}
 		/**
@@ -6710,7 +6710,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOffX000ATimerBasedReservationSetting() {
-			reqInformProperty(EPC__OFF_X000A_TIMER_BASED_RESERVATION_SETTING);
+			reqInformProperty(EPC_OFF_X000A_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -6736,7 +6736,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformTemperatureSettingForDehumidificatioNMode2() {
-			reqInformProperty(EPC__TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2);
+			reqInformProperty(EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2);
 			return this;
 		}
 		/**
@@ -6762,7 +6762,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformAirFlowDirectionHorizontalSetting() {
-			reqInformProperty(EPC__AIR_FLOW_DIRECTION_HORIZONTAL_SETTING);
+			reqInformProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING);
 			return this;
 		}
 		/**
@@ -6788,7 +6788,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformAirFlowDirectionVerticalSetting() {
-			reqInformProperty(EPC__AIR_FLOW_DIRECTION_VERTICAL_SETTING);
+			reqInformProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING);
 			return this;
 		}
 		/**
@@ -6840,7 +6840,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOffTimerSettingRelativeTime() {
-			reqInformProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME_);
+			reqInformProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -6970,7 +6970,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOffTimerSettingTime() {
-			reqInformProperty(EPC_OFF_TIMER_SETTING_TIME_);
+			reqInformProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -7048,7 +7048,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformTemperatureSettingForHeatingMode2() {
-			reqInformProperty(EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_2);
+			reqInformProperty(EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_2);
 			return this;
 		}
 		/**
@@ -7178,7 +7178,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformTemperatureSettingForHeatingMode1() {
-			reqInformProperty(EPC__TEMPERATURE_SETTING_FOR_HEATING_MODE_1);
+			reqInformProperty(EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE_1);
 			return this;
 		}
 		/**
@@ -7204,7 +7204,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformTemperatureX000ASettingForDehumidificaTionMode1() {
-			reqInformProperty(EPC__TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1);
+			reqInformProperty(EPC_TEMPERATURE_X000A_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1);
 			return this;
 		}
 		/**
@@ -7230,7 +7230,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformRelativeX000AHumiditySettingForDehumidificaTionMode1() {
-			reqInformProperty(EPC__RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1);
+			reqInformProperty(EPC_RELATIVE_X000A_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE_1);
 			return this;
 		}
 		/**
@@ -7256,7 +7256,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformTemperatureSettingForCoolingMode1() {
-			reqInformProperty(EPC__TEMPERATURE_SETTING_FOR_COOLING_MODE_1);
+			reqInformProperty(EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE_1);
 			return this;
 		}
 		/**
@@ -7282,7 +7282,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformCurrentFunctionAutomaticOperationMode() {
-			reqInformProperty(EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE_);
+			reqInformProperty(EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE);
 			return this;
 		}
 		/**
@@ -7334,7 +7334,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSpecialState() {
-			reqInformProperty(EPC__SPECIAL_STATE);
+			reqInformProperty(EPC_SPECIAL_STATE);
 			return this;
 		}
 		/**
@@ -7386,7 +7386,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDisablingOfAirConditionerSetting() {
-			reqInformProperty(EPC__DISABLING_OF_AIR_CONDITIONER_SETTING);
+			reqInformProperty(EPC_DISABLING_OF_AIR_CONDITIONER_SETTING);
 			return this;
 		}
 		/**
@@ -7464,7 +7464,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOnTimerSettingRelativeTime() {
-			reqInformProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME_);
+			reqInformProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -7490,7 +7490,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOnTimerSettingTime() {
-			reqInformProperty(EPC_ON_TIMER_SETTING_TIME_);
+			reqInformProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -7516,7 +7516,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOnX000ATimerBasedReservationSetting() {
-			reqInformProperty(EPC__ON_X000A_TIMER_BASED_RESERVATION_SETTING);
+			reqInformProperty(EPC_ON_X000A_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -7542,7 +7542,7 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformRelativeHumiditySettingForDehumidificatioNMode2() {
-			reqInformProperty(EPC__RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2);
+			reqInformProperty(EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE_2);
 			return this;
 		}
 

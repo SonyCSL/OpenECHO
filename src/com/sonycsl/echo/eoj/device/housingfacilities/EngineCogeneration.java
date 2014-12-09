@@ -47,7 +47,7 @@ public abstract class EngineCogeneration extends DeviceObject {
 	public static final byte EPC_MEASURED_REMAINING_HOT_WATER_AMOUNT = (byte)0xE1;
 	public static final byte EPC_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION_RESET = (byte)0xCE;
 	public static final byte EPC_MEASURED_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION = (byte)0xCD;
-	public static final byte EPC_POWER_GENERATION_SETTING_X000A_ = (byte)0xCA;
+	public static final byte EPC_POWER_GENERATION_SETTING_X000A = (byte)0xCA;
 	public static final byte EPC_MEASURED_IN_HOUSE_INSTANTANEOUS_POWER_CONSUMPTION = (byte)0xCC;
 	public static final byte EPC_POWER_GENERATION_STATUS = (byte)0xCB;
 
@@ -989,7 +989,7 @@ public abstract class EngineCogeneration extends DeviceObject {
 		case EPC_CUMULATIVE_POWER_GENERATION_OUTPUT_RESET_SETTING : return setCumulativePowerGenerationOutputResetSetting(property.edt);
 		case EPC_CUMULATIVE_GAS_CONSUMPTION_RESET_SETTING : return setCumulativeGasConsumptionResetSetting(property.edt);
 		case EPC_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION_RESET : return setInHouseCumulativePowerConsumptionReset(property.edt);
-		case EPC_POWER_GENERATION_SETTING_X000A_ : return setPowerGenerationSettingX000A(property.edt);
+		case EPC_POWER_GENERATION_SETTING_X000A : return setPowerGenerationSettingX000A(property.edt);
 
 		default : return false;
 		}
@@ -1039,7 +1039,7 @@ public abstract class EngineCogeneration extends DeviceObject {
 		case EPC_MEASURED_REMAINING_HOT_WATER_AMOUNT : return isValidMeasuredRemainingHotWaterAmount(property.edt);
 		case EPC_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION_RESET : return isValidInHouseCumulativePowerConsumptionReset(property.edt);
 		case EPC_MEASURED_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION : return isValidMeasuredInHouseCumulativePowerConsumption(property.edt);
-		case EPC_POWER_GENERATION_SETTING_X000A_ : return isValidPowerGenerationSettingX000A(property.edt);
+		case EPC_POWER_GENERATION_SETTING_X000A : return isValidPowerGenerationSettingX000A(property.edt);
 		case EPC_MEASURED_IN_HOUSE_INSTANTANEOUS_POWER_CONSUMPTION : return isValidMeasuredInHouseInstantaneousPowerConsumption(property.edt);
 		case EPC_POWER_GENERATION_STATUS : return isValidPowerGenerationStatus(property.edt);
 
@@ -1099,7 +1099,7 @@ public abstract class EngineCogeneration extends DeviceObject {
 			case EPC_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION_RESET : 
 				onSetInHouseCumulativePowerConsumptionReset(eoj, tid, esv, property, success);
 				return true;
-			case EPC_POWER_GENERATION_SETTING_X000A_ : 
+			case EPC_POWER_GENERATION_SETTING_X000A : 
 				onSetPowerGenerationSettingX000A(eoj, tid, esv, property, success);
 				return true;
 
@@ -1746,7 +1746,7 @@ public abstract class EngineCogeneration extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetPowerGenerationSettingX000A(byte[] edt) {
-			reqSetProperty(EPC_POWER_GENERATION_SETTING_X000A_, edt);
+			reqSetProperty(EPC_POWER_GENERATION_SETTING_X000A, edt);
 			return this;
 		}
 

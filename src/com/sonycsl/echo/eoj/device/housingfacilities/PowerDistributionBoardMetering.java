@@ -34,12 +34,12 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 	public static final short ECHO_CLASS_CODE = (short)0x0287;
 
 	public static final byte EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED = (byte)0xC5;
-	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_ = (byte)0xC4;
+	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION = (byte)0xC4;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_CURRENTS = (byte)0xC7;
 	public static final byte EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY = (byte)0xC6;
-	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_ = (byte)0xC1;
-	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_ = (byte)0xC0;
-	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_ = (byte)0xC3;
+	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION = (byte)0xC1;
+	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION = (byte)0xC0;
+	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION = (byte)0xC3;
 	public static final byte EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY = (byte)0xC2;
 	public static final byte EPC_MEASUREMENT_CHANNEL_26 = (byte)0xE9;
 	public static final byte EPC_MEASUREMENT_CHANNEL_25 = (byte)0xE8;
@@ -79,8 +79,8 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_);
-		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_);
+		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
+		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 		addGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
@@ -2223,12 +2223,12 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		
 		switch(epc) {
 		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : return getDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved();
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_ : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection();
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection();
 		case EPC_MEASURED_INSTANTANEOUS_CURRENTS : return getMeasuredInstantaneousCurrents();
 		case EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY : return getMeasuredInstantaneoUsAmountOfElectricEnergy();
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_ : return getMeasuredCumulativeAmountOfElectricEnergyReverseDirection();
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_ : return getMeasuredCumulativeAmountOfElectricEnergyNormalDirection();
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_ : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection();
+		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : return getMeasuredCumulativeAmountOfElectricEnergyReverseDirection();
+		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : return getMeasuredCumulativeAmountOfElectricEnergyNormalDirection();
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection();
 		case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : return getUnitForCumulativeAmountsOfElectricEnergy();
 		case EPC_MEASUREMENT_CHANNEL_26 : return getMeasurementChannel26();
 		case EPC_MEASUREMENT_CHANNEL_25 : return getMeasurementChannel25();
@@ -2275,12 +2275,12 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		
 		switch(property.epc) {
 		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : return isValidDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(property.edt);
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_ : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection(property.edt);
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_CURRENTS : return isValidMeasuredInstantaneousCurrents(property.edt);
 		case EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY : return isValidMeasuredInstantaneoUsAmountOfElectricEnergy(property.edt);
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_ : return isValidMeasuredCumulativeAmountOfElectricEnergyReverseDirection(property.edt);
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_ : return isValidMeasuredCumulativeAmountOfElectricEnergyNormalDirection(property.edt);
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_ : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection(property.edt);
+		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : return isValidMeasuredCumulativeAmountOfElectricEnergyReverseDirection(property.edt);
+		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : return isValidMeasuredCumulativeAmountOfElectricEnergyNormalDirection(property.edt);
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection(property.edt);
 		case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : return isValidUnitForCumulativeAmountsOfElectricEnergy(property.edt);
 		case EPC_MEASUREMENT_CHANNEL_26 : return isValidMeasurementChannel26(property.edt);
 		case EPC_MEASUREMENT_CHANNEL_25 : return isValidMeasurementChannel25(property.edt);
@@ -2382,7 +2382,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 			case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : 
 				onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(eoj, tid, esv, property, success);
 				return true;
-			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_ : 
+			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION : 
 				onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_INSTANTANEOUS_CURRENTS : 
@@ -2391,13 +2391,13 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 			case EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY : 
 				onGetMeasuredInstantaneoUsAmountOfElectricEnergy(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_ : 
+			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : 
 				onGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_ : 
+			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : 
 				onGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection(eoj, tid, esv, property, success);
 				return true;
-			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_ : 
+			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION : 
 				onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection(eoj, tid, esv, property, success);
 				return true;
 			case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : 
@@ -3755,7 +3755,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection() {
-			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_);
+			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -3833,7 +3833,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {
-			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -3859,7 +3859,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {
-			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -3885,7 +3885,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection() {
-			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_);
+			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -4932,7 +4932,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection() {
-			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_);
+			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -5010,7 +5010,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {
-			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -5036,7 +5036,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {
-			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -5062,7 +5062,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection() {
-			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_);
+			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION);
 			return this;
 		}
 		/**

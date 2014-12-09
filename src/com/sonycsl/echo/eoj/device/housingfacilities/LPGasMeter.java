@@ -55,8 +55,8 @@ public abstract class LPGasMeter extends DeviceObject {
 	public static final byte EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_2 = (byte)0xEB;
 	public static final byte EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_1 = (byte)0xEA;
 	public static final byte EPC_SHUT_OFF_REASON_LOG = (byte)0xEF;
-	public static final byte EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE_ = (byte)0xEE;
-	public static final byte EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION_ = (byte)0xED;
+	public static final byte EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE = (byte)0xEE;
+	public static final byte EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION = (byte)0xED;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -1468,8 +1468,8 @@ public abstract class LPGasMeter extends DeviceObject {
 		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_2 : return getSetValueOfResidualVolumeControlWarningLevel2();
 		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_1 : return getSetValueOfResidualVolumeControlWarningLevel1();
 		case EPC_SHUT_OFF_REASON_LOG : return getShutOffReasonLog();
-		case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE_ : return getSlightLeakTimerValueWithoutPressureIncrease();
-		case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION_ : return getSlightLeakTimerValueGasFlowRateContinuation();
+		case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE : return getSlightLeakTimerValueWithoutPressureIncrease();
+		case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION : return getSlightLeakTimerValueGasFlowRateContinuation();
 
 		default : return null;
 		}
@@ -1503,8 +1503,8 @@ public abstract class LPGasMeter extends DeviceObject {
 		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_2 : return isValidSetValueOfResidualVolumeControlWarningLevel2(property.edt);
 		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_1 : return isValidSetValueOfResidualVolumeControlWarningLevel1(property.edt);
 		case EPC_SHUT_OFF_REASON_LOG : return isValidShutOffReasonLog(property.edt);
-		case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE_ : return isValidSlightLeakTimerValueWithoutPressureIncrease(property.edt);
-		case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION_ : return isValidSlightLeakTimerValueGasFlowRateContinuation(property.edt);
+		case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE : return isValidSlightLeakTimerValueWithoutPressureIncrease(property.edt);
+		case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION : return isValidSlightLeakTimerValueGasFlowRateContinuation(property.edt);
 
 		default : return false;
 		}
@@ -1644,10 +1644,10 @@ public abstract class LPGasMeter extends DeviceObject {
 			case EPC_SHUT_OFF_REASON_LOG : 
 				onGetShutOffReasonLog(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE_ : 
+			case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE : 
 				onGetSlightLeakTimerValueWithoutPressureIncrease(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION_ : 
+			case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION : 
 				onGetSlightLeakTimerValueGasFlowRateContinuation(eoj, tid, esv, property, success);
 				return true;
 
@@ -3205,7 +3205,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSlightLeakTimerValueWithoutPressureIncrease() {
-			reqGetProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE_);
+			reqGetProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE);
 			return this;
 		}
 		/**
@@ -3231,7 +3231,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSlightLeakTimerValueGasFlowRateContinuation() {
-			reqGetProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION_);
+			reqGetProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION);
 			return this;
 		}
 
@@ -3940,7 +3940,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSlightLeakTimerValueWithoutPressureIncrease() {
-			reqInformProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE_);
+			reqInformProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE);
 			return this;
 		}
 		/**
@@ -3966,7 +3966,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSlightLeakTimerValueGasFlowRateContinuation() {
-			reqInformProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION_);
+			reqInformProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION);
 			return this;
 		}
 

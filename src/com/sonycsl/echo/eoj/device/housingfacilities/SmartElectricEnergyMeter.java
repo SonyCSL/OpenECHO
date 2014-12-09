@@ -33,15 +33,15 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0288;
 
-	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_ = (byte)0xE3;
-	public static final byte EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS_ = (byte)0xE1;
-	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_ = (byte)0xE0;
+	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION = (byte)0xE3;
+	public static final byte EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS = (byte)0xE1;
+	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION = (byte)0xE0;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_ELECTRIC_ENERGY = (byte)0xE7;
 	public static final byte EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED = (byte)0xE5;
-	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_ = (byte)0xE4;
+	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION = (byte)0xE4;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_VOLTAGES = (byte)0xE9;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_CURRENTS = (byte)0xE8;
-	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_ = (byte)0xE2;
+	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION = (byte)0xE2;
 	public static final byte EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION = (byte)0xD0;
 	public static final byte EPC_OWNER_CLASSIFICATION = (byte)0xD1;
 	public static final byte EPC_PHASES_AND_WIRES_SETTING_STATUS = (byte)0xD2;
@@ -50,20 +50,20 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 	public static final byte EPC_METER_TYPE_CERTIFICATION_NUMBER = (byte)0xD5;
 	public static final byte EPC_YEAR_AND_MONTH_OF_INSPECTION_EXPIRY = (byte)0xD6;
 	public static final byte EPC_NUMBER_OF_EFFECTIVE_DIGITS_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY = (byte)0xD7;
-	public static final byte EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION_ = (byte)0xEB;
-	public static final byte EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION_ = (byte)0xEA;
+	public static final byte EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION = (byte)0xEB;
+	public static final byte EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION = (byte)0xEA;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS_);
-		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_);
+		addGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS);
+		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_NUMBER_OF_EFFECTIVE_DIGITS_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
-		addGetProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION_);
+		addGetProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION);
 
 	}
 
@@ -1195,15 +1195,15 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_ : return getMeasuredCumulativeAmountsOfElectricEnergyReverseDirection();
-		case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS_ : return getUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections();
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_ : return getMeasuredCumulativeAmountOfElectricEnergyNormalDirection();
+		case EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : return getMeasuredCumulativeAmountsOfElectricEnergyReverseDirection();
+		case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS : return getUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections();
+		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : return getMeasuredCumulativeAmountOfElectricEnergyNormalDirection();
 		case EPC_MEASURED_INSTANTANEOUS_ELECTRIC_ENERGY : return getMeasuredInstantaneousElectricEnergy();
 		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : return getDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved();
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_ : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection();
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection();
 		case EPC_MEASURED_INSTANTANEOUS_VOLTAGES : return getMeasuredInstantaneousVoltages();
 		case EPC_MEASURED_INSTANTANEOUS_CURRENTS : return getMeasuredInstantaneousCurrents();
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_ : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection();
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection();
 		case EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION : return getElectricEnergyMeterClassification();
 		case EPC_OWNER_CLASSIFICATION : return getOwnerClassification();
 		case EPC_PHASES_AND_WIRES_SETTING_STATUS : return getPhasesAndWiresSettingStatus();
@@ -1212,8 +1212,8 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		case EPC_METER_TYPE_CERTIFICATION_NUMBER : return getMeterTypeCertificationNumber();
 		case EPC_YEAR_AND_MONTH_OF_INSPECTION_EXPIRY : return getYearAndMonthOfInspectionExpiry();
 		case EPC_NUMBER_OF_EFFECTIVE_DIGITS_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : return getNumberOfEffectiveDigitsForCumulativeAmountsOfElectricEnergy();
-		case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION_ : return getCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection();
-		case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION_ : return getCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection();
+		case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION : return getCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection();
+		case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION : return getCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection();
 
 		default : return null;
 		}
@@ -1225,15 +1225,15 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_ : return isValidMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(property.edt);
-		case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS_ : return isValidUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections(property.edt);
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_ : return isValidMeasuredCumulativeAmountOfElectricEnergyNormalDirection(property.edt);
+		case EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : return isValidMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(property.edt);
+		case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS : return isValidUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections(property.edt);
+		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : return isValidMeasuredCumulativeAmountOfElectricEnergyNormalDirection(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_ELECTRIC_ENERGY : return isValidMeasuredInstantaneousElectricEnergy(property.edt);
 		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : return isValidDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(property.edt);
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_ : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection(property.edt);
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_VOLTAGES : return isValidMeasuredInstantaneousVoltages(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_CURRENTS : return isValidMeasuredInstantaneousCurrents(property.edt);
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_ : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection(property.edt);
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection(property.edt);
 		case EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION : return isValidElectricEnergyMeterClassification(property.edt);
 		case EPC_OWNER_CLASSIFICATION : return isValidOwnerClassification(property.edt);
 		case EPC_PHASES_AND_WIRES_SETTING_STATUS : return isValidPhasesAndWiresSettingStatus(property.edt);
@@ -1242,8 +1242,8 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		case EPC_METER_TYPE_CERTIFICATION_NUMBER : return isValidMeterTypeCertificationNumber(property.edt);
 		case EPC_YEAR_AND_MONTH_OF_INSPECTION_EXPIRY : return isValidYearAndMonthOfInspectionExpiry(property.edt);
 		case EPC_NUMBER_OF_EFFECTIVE_DIGITS_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : return isValidNumberOfEffectiveDigitsForCumulativeAmountsOfElectricEnergy(property.edt);
-		case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION_ : return isValidCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection(property.edt);
-		case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION_ : return isValidCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection(property.edt);
+		case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION : return isValidCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection(property.edt);
+		case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION : return isValidCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection(property.edt);
 
 		default : return false;
 		}
@@ -1317,13 +1317,13 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_ : 
+			case EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : 
 				onGetMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(eoj, tid, esv, property, success);
 				return true;
-			case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS_ : 
+			case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS : 
 				onGetUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_ : 
+			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : 
 				onGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_INSTANTANEOUS_ELECTRIC_ENERGY : 
@@ -1332,7 +1332,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 			case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : 
 				onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(eoj, tid, esv, property, success);
 				return true;
-			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_ : 
+			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION : 
 				onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_INSTANTANEOUS_VOLTAGES : 
@@ -1341,7 +1341,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 			case EPC_MEASURED_INSTANTANEOUS_CURRENTS : 
 				onGetMeasuredInstantaneousCurrents(eoj, tid, esv, property, success);
 				return true;
-			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_ : 
+			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION : 
 				onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION : 
@@ -1368,10 +1368,10 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 			case EPC_NUMBER_OF_EFFECTIVE_DIGITS_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : 
 				onGetNumberOfEffectiveDigitsForCumulativeAmountsOfElectricEnergy(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION_ : 
+			case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION : 
 				onGetCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION_ : 
+			case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION : 
 				onGetCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection(eoj, tid, esv, property, success);
 				return true;
 
@@ -2242,7 +2242,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {
-			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -2268,7 +2268,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections() {
-			reqGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS_);
+			reqGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS);
 			return this;
 		}
 		/**
@@ -2294,7 +2294,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {
-			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -2372,7 +2372,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection() {
-			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_);
+			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -2450,7 +2450,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection() {
-			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_);
+			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -2684,7 +2684,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection() {
-			reqGetProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION_);
+			reqGetProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -2710,7 +2710,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection() {
-			reqGetProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION_);
+			reqGetProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION);
 			return this;
 		}
 
@@ -2847,7 +2847,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {
-			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -2873,7 +2873,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections() {
-			reqInformProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS_);
+			reqInformProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS);
 			return this;
 		}
 		/**
@@ -2899,7 +2899,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {
-			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -2977,7 +2977,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection() {
-			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_);
+			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -3055,7 +3055,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection() {
-			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_);
+			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -3289,7 +3289,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection() {
-			reqInformProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION_);
+			reqInformProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -3315,7 +3315,7 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection() {
-			reqInformProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION_);
+			reqInformProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION);
 			return this;
 		}
 
