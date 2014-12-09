@@ -41,39 +41,39 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION = (byte)0xC0;
 	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION = (byte)0xC3;
 	public static final byte EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY = (byte)0xC2;
-	public static final byte EPC_MEASUREMENT_CHANNEL_26 = (byte)0xE9;
-	public static final byte EPC_MEASUREMENT_CHANNEL_25 = (byte)0xE8;
+	public static final byte EPC_MEASUREMENT_CHANNEL26 = (byte)0xE9;
+	public static final byte EPC_MEASUREMENT_CHANNEL25 = (byte)0xE8;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_VOLTAGES = (byte)0xC8;
-	public static final byte EPC_MEASUREMENT_CHANNEL_17 = (byte)0xE0;
-	public static final byte EPC_MEASUREMENT_CHANNEL_19 = (byte)0xE2;
-	public static final byte EPC_MEASUREMENT_CHANNEL_24 = (byte)0xE7;
-	public static final byte EPC_MEASUREMENT_CHANNEL_23 = (byte)0xE6;
-	public static final byte EPC_MEASUREMENT_CHANNEL_22 = (byte)0xE5;
-	public static final byte EPC_MEASUREMENT_CHANNEL_20 = (byte)0xE3;
-	public static final byte EPC_MEASUREMENT_CHANNEL_21 = (byte)0xE4;
-	public static final byte EPC_MEASUREMENT_CHANNEL_11 = (byte)0xDA;
-	public static final byte EPC_MEASUREMENT_CHANNEL_12 = (byte)0xDB;
-	public static final byte EPC_MEASUREMENT_CHANNEL_13 = (byte)0xDC;
-	public static final byte EPC_MEASUREMENT_CHANNEL_15 = (byte)0xDE;
-	public static final byte EPC_MEASUREMENT_CHANNEL_16 = (byte)0xDF;
-	public static final byte EPC_MEASUREMENT_CHANNEL_14 = (byte)0xDD;
-	public static final byte EPC_MEASUREMENT_CHANNEL_1 = (byte)0xD0;
-	public static final byte EPC_MEASUREMENT_CHANNEL_2 = (byte)0xD1;
-	public static final byte EPC_MEASUREMENT_CHANNEL_3 = (byte)0xD2;
-	public static final byte EPC_MEASUREMENT_CHANNEL_4 = (byte)0xD3;
-	public static final byte EPC_MEASUREMENT_CHANNEL_5 = (byte)0xD4;
-	public static final byte EPC_MEASUREMENT_CHANNEL_6 = (byte)0xD5;
-	public static final byte EPC_MEASUREMENT_CHANNEL_7 = (byte)0xD6;
-	public static final byte EPC_MEASUREMENT_CHANNEL_8 = (byte)0xD7;
-	public static final byte EPC_MEASUREMENT_CHANNEL_9 = (byte)0xD8;
-	public static final byte EPC_MEASUREMENT_CHANNEL_10 = (byte)0xD9;
-	public static final byte EPC_MEASUREMENT_CHANNEL_18 = (byte)0xE1;
-	public static final byte EPC_MEASUREMENT_CHANNEL_29 = (byte)0xEC;
-	public static final byte EPC_MEASUREMENT_CHANNEL_28 = (byte)0xEB;
-	public static final byte EPC_MEASUREMENT_CHANNEL_27 = (byte)0xEA;
-	public static final byte EPC_MEASUREMENT_CHANNEL_32 = (byte)0xEF;
-	public static final byte EPC_MEASUREMENT_CHANNEL_31 = (byte)0xEE;
-	public static final byte EPC_MEASUREMENT_CHANNEL_30 = (byte)0xED;
+	public static final byte EPC_MEASUREMENT_CHANNEL17 = (byte)0xE0;
+	public static final byte EPC_MEASUREMENT_CHANNEL19 = (byte)0xE2;
+	public static final byte EPC_MEASUREMENT_CHANNEL24 = (byte)0xE7;
+	public static final byte EPC_MEASUREMENT_CHANNEL23 = (byte)0xE6;
+	public static final byte EPC_MEASUREMENT_CHANNEL22 = (byte)0xE5;
+	public static final byte EPC_MEASUREMENT_CHANNEL20 = (byte)0xE3;
+	public static final byte EPC_MEASUREMENT_CHANNEL21 = (byte)0xE4;
+	public static final byte EPC_MEASUREMENT_CHANNEL11 = (byte)0xDA;
+	public static final byte EPC_MEASUREMENT_CHANNEL12 = (byte)0xDB;
+	public static final byte EPC_MEASUREMENT_CHANNEL13 = (byte)0xDC;
+	public static final byte EPC_MEASUREMENT_CHANNEL15 = (byte)0xDE;
+	public static final byte EPC_MEASUREMENT_CHANNEL16 = (byte)0xDF;
+	public static final byte EPC_MEASUREMENT_CHANNEL14 = (byte)0xDD;
+	public static final byte EPC_MEASUREMENT_CHANNEL1 = (byte)0xD0;
+	public static final byte EPC_MEASUREMENT_CHANNEL2 = (byte)0xD1;
+	public static final byte EPC_MEASUREMENT_CHANNEL3 = (byte)0xD2;
+	public static final byte EPC_MEASUREMENT_CHANNEL4 = (byte)0xD3;
+	public static final byte EPC_MEASUREMENT_CHANNEL5 = (byte)0xD4;
+	public static final byte EPC_MEASUREMENT_CHANNEL6 = (byte)0xD5;
+	public static final byte EPC_MEASUREMENT_CHANNEL7 = (byte)0xD6;
+	public static final byte EPC_MEASUREMENT_CHANNEL8 = (byte)0xD7;
+	public static final byte EPC_MEASUREMENT_CHANNEL9 = (byte)0xD8;
+	public static final byte EPC_MEASUREMENT_CHANNEL10 = (byte)0xD9;
+	public static final byte EPC_MEASUREMENT_CHANNEL18 = (byte)0xE1;
+	public static final byte EPC_MEASUREMENT_CHANNEL29 = (byte)0xEC;
+	public static final byte EPC_MEASUREMENT_CHANNEL28 = (byte)0xEB;
+	public static final byte EPC_MEASUREMENT_CHANNEL27 = (byte)0xEA;
+	public static final byte EPC_MEASUREMENT_CHANNEL32 = (byte)0xEF;
+	public static final byte EPC_MEASUREMENT_CHANNEL31 = (byte)0xEE;
+	public static final byte EPC_MEASUREMENT_CHANNEL30 = (byte)0xED;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -2230,39 +2230,39 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : return getMeasuredCumulativeAmountOfElectricEnergyNormalDirection();
 		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection();
 		case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : return getUnitForCumulativeAmountsOfElectricEnergy();
-		case EPC_MEASUREMENT_CHANNEL_26 : return getMeasurementChannel26();
-		case EPC_MEASUREMENT_CHANNEL_25 : return getMeasurementChannel25();
+		case EPC_MEASUREMENT_CHANNEL26 : return getMeasurementChannel26();
+		case EPC_MEASUREMENT_CHANNEL25 : return getMeasurementChannel25();
 		case EPC_MEASURED_INSTANTANEOUS_VOLTAGES : return getMeasuredInstantaneousVoltages();
-		case EPC_MEASUREMENT_CHANNEL_17 : return getMeasurementChannel17();
-		case EPC_MEASUREMENT_CHANNEL_19 : return getMeasurementChannel19();
-		case EPC_MEASUREMENT_CHANNEL_24 : return getMeasurementChannel24();
-		case EPC_MEASUREMENT_CHANNEL_23 : return getMeasurementChannel23();
-		case EPC_MEASUREMENT_CHANNEL_22 : return getMeasurementChannel22();
-		case EPC_MEASUREMENT_CHANNEL_20 : return getMeasurementChannel20();
-		case EPC_MEASUREMENT_CHANNEL_21 : return getMeasurementChannel21();
-		case EPC_MEASUREMENT_CHANNEL_11 : return getMeasurementChannel11();
-		case EPC_MEASUREMENT_CHANNEL_12 : return getMeasurementChannel12();
-		case EPC_MEASUREMENT_CHANNEL_13 : return getMeasurementChannel13();
-		case EPC_MEASUREMENT_CHANNEL_15 : return getMeasurementChannel15();
-		case EPC_MEASUREMENT_CHANNEL_16 : return getMeasurementChannel16();
-		case EPC_MEASUREMENT_CHANNEL_14 : return getMeasurementChannel14();
-		case EPC_MEASUREMENT_CHANNEL_1 : return getMeasurementChannel1();
-		case EPC_MEASUREMENT_CHANNEL_2 : return getMeasurementChannel2();
-		case EPC_MEASUREMENT_CHANNEL_3 : return getMeasurementChannel3();
-		case EPC_MEASUREMENT_CHANNEL_4 : return getMeasurementChannel4();
-		case EPC_MEASUREMENT_CHANNEL_5 : return getMeasurementChannel5();
-		case EPC_MEASUREMENT_CHANNEL_6 : return getMeasurementChannel6();
-		case EPC_MEASUREMENT_CHANNEL_7 : return getMeasurementChannel7();
-		case EPC_MEASUREMENT_CHANNEL_8 : return getMeasurementChannel8();
-		case EPC_MEASUREMENT_CHANNEL_9 : return getMeasurementChannel9();
-		case EPC_MEASUREMENT_CHANNEL_10 : return getMeasurementChannel10();
-		case EPC_MEASUREMENT_CHANNEL_18 : return getMeasurementChannel18();
-		case EPC_MEASUREMENT_CHANNEL_29 : return getMeasurementChannel29();
-		case EPC_MEASUREMENT_CHANNEL_28 : return getMeasurementChannel28();
-		case EPC_MEASUREMENT_CHANNEL_27 : return getMeasurementChannel27();
-		case EPC_MEASUREMENT_CHANNEL_32 : return getMeasurementChannel32();
-		case EPC_MEASUREMENT_CHANNEL_31 : return getMeasurementChannel31();
-		case EPC_MEASUREMENT_CHANNEL_30 : return getMeasurementChannel30();
+		case EPC_MEASUREMENT_CHANNEL17 : return getMeasurementChannel17();
+		case EPC_MEASUREMENT_CHANNEL19 : return getMeasurementChannel19();
+		case EPC_MEASUREMENT_CHANNEL24 : return getMeasurementChannel24();
+		case EPC_MEASUREMENT_CHANNEL23 : return getMeasurementChannel23();
+		case EPC_MEASUREMENT_CHANNEL22 : return getMeasurementChannel22();
+		case EPC_MEASUREMENT_CHANNEL20 : return getMeasurementChannel20();
+		case EPC_MEASUREMENT_CHANNEL21 : return getMeasurementChannel21();
+		case EPC_MEASUREMENT_CHANNEL11 : return getMeasurementChannel11();
+		case EPC_MEASUREMENT_CHANNEL12 : return getMeasurementChannel12();
+		case EPC_MEASUREMENT_CHANNEL13 : return getMeasurementChannel13();
+		case EPC_MEASUREMENT_CHANNEL15 : return getMeasurementChannel15();
+		case EPC_MEASUREMENT_CHANNEL16 : return getMeasurementChannel16();
+		case EPC_MEASUREMENT_CHANNEL14 : return getMeasurementChannel14();
+		case EPC_MEASUREMENT_CHANNEL1 : return getMeasurementChannel1();
+		case EPC_MEASUREMENT_CHANNEL2 : return getMeasurementChannel2();
+		case EPC_MEASUREMENT_CHANNEL3 : return getMeasurementChannel3();
+		case EPC_MEASUREMENT_CHANNEL4 : return getMeasurementChannel4();
+		case EPC_MEASUREMENT_CHANNEL5 : return getMeasurementChannel5();
+		case EPC_MEASUREMENT_CHANNEL6 : return getMeasurementChannel6();
+		case EPC_MEASUREMENT_CHANNEL7 : return getMeasurementChannel7();
+		case EPC_MEASUREMENT_CHANNEL8 : return getMeasurementChannel8();
+		case EPC_MEASUREMENT_CHANNEL9 : return getMeasurementChannel9();
+		case EPC_MEASUREMENT_CHANNEL10 : return getMeasurementChannel10();
+		case EPC_MEASUREMENT_CHANNEL18 : return getMeasurementChannel18();
+		case EPC_MEASUREMENT_CHANNEL29 : return getMeasurementChannel29();
+		case EPC_MEASUREMENT_CHANNEL28 : return getMeasurementChannel28();
+		case EPC_MEASUREMENT_CHANNEL27 : return getMeasurementChannel27();
+		case EPC_MEASUREMENT_CHANNEL32 : return getMeasurementChannel32();
+		case EPC_MEASUREMENT_CHANNEL31 : return getMeasurementChannel31();
+		case EPC_MEASUREMENT_CHANNEL30 : return getMeasurementChannel30();
 
 		default : return null;
 		}
@@ -2282,39 +2282,39 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : return isValidMeasuredCumulativeAmountOfElectricEnergyNormalDirection(property.edt);
 		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection(property.edt);
 		case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : return isValidUnitForCumulativeAmountsOfElectricEnergy(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_26 : return isValidMeasurementChannel26(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_25 : return isValidMeasurementChannel25(property.edt);
+		case EPC_MEASUREMENT_CHANNEL26 : return isValidMeasurementChannel26(property.edt);
+		case EPC_MEASUREMENT_CHANNEL25 : return isValidMeasurementChannel25(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_VOLTAGES : return isValidMeasuredInstantaneousVoltages(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_17 : return isValidMeasurementChannel17(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_19 : return isValidMeasurementChannel19(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_24 : return isValidMeasurementChannel24(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_23 : return isValidMeasurementChannel23(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_22 : return isValidMeasurementChannel22(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_20 : return isValidMeasurementChannel20(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_21 : return isValidMeasurementChannel21(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_11 : return isValidMeasurementChannel11(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_12 : return isValidMeasurementChannel12(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_13 : return isValidMeasurementChannel13(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_15 : return isValidMeasurementChannel15(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_16 : return isValidMeasurementChannel16(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_14 : return isValidMeasurementChannel14(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_1 : return isValidMeasurementChannel1(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_2 : return isValidMeasurementChannel2(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_3 : return isValidMeasurementChannel3(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_4 : return isValidMeasurementChannel4(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_5 : return isValidMeasurementChannel5(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_6 : return isValidMeasurementChannel6(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_7 : return isValidMeasurementChannel7(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_8 : return isValidMeasurementChannel8(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_9 : return isValidMeasurementChannel9(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_10 : return isValidMeasurementChannel10(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_18 : return isValidMeasurementChannel18(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_29 : return isValidMeasurementChannel29(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_28 : return isValidMeasurementChannel28(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_27 : return isValidMeasurementChannel27(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_32 : return isValidMeasurementChannel32(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_31 : return isValidMeasurementChannel31(property.edt);
-		case EPC_MEASUREMENT_CHANNEL_30 : return isValidMeasurementChannel30(property.edt);
+		case EPC_MEASUREMENT_CHANNEL17 : return isValidMeasurementChannel17(property.edt);
+		case EPC_MEASUREMENT_CHANNEL19 : return isValidMeasurementChannel19(property.edt);
+		case EPC_MEASUREMENT_CHANNEL24 : return isValidMeasurementChannel24(property.edt);
+		case EPC_MEASUREMENT_CHANNEL23 : return isValidMeasurementChannel23(property.edt);
+		case EPC_MEASUREMENT_CHANNEL22 : return isValidMeasurementChannel22(property.edt);
+		case EPC_MEASUREMENT_CHANNEL20 : return isValidMeasurementChannel20(property.edt);
+		case EPC_MEASUREMENT_CHANNEL21 : return isValidMeasurementChannel21(property.edt);
+		case EPC_MEASUREMENT_CHANNEL11 : return isValidMeasurementChannel11(property.edt);
+		case EPC_MEASUREMENT_CHANNEL12 : return isValidMeasurementChannel12(property.edt);
+		case EPC_MEASUREMENT_CHANNEL13 : return isValidMeasurementChannel13(property.edt);
+		case EPC_MEASUREMENT_CHANNEL15 : return isValidMeasurementChannel15(property.edt);
+		case EPC_MEASUREMENT_CHANNEL16 : return isValidMeasurementChannel16(property.edt);
+		case EPC_MEASUREMENT_CHANNEL14 : return isValidMeasurementChannel14(property.edt);
+		case EPC_MEASUREMENT_CHANNEL1 : return isValidMeasurementChannel1(property.edt);
+		case EPC_MEASUREMENT_CHANNEL2 : return isValidMeasurementChannel2(property.edt);
+		case EPC_MEASUREMENT_CHANNEL3 : return isValidMeasurementChannel3(property.edt);
+		case EPC_MEASUREMENT_CHANNEL4 : return isValidMeasurementChannel4(property.edt);
+		case EPC_MEASUREMENT_CHANNEL5 : return isValidMeasurementChannel5(property.edt);
+		case EPC_MEASUREMENT_CHANNEL6 : return isValidMeasurementChannel6(property.edt);
+		case EPC_MEASUREMENT_CHANNEL7 : return isValidMeasurementChannel7(property.edt);
+		case EPC_MEASUREMENT_CHANNEL8 : return isValidMeasurementChannel8(property.edt);
+		case EPC_MEASUREMENT_CHANNEL9 : return isValidMeasurementChannel9(property.edt);
+		case EPC_MEASUREMENT_CHANNEL10 : return isValidMeasurementChannel10(property.edt);
+		case EPC_MEASUREMENT_CHANNEL18 : return isValidMeasurementChannel18(property.edt);
+		case EPC_MEASUREMENT_CHANNEL29 : return isValidMeasurementChannel29(property.edt);
+		case EPC_MEASUREMENT_CHANNEL28 : return isValidMeasurementChannel28(property.edt);
+		case EPC_MEASUREMENT_CHANNEL27 : return isValidMeasurementChannel27(property.edt);
+		case EPC_MEASUREMENT_CHANNEL32 : return isValidMeasurementChannel32(property.edt);
+		case EPC_MEASUREMENT_CHANNEL31 : return isValidMeasurementChannel31(property.edt);
+		case EPC_MEASUREMENT_CHANNEL30 : return isValidMeasurementChannel30(property.edt);
 
 		default : return false;
 		}
@@ -2403,103 +2403,103 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 			case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : 
 				onGetUnitForCumulativeAmountsOfElectricEnergy(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_26 : 
+			case EPC_MEASUREMENT_CHANNEL26 : 
 				onGetMeasurementChannel26(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_25 : 
+			case EPC_MEASUREMENT_CHANNEL25 : 
 				onGetMeasurementChannel25(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_INSTANTANEOUS_VOLTAGES : 
 				onGetMeasuredInstantaneousVoltages(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_17 : 
+			case EPC_MEASUREMENT_CHANNEL17 : 
 				onGetMeasurementChannel17(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_19 : 
+			case EPC_MEASUREMENT_CHANNEL19 : 
 				onGetMeasurementChannel19(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_24 : 
+			case EPC_MEASUREMENT_CHANNEL24 : 
 				onGetMeasurementChannel24(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_23 : 
+			case EPC_MEASUREMENT_CHANNEL23 : 
 				onGetMeasurementChannel23(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_22 : 
+			case EPC_MEASUREMENT_CHANNEL22 : 
 				onGetMeasurementChannel22(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_20 : 
+			case EPC_MEASUREMENT_CHANNEL20 : 
 				onGetMeasurementChannel20(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_21 : 
+			case EPC_MEASUREMENT_CHANNEL21 : 
 				onGetMeasurementChannel21(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_11 : 
+			case EPC_MEASUREMENT_CHANNEL11 : 
 				onGetMeasurementChannel11(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_12 : 
+			case EPC_MEASUREMENT_CHANNEL12 : 
 				onGetMeasurementChannel12(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_13 : 
+			case EPC_MEASUREMENT_CHANNEL13 : 
 				onGetMeasurementChannel13(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_15 : 
+			case EPC_MEASUREMENT_CHANNEL15 : 
 				onGetMeasurementChannel15(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_16 : 
+			case EPC_MEASUREMENT_CHANNEL16 : 
 				onGetMeasurementChannel16(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_14 : 
+			case EPC_MEASUREMENT_CHANNEL14 : 
 				onGetMeasurementChannel14(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_1 : 
+			case EPC_MEASUREMENT_CHANNEL1 : 
 				onGetMeasurementChannel1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_2 : 
+			case EPC_MEASUREMENT_CHANNEL2 : 
 				onGetMeasurementChannel2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_3 : 
+			case EPC_MEASUREMENT_CHANNEL3 : 
 				onGetMeasurementChannel3(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_4 : 
+			case EPC_MEASUREMENT_CHANNEL4 : 
 				onGetMeasurementChannel4(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_5 : 
+			case EPC_MEASUREMENT_CHANNEL5 : 
 				onGetMeasurementChannel5(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_6 : 
+			case EPC_MEASUREMENT_CHANNEL6 : 
 				onGetMeasurementChannel6(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_7 : 
+			case EPC_MEASUREMENT_CHANNEL7 : 
 				onGetMeasurementChannel7(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_8 : 
+			case EPC_MEASUREMENT_CHANNEL8 : 
 				onGetMeasurementChannel8(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_9 : 
+			case EPC_MEASUREMENT_CHANNEL9 : 
 				onGetMeasurementChannel9(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_10 : 
+			case EPC_MEASUREMENT_CHANNEL10 : 
 				onGetMeasurementChannel10(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_18 : 
+			case EPC_MEASUREMENT_CHANNEL18 : 
 				onGetMeasurementChannel18(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_29 : 
+			case EPC_MEASUREMENT_CHANNEL29 : 
 				onGetMeasurementChannel29(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_28 : 
+			case EPC_MEASUREMENT_CHANNEL28 : 
 				onGetMeasurementChannel28(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_27 : 
+			case EPC_MEASUREMENT_CHANNEL27 : 
 				onGetMeasurementChannel27(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_32 : 
+			case EPC_MEASUREMENT_CHANNEL32 : 
 				onGetMeasurementChannel32(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_31 : 
+			case EPC_MEASUREMENT_CHANNEL31 : 
 				onGetMeasurementChannel31(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL_30 : 
+			case EPC_MEASUREMENT_CHANNEL30 : 
 				onGetMeasurementChannel30(eoj, tid, esv, property, success);
 				return true;
 
@@ -3937,7 +3937,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel26() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_26);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL26);
 			return this;
 		}
 		/**
@@ -3963,7 +3963,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel25() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_25);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL25);
 			return this;
 		}
 		/**
@@ -4015,7 +4015,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel17() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_17);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL17);
 			return this;
 		}
 		/**
@@ -4041,7 +4041,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel19() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_19);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL19);
 			return this;
 		}
 		/**
@@ -4067,7 +4067,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel24() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_24);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL24);
 			return this;
 		}
 		/**
@@ -4093,7 +4093,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel23() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_23);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL23);
 			return this;
 		}
 		/**
@@ -4119,7 +4119,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel22() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_22);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL22);
 			return this;
 		}
 		/**
@@ -4145,7 +4145,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel20() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_20);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL20);
 			return this;
 		}
 		/**
@@ -4171,7 +4171,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel21() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_21);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL21);
 			return this;
 		}
 		/**
@@ -4197,7 +4197,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel11() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_11);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL11);
 			return this;
 		}
 		/**
@@ -4223,7 +4223,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel12() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_12);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL12);
 			return this;
 		}
 		/**
@@ -4249,7 +4249,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel13() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_13);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL13);
 			return this;
 		}
 		/**
@@ -4275,7 +4275,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel15() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_15);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL15);
 			return this;
 		}
 		/**
@@ -4301,7 +4301,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel16() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_16);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL16);
 			return this;
 		}
 		/**
@@ -4327,7 +4327,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel14() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_14);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL14);
 			return this;
 		}
 		/**
@@ -4353,7 +4353,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel1() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_1);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL1);
 			return this;
 		}
 		/**
@@ -4379,7 +4379,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel2() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_2);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL2);
 			return this;
 		}
 		/**
@@ -4405,7 +4405,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel3() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_3);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL3);
 			return this;
 		}
 		/**
@@ -4431,7 +4431,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel4() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_4);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL4);
 			return this;
 		}
 		/**
@@ -4457,7 +4457,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel5() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_5);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL5);
 			return this;
 		}
 		/**
@@ -4483,7 +4483,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel6() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_6);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL6);
 			return this;
 		}
 		/**
@@ -4509,7 +4509,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel7() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_7);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL7);
 			return this;
 		}
 		/**
@@ -4535,7 +4535,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel8() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_8);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL8);
 			return this;
 		}
 		/**
@@ -4561,7 +4561,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel9() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_9);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL9);
 			return this;
 		}
 		/**
@@ -4587,7 +4587,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel10() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_10);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL10);
 			return this;
 		}
 		/**
@@ -4613,7 +4613,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel18() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_18);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL18);
 			return this;
 		}
 		/**
@@ -4639,7 +4639,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel29() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_29);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL29);
 			return this;
 		}
 		/**
@@ -4665,7 +4665,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel28() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_28);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL28);
 			return this;
 		}
 		/**
@@ -4691,7 +4691,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel27() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_27);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL27);
 			return this;
 		}
 		/**
@@ -4717,7 +4717,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel32() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_32);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL32);
 			return this;
 		}
 		/**
@@ -4743,7 +4743,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel31() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_31);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL31);
 			return this;
 		}
 		/**
@@ -4769,7 +4769,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel30() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL_30);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL30);
 			return this;
 		}
 
@@ -5114,7 +5114,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel26() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_26);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL26);
 			return this;
 		}
 		/**
@@ -5140,7 +5140,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel25() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_25);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL25);
 			return this;
 		}
 		/**
@@ -5192,7 +5192,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel17() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_17);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL17);
 			return this;
 		}
 		/**
@@ -5218,7 +5218,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel19() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_19);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL19);
 			return this;
 		}
 		/**
@@ -5244,7 +5244,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel24() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_24);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL24);
 			return this;
 		}
 		/**
@@ -5270,7 +5270,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel23() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_23);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL23);
 			return this;
 		}
 		/**
@@ -5296,7 +5296,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel22() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_22);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL22);
 			return this;
 		}
 		/**
@@ -5322,7 +5322,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel20() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_20);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL20);
 			return this;
 		}
 		/**
@@ -5348,7 +5348,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel21() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_21);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL21);
 			return this;
 		}
 		/**
@@ -5374,7 +5374,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel11() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_11);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL11);
 			return this;
 		}
 		/**
@@ -5400,7 +5400,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel12() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_12);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL12);
 			return this;
 		}
 		/**
@@ -5426,7 +5426,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel13() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_13);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL13);
 			return this;
 		}
 		/**
@@ -5452,7 +5452,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel15() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_15);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL15);
 			return this;
 		}
 		/**
@@ -5478,7 +5478,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel16() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_16);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL16);
 			return this;
 		}
 		/**
@@ -5504,7 +5504,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel14() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_14);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL14);
 			return this;
 		}
 		/**
@@ -5530,7 +5530,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel1() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_1);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL1);
 			return this;
 		}
 		/**
@@ -5556,7 +5556,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel2() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_2);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL2);
 			return this;
 		}
 		/**
@@ -5582,7 +5582,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel3() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_3);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL3);
 			return this;
 		}
 		/**
@@ -5608,7 +5608,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel4() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_4);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL4);
 			return this;
 		}
 		/**
@@ -5634,7 +5634,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel5() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_5);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL5);
 			return this;
 		}
 		/**
@@ -5660,7 +5660,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel6() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_6);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL6);
 			return this;
 		}
 		/**
@@ -5686,7 +5686,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel7() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_7);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL7);
 			return this;
 		}
 		/**
@@ -5712,7 +5712,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel8() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_8);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL8);
 			return this;
 		}
 		/**
@@ -5738,7 +5738,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel9() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_9);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL9);
 			return this;
 		}
 		/**
@@ -5764,7 +5764,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel10() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_10);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL10);
 			return this;
 		}
 		/**
@@ -5790,7 +5790,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel18() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_18);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL18);
 			return this;
 		}
 		/**
@@ -5816,7 +5816,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel29() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_29);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL29);
 			return this;
 		}
 		/**
@@ -5842,7 +5842,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel28() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_28);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL28);
 			return this;
 		}
 		/**
@@ -5868,7 +5868,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel27() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_27);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL27);
 			return this;
 		}
 		/**
@@ -5894,7 +5894,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel32() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_32);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL32);
 			return this;
 		}
 		/**
@@ -5920,7 +5920,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel31() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_31);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL31);
 			return this;
 		}
 		/**
@@ -5946,7 +5946,7 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel30() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL_30);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL30);
 			return this;
 		}
 

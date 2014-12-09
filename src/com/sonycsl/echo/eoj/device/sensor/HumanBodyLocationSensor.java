@@ -34,16 +34,16 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 	public static final short ECHO_CLASS_CODE = (short)0x002B;
 
 	public static final byte EPC_HUMAN_BODY_EXISTENCE_INFORMATION = (byte)0xE3;
-	public static final byte EPC_HUMAN_BODY_DETECTION_LOCATION_2 = (byte)0xE2;
+	public static final byte EPC_HUMAN_BODY_DETECTION_LOCATION2 = (byte)0xE2;
 	public static final byte EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S = (byte)0xE1;
-	public static final byte EPC_HUMAN_BODY_DETECTION_LOCATION_1 = (byte)0xE0;
+	public static final byte EPC_HUMAN_BODY_DETECTION_LOCATION1 = (byte)0xE0;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addGetProperty(EPC_HUMAN_BODY_DETECTION_LOCATION_2);
-		addGetProperty(EPC_HUMAN_BODY_DETECTION_LOCATION_1);
+		addGetProperty(EPC_HUMAN_BODY_DETECTION_LOCATION2);
+		addGetProperty(EPC_HUMAN_BODY_DETECTION_LOCATION1);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
@@ -348,9 +348,9 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 		
 		switch(epc) {
 		case EPC_HUMAN_BODY_EXISTENCE_INFORMATION : return getHumanBodyExistenceInformation();
-		case EPC_HUMAN_BODY_DETECTION_LOCATION_2 : return getHumanBodyDetectionLocation2();
+		case EPC_HUMAN_BODY_DETECTION_LOCATION2 : return getHumanBodyDetectionLocation2();
 		case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S : return getMaximumNumberOfHumanBodyIdS();
-		case EPC_HUMAN_BODY_DETECTION_LOCATION_1 : return getHumanBodyDetectionLocation1();
+		case EPC_HUMAN_BODY_DETECTION_LOCATION1 : return getHumanBodyDetectionLocation1();
 
 		default : return null;
 		}
@@ -363,9 +363,9 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 		
 		switch(property.epc) {
 		case EPC_HUMAN_BODY_EXISTENCE_INFORMATION : return isValidHumanBodyExistenceInformation(property.edt);
-		case EPC_HUMAN_BODY_DETECTION_LOCATION_2 : return isValidHumanBodyDetectionLocation2(property.edt);
+		case EPC_HUMAN_BODY_DETECTION_LOCATION2 : return isValidHumanBodyDetectionLocation2(property.edt);
 		case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S : return isValidMaximumNumberOfHumanBodyIdS(property.edt);
-		case EPC_HUMAN_BODY_DETECTION_LOCATION_1 : return isValidHumanBodyDetectionLocation1(property.edt);
+		case EPC_HUMAN_BODY_DETECTION_LOCATION1 : return isValidHumanBodyDetectionLocation1(property.edt);
 
 		default : return false;
 		}
@@ -430,13 +430,13 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 			case EPC_HUMAN_BODY_EXISTENCE_INFORMATION : 
 				onGetHumanBodyExistenceInformation(eoj, tid, esv, property, success);
 				return true;
-			case EPC_HUMAN_BODY_DETECTION_LOCATION_2 : 
+			case EPC_HUMAN_BODY_DETECTION_LOCATION2 : 
 				onGetHumanBodyDetectionLocation2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S : 
 				onGetMaximumNumberOfHumanBodyIdS(eoj, tid, esv, property, success);
 				return true;
-			case EPC_HUMAN_BODY_DETECTION_LOCATION_1 : 
+			case EPC_HUMAN_BODY_DETECTION_LOCATION1 : 
 				onGetHumanBodyDetectionLocation1(eoj, tid, esv, property, success);
 				return true;
 
@@ -792,7 +792,7 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetHumanBodyDetectionLocation2() {
-			reqGetProperty(EPC_HUMAN_BODY_DETECTION_LOCATION_2);
+			reqGetProperty(EPC_HUMAN_BODY_DETECTION_LOCATION2);
 			return this;
 		}
 		/**
@@ -844,7 +844,7 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetHumanBodyDetectionLocation1() {
-			reqGetProperty(EPC_HUMAN_BODY_DETECTION_LOCATION_1);
+			reqGetProperty(EPC_HUMAN_BODY_DETECTION_LOCATION1);
 			return this;
 		}
 
@@ -1007,7 +1007,7 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformHumanBodyDetectionLocation2() {
-			reqInformProperty(EPC_HUMAN_BODY_DETECTION_LOCATION_2);
+			reqInformProperty(EPC_HUMAN_BODY_DETECTION_LOCATION2);
 			return this;
 		}
 		/**
@@ -1059,7 +1059,7 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformHumanBodyDetectionLocation1() {
-			reqInformProperty(EPC_HUMAN_BODY_DETECTION_LOCATION_1);
+			reqInformProperty(EPC_HUMAN_BODY_DETECTION_LOCATION1);
 			return this;
 		}
 

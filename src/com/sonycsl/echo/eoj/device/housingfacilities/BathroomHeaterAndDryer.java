@@ -33,7 +33,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0273;
 
-	public static final byte EPC_ON_TIMER_BASED_RESERVATION_SETTING_2 = (byte)0xE1;
+	public static final byte EPC_ON_TIMER_BASED_RESERVATION_SETTING2 = (byte)0xE1;
 	public static final byte EPC_HUMAN_BODY_DETECTION_STATUS = (byte)0xE0;
 	public static final byte EPC_VENTILATION_AIR_FLOW_RATE_SETTING = (byte)0xC2;
 	public static final byte EPC_MEASURED_BATHROOM_TEMPERATURE = (byte)0xBB;
@@ -50,7 +50,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	public static final byte EPC_OFF_X000A_TIMER_BASED_RESERVATION_SETTING = (byte)0x94;
 	public static final byte EPC_ON_TIMER_SETTING_RELATIVE_TIME = (byte)0x92;
 	public static final byte EPC_ON_TIMER_SETTING_TIME = (byte)0x91;
-	public static final byte EPC_ON_TIMER_BASED_RESERVATION_SETTING_1 = (byte)0x90;
+	public static final byte EPC_ON_TIMER_BASED_RESERVATION_SETTING1 = (byte)0x90;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -1385,7 +1385,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_ON_TIMER_BASED_RESERVATION_SETTING_2 : return setOnTimerBasedReservationSetting2(property.edt);
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING2 : return setOnTimerBasedReservationSetting2(property.edt);
 		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return setVentilationAirFlowRateSetting(property.edt);
 		case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING : return setFilterCleaningReminderSignSetting(property.edt);
 		case EPC_BATHROOM_PRE_WARMER_X000A_OPERATION_SETTING : return setBathroomPreWarmerX000AOperationSetting(property.edt);
@@ -1399,7 +1399,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		case EPC_OFF_X000A_TIMER_BASED_RESERVATION_SETTING : return setOffX000ATimerBasedReservationSetting(property.edt);
 		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return setOnTimerSettingRelativeTime(property.edt);
 		case EPC_ON_TIMER_SETTING_TIME : return setOnTimerSettingTime(property.edt);
-		case EPC_ON_TIMER_BASED_RESERVATION_SETTING_1 : return setOnTimerBasedReservationSetting1(property.edt);
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING1 : return setOnTimerBasedReservationSetting1(property.edt);
 
 		default : return false;
 		}
@@ -1411,7 +1411,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_ON_TIMER_BASED_RESERVATION_SETTING_2 : return getOnTimerBasedReservationSetting2();
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING2 : return getOnTimerBasedReservationSetting2();
 		case EPC_HUMAN_BODY_DETECTION_STATUS : return getHumanBodyDetectionStatus();
 		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return getVentilationAirFlowRateSetting();
 		case EPC_MEASURED_BATHROOM_TEMPERATURE : return getMeasuredBathroomTemperature();
@@ -1428,7 +1428,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		case EPC_OFF_X000A_TIMER_BASED_RESERVATION_SETTING : return getOffX000ATimerBasedReservationSetting();
 		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return getOnTimerSettingRelativeTime();
 		case EPC_ON_TIMER_SETTING_TIME : return getOnTimerSettingTime();
-		case EPC_ON_TIMER_BASED_RESERVATION_SETTING_1 : return getOnTimerBasedReservationSetting1();
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING1 : return getOnTimerBasedReservationSetting1();
 
 		default : return null;
 		}
@@ -1440,7 +1440,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_ON_TIMER_BASED_RESERVATION_SETTING_2 : return isValidOnTimerBasedReservationSetting2(property.edt);
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING2 : return isValidOnTimerBasedReservationSetting2(property.edt);
 		case EPC_HUMAN_BODY_DETECTION_STATUS : return isValidHumanBodyDetectionStatus(property.edt);
 		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return isValidVentilationAirFlowRateSetting(property.edt);
 		case EPC_MEASURED_BATHROOM_TEMPERATURE : return isValidMeasuredBathroomTemperature(property.edt);
@@ -1457,7 +1457,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		case EPC_OFF_X000A_TIMER_BASED_RESERVATION_SETTING : return isValidOffX000ATimerBasedReservationSetting(property.edt);
 		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return isValidOnTimerSettingRelativeTime(property.edt);
 		case EPC_ON_TIMER_SETTING_TIME : return isValidOnTimerSettingTime(property.edt);
-		case EPC_ON_TIMER_BASED_RESERVATION_SETTING_1 : return isValidOnTimerBasedReservationSetting1(property.edt);
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING1 : return isValidOnTimerBasedReservationSetting1(property.edt);
 
 		default : return false;
 		}
@@ -1506,7 +1506,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_ON_TIMER_BASED_RESERVATION_SETTING_2 : 
+			case EPC_ON_TIMER_BASED_RESERVATION_SETTING2 : 
 				onSetOnTimerBasedReservationSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : 
@@ -1548,7 +1548,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 			case EPC_ON_TIMER_SETTING_TIME : 
 				onSetOnTimerSettingTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_BASED_RESERVATION_SETTING_1 : 
+			case EPC_ON_TIMER_BASED_RESERVATION_SETTING1 : 
 				onSetOnTimerBasedReservationSetting1(eoj, tid, esv, property, success);
 				return true;
 
@@ -1564,7 +1564,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_ON_TIMER_BASED_RESERVATION_SETTING_2 : 
+			case EPC_ON_TIMER_BASED_RESERVATION_SETTING2 : 
 				onGetOnTimerBasedReservationSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_HUMAN_BODY_DETECTION_STATUS : 
@@ -1615,7 +1615,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 			case EPC_ON_TIMER_SETTING_TIME : 
 				onGetOnTimerSettingTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_BASED_RESERVATION_SETTING_1 : 
+			case EPC_ON_TIMER_BASED_RESERVATION_SETTING1 : 
 				onGetOnTimerBasedReservationSetting1(eoj, tid, esv, property, success);
 				return true;
 
@@ -2500,7 +2500,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOnTimerBasedReservationSetting2(byte[] edt) {
-			reqSetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING_2, edt);
+			reqSetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -2864,7 +2864,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOnTimerBasedReservationSetting1(byte[] edt) {
-			reqSetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING_1, edt);
+			reqSetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING1, edt);
 			return this;
 		}
 
@@ -3002,7 +3002,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOnTimerBasedReservationSetting2() {
-			reqGetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING_2);
+			reqGetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING2);
 			return this;
 		}
 		/**
@@ -3444,7 +3444,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOnTimerBasedReservationSetting1() {
-			reqGetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING_1);
+			reqGetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING1);
 			return this;
 		}
 
@@ -3581,7 +3581,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOnTimerBasedReservationSetting2() {
-			reqInformProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING_2);
+			reqInformProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING2);
 			return this;
 		}
 		/**
@@ -4023,7 +4023,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOnTimerBasedReservationSetting1() {
-			reqInformProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING_1);
+			reqInformProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING1);
 			return this;
 		}
 

@@ -34,26 +34,26 @@ public abstract class ElectricVehicle extends DeviceObject {
 	public static final short ECHO_CLASS_CODE = (short)0x027E;
 
 	public static final byte EPC_RATED_CHARGE_CAPACITY = (byte)0xC5;
-	public static final byte EPC_V2H_REMAINING_AVAILABLE_CAPACITY_3 = (byte)0xC4;
+	public static final byte EPC_V2H_REMAINING_AVAILABLE_CAPACITY3 = (byte)0xC4;
 	public static final byte EPC_CHARGEABLE_DISCHARGE_ABLE_STATUS = (byte)0xC7;
 	public static final byte EPC_RATED_DISCHARGE_CAPACITY = (byte)0xC6;
-	public static final byte EPC_V2H_STORED_ELECTRICITY_2 = (byte)0xC1;
-	public static final byte EPC_V2H_STORED_ELECTRICITY_1 = (byte)0xC0;
-	public static final byte EPC_V2H_REMAINING_AVAILABLE_CAPACITY_2 = (byte)0xC3;
-	public static final byte EPC_V2H_REMAINING_AVAILABLE_CAPACITY_1 = (byte)0xC2;
-	public static final byte EPC_CHARGING_AMOUNT_SETTING_2 = (byte)0xE9;
-	public static final byte EPC_DISCHARGING_AMOUNT_SETTING_1 = (byte)0xE8;
+	public static final byte EPC_V2H_STORED_ELECTRICITY2 = (byte)0xC1;
+	public static final byte EPC_V2H_STORED_ELECTRICITY1 = (byte)0xC0;
+	public static final byte EPC_V2H_REMAINING_AVAILABLE_CAPACITY2 = (byte)0xC3;
+	public static final byte EPC_V2H_REMAINING_AVAILABLE_CAPACITY1 = (byte)0xC2;
+	public static final byte EPC_CHARGING_AMOUNT_SETTING2 = (byte)0xE9;
+	public static final byte EPC_DISCHARGING_AMOUNT_SETTING1 = (byte)0xE8;
 	public static final byte EPC_MINIMUM_MAXIMUM_DISCHARGE_ELECTRIC_ENERGY = (byte)0xC9;
 	public static final byte EPC_MINIMUM_MAXIMUM_CHARGE_ELECTRIC_ENERGY = (byte)0xC8;
 	public static final byte EPC_REMAINING_BATTERY_CAPACITY1 = (byte)0xE2;
-	public static final byte EPC_CHARGING_AMOUNT_SETTING_1 = (byte)0xE7;
+	public static final byte EPC_CHARGING_AMOUNT_SETTING1 = (byte)0xE7;
 	public static final byte EPC_DETERIORATION_STATUS = (byte)0xE5;
 	public static final byte EPC_REMAINING_BATTERY_CAPACITY2 = (byte)0xE3;
 	public static final byte EPC_REMAINING_BATTERY_CAPACITY3 = (byte)0xE4;
 	public static final byte EPC_OPERATION_MODE_SETTING = (byte)0xDA;
 	public static final byte EPC_SYSTEM_INTERCONNECTE_D_TYPE = (byte)0xDB;
-	public static final byte EPC_USED_CAPACITY_1 = (byte)0xD0;
-	public static final byte EPC_USED_CAPACITY_2 = (byte)0xD1;
+	public static final byte EPC_USED_CAPACITY1 = (byte)0xD0;
+	public static final byte EPC_USED_CAPACITY2 = (byte)0xD1;
 	public static final byte EPC_RATED_VOLTAGE = (byte)0xD2;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_ELECTRIC_ENERGY = (byte)0xD3;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_CURRENT = (byte)0xD4;
@@ -65,7 +65,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 	public static final byte EPC_CHARGE_CURRENT_SETTING = (byte)0xED;
 	public static final byte EPC_DISCHARGE_ELECTRIC_ENERGY_SETTING = (byte)0xEC;
 	public static final byte EPC_CHARGE_ELECTRIC_ENERGY_SETTING = (byte)0xEB;
-	public static final byte EPC_DISCHARGING_AMOUNT_SETTING_2 = (byte)0xEA;
+	public static final byte EPC_DISCHARGING_AMOUNT_SETTING2 = (byte)0xEA;
 	public static final byte EPC_MINIMUM_MAXIMUM_CHARGE_CURRENT = (byte)0xCA;
 	public static final byte EPC_DISCHARGE_CURRENT_SETTING = (byte)0xEE;
 	public static final byte EPC_MINIMUM_MAXIMUM_DISCHARGE_CURRENT = (byte)0xCB;
@@ -75,14 +75,14 @@ public abstract class ElectricVehicle extends DeviceObject {
 		super.setupPropertyMaps();
 		
 		addGetProperty(EPC_RATED_CHARGE_CAPACITY);
-		addGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY_3);
+		addGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY3);
 		addStatusChangeAnnouncementProperty(EPC_CHARGEABLE_DISCHARGE_ABLE_STATUS);
 		addGetProperty(EPC_CHARGEABLE_DISCHARGE_ABLE_STATUS);
 		addGetProperty(EPC_RATED_DISCHARGE_CAPACITY);
-		addGetProperty(EPC_V2H_STORED_ELECTRICITY_2);
-		addGetProperty(EPC_V2H_STORED_ELECTRICITY_1);
-		addGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY_2);
-		addGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY_1);
+		addGetProperty(EPC_V2H_STORED_ELECTRICITY2);
+		addGetProperty(EPC_V2H_STORED_ELECTRICITY1);
+		addGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY2);
+		addGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY1);
 		addGetProperty(EPC_REMAINING_BATTERY_CAPACITY1);
 		addGetProperty(EPC_REMAINING_BATTERY_CAPACITY2);
 		addGetProperty(EPC_REMAINING_BATTERY_CAPACITY3);
@@ -92,8 +92,8 @@ public abstract class ElectricVehicle extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-		addGetProperty(EPC_USED_CAPACITY_1);
-		addGetProperty(EPC_USED_CAPACITY_2);
+		addGetProperty(EPC_USED_CAPACITY1);
+		addGetProperty(EPC_USED_CAPACITY2);
 
 	}
 
@@ -2204,16 +2204,16 @@ public abstract class ElectricVehicle extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_CHARGING_AMOUNT_SETTING_2 : return setChargingAmountSetting2(property.edt);
-		case EPC_DISCHARGING_AMOUNT_SETTING_1 : return setDischargingAmountSetting1(property.edt);
-		case EPC_CHARGING_AMOUNT_SETTING_1 : return setChargingAmountSetting1(property.edt);
+		case EPC_CHARGING_AMOUNT_SETTING2 : return setChargingAmountSetting2(property.edt);
+		case EPC_DISCHARGING_AMOUNT_SETTING1 : return setDischargingAmountSetting1(property.edt);
+		case EPC_CHARGING_AMOUNT_SETTING1 : return setChargingAmountSetting1(property.edt);
 		case EPC_OPERATION_MODE_SETTING : return setOperationModeSetting(property.edt);
 		case EPC_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : return setCumulativeDischargeElectricEnergyResetSetting(property.edt);
 		case EPC_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : return setCumulativeChargeElectricEnergyResetSetting(property.edt);
 		case EPC_CHARGE_CURRENT_SETTING : return setChargeCurrentSetting(property.edt);
 		case EPC_DISCHARGE_ELECTRIC_ENERGY_SETTING : return setDischargeElectricEnergySetting(property.edt);
 		case EPC_CHARGE_ELECTRIC_ENERGY_SETTING : return setChargeElectricEnergySetting(property.edt);
-		case EPC_DISCHARGING_AMOUNT_SETTING_2 : return setDischargingAmountSetting2(property.edt);
+		case EPC_DISCHARGING_AMOUNT_SETTING2 : return setDischargingAmountSetting2(property.edt);
 		case EPC_DISCHARGE_CURRENT_SETTING : return setDischargeCurrentSetting(property.edt);
 
 		default : return false;
@@ -2227,26 +2227,26 @@ public abstract class ElectricVehicle extends DeviceObject {
 		
 		switch(epc) {
 		case EPC_RATED_CHARGE_CAPACITY : return getRatedChargeCapacity();
-		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY_3 : return getV2HRemainingAvailableCapacity3();
+		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY3 : return getV2HRemainingAvailableCapacity3();
 		case EPC_CHARGEABLE_DISCHARGE_ABLE_STATUS : return getChargeableDischargeAbleStatus();
 		case EPC_RATED_DISCHARGE_CAPACITY : return getRatedDischargeCapacity();
-		case EPC_V2H_STORED_ELECTRICITY_2 : return getV2HStoredElectricity2();
-		case EPC_V2H_STORED_ELECTRICITY_1 : return getV2HStoredElectricity1();
-		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY_2 : return getV2HRemainingAvailableCapacity2();
-		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY_1 : return getV2HRemainingAvailableCapacity1();
-		case EPC_CHARGING_AMOUNT_SETTING_2 : return getChargingAmountSetting2();
-		case EPC_DISCHARGING_AMOUNT_SETTING_1 : return getDischargingAmountSetting1();
+		case EPC_V2H_STORED_ELECTRICITY2 : return getV2HStoredElectricity2();
+		case EPC_V2H_STORED_ELECTRICITY1 : return getV2HStoredElectricity1();
+		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY2 : return getV2HRemainingAvailableCapacity2();
+		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY1 : return getV2HRemainingAvailableCapacity1();
+		case EPC_CHARGING_AMOUNT_SETTING2 : return getChargingAmountSetting2();
+		case EPC_DISCHARGING_AMOUNT_SETTING1 : return getDischargingAmountSetting1();
 		case EPC_MINIMUM_MAXIMUM_DISCHARGE_ELECTRIC_ENERGY : return getMinimumMaximumDischargeElectricEnergy();
 		case EPC_MINIMUM_MAXIMUM_CHARGE_ELECTRIC_ENERGY : return getMinimumMaximumChargeElectricEnergy();
 		case EPC_REMAINING_BATTERY_CAPACITY1 : return getRemainingBatteryCapacity1();
-		case EPC_CHARGING_AMOUNT_SETTING_1 : return getChargingAmountSetting1();
+		case EPC_CHARGING_AMOUNT_SETTING1 : return getChargingAmountSetting1();
 		case EPC_DETERIORATION_STATUS : return getDeteriorationStatus();
 		case EPC_REMAINING_BATTERY_CAPACITY2 : return getRemainingBatteryCapacity2();
 		case EPC_REMAINING_BATTERY_CAPACITY3 : return getRemainingBatteryCapacity3();
 		case EPC_OPERATION_MODE_SETTING : return getOperationModeSetting();
 		case EPC_SYSTEM_INTERCONNECTE_D_TYPE : return getSystemInterconnecteDType();
-		case EPC_USED_CAPACITY_1 : return getUsedCapacity1();
-		case EPC_USED_CAPACITY_2 : return getUsedCapacity2();
+		case EPC_USED_CAPACITY1 : return getUsedCapacity1();
+		case EPC_USED_CAPACITY2 : return getUsedCapacity2();
 		case EPC_RATED_VOLTAGE : return getRatedVoltage();
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_ELECTRIC_ENERGY : return getMeasuredInstantaneousChargeDischargeElectricEnergy();
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_CURRENT : return getMeasuredInstantaneousChargeDischargeCurrent();
@@ -2258,7 +2258,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		case EPC_CHARGE_CURRENT_SETTING : return getChargeCurrentSetting();
 		case EPC_DISCHARGE_ELECTRIC_ENERGY_SETTING : return getDischargeElectricEnergySetting();
 		case EPC_CHARGE_ELECTRIC_ENERGY_SETTING : return getChargeElectricEnergySetting();
-		case EPC_DISCHARGING_AMOUNT_SETTING_2 : return getDischargingAmountSetting2();
+		case EPC_DISCHARGING_AMOUNT_SETTING2 : return getDischargingAmountSetting2();
 		case EPC_MINIMUM_MAXIMUM_CHARGE_CURRENT : return getMinimumMaximumChargeCurrent();
 		case EPC_DISCHARGE_CURRENT_SETTING : return getDischargeCurrentSetting();
 		case EPC_MINIMUM_MAXIMUM_DISCHARGE_CURRENT : return getMinimumMaximumDischargeCurrent();
@@ -2274,26 +2274,26 @@ public abstract class ElectricVehicle extends DeviceObject {
 		
 		switch(property.epc) {
 		case EPC_RATED_CHARGE_CAPACITY : return isValidRatedChargeCapacity(property.edt);
-		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY_3 : return isValidV2HRemainingAvailableCapacity3(property.edt);
+		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY3 : return isValidV2HRemainingAvailableCapacity3(property.edt);
 		case EPC_CHARGEABLE_DISCHARGE_ABLE_STATUS : return isValidChargeableDischargeAbleStatus(property.edt);
 		case EPC_RATED_DISCHARGE_CAPACITY : return isValidRatedDischargeCapacity(property.edt);
-		case EPC_V2H_STORED_ELECTRICITY_2 : return isValidV2HStoredElectricity2(property.edt);
-		case EPC_V2H_STORED_ELECTRICITY_1 : return isValidV2HStoredElectricity1(property.edt);
-		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY_2 : return isValidV2HRemainingAvailableCapacity2(property.edt);
-		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY_1 : return isValidV2HRemainingAvailableCapacity1(property.edt);
-		case EPC_CHARGING_AMOUNT_SETTING_2 : return isValidChargingAmountSetting2(property.edt);
-		case EPC_DISCHARGING_AMOUNT_SETTING_1 : return isValidDischargingAmountSetting1(property.edt);
+		case EPC_V2H_STORED_ELECTRICITY2 : return isValidV2HStoredElectricity2(property.edt);
+		case EPC_V2H_STORED_ELECTRICITY1 : return isValidV2HStoredElectricity1(property.edt);
+		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY2 : return isValidV2HRemainingAvailableCapacity2(property.edt);
+		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY1 : return isValidV2HRemainingAvailableCapacity1(property.edt);
+		case EPC_CHARGING_AMOUNT_SETTING2 : return isValidChargingAmountSetting2(property.edt);
+		case EPC_DISCHARGING_AMOUNT_SETTING1 : return isValidDischargingAmountSetting1(property.edt);
 		case EPC_MINIMUM_MAXIMUM_DISCHARGE_ELECTRIC_ENERGY : return isValidMinimumMaximumDischargeElectricEnergy(property.edt);
 		case EPC_MINIMUM_MAXIMUM_CHARGE_ELECTRIC_ENERGY : return isValidMinimumMaximumChargeElectricEnergy(property.edt);
 		case EPC_REMAINING_BATTERY_CAPACITY1 : return isValidRemainingBatteryCapacity1(property.edt);
-		case EPC_CHARGING_AMOUNT_SETTING_1 : return isValidChargingAmountSetting1(property.edt);
+		case EPC_CHARGING_AMOUNT_SETTING1 : return isValidChargingAmountSetting1(property.edt);
 		case EPC_DETERIORATION_STATUS : return isValidDeteriorationStatus(property.edt);
 		case EPC_REMAINING_BATTERY_CAPACITY2 : return isValidRemainingBatteryCapacity2(property.edt);
 		case EPC_REMAINING_BATTERY_CAPACITY3 : return isValidRemainingBatteryCapacity3(property.edt);
 		case EPC_OPERATION_MODE_SETTING : return isValidOperationModeSetting(property.edt);
 		case EPC_SYSTEM_INTERCONNECTE_D_TYPE : return isValidSystemInterconnecteDType(property.edt);
-		case EPC_USED_CAPACITY_1 : return isValidUsedCapacity1(property.edt);
-		case EPC_USED_CAPACITY_2 : return isValidUsedCapacity2(property.edt);
+		case EPC_USED_CAPACITY1 : return isValidUsedCapacity1(property.edt);
+		case EPC_USED_CAPACITY2 : return isValidUsedCapacity2(property.edt);
 		case EPC_RATED_VOLTAGE : return isValidRatedVoltage(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_ELECTRIC_ENERGY : return isValidMeasuredInstantaneousChargeDischargeElectricEnergy(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_CURRENT : return isValidMeasuredInstantaneousChargeDischargeCurrent(property.edt);
@@ -2305,7 +2305,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		case EPC_CHARGE_CURRENT_SETTING : return isValidChargeCurrentSetting(property.edt);
 		case EPC_DISCHARGE_ELECTRIC_ENERGY_SETTING : return isValidDischargeElectricEnergySetting(property.edt);
 		case EPC_CHARGE_ELECTRIC_ENERGY_SETTING : return isValidChargeElectricEnergySetting(property.edt);
-		case EPC_DISCHARGING_AMOUNT_SETTING_2 : return isValidDischargingAmountSetting2(property.edt);
+		case EPC_DISCHARGING_AMOUNT_SETTING2 : return isValidDischargingAmountSetting2(property.edt);
 		case EPC_MINIMUM_MAXIMUM_CHARGE_CURRENT : return isValidMinimumMaximumChargeCurrent(property.edt);
 		case EPC_DISCHARGE_CURRENT_SETTING : return isValidDischargeCurrentSetting(property.edt);
 		case EPC_MINIMUM_MAXIMUM_DISCHARGE_CURRENT : return isValidMinimumMaximumDischargeCurrent(property.edt);
@@ -2357,13 +2357,13 @@ public abstract class ElectricVehicle extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_CHARGING_AMOUNT_SETTING_2 : 
+			case EPC_CHARGING_AMOUNT_SETTING2 : 
 				onSetChargingAmountSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DISCHARGING_AMOUNT_SETTING_1 : 
+			case EPC_DISCHARGING_AMOUNT_SETTING1 : 
 				onSetDischargingAmountSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CHARGING_AMOUNT_SETTING_1 : 
+			case EPC_CHARGING_AMOUNT_SETTING1 : 
 				onSetChargingAmountSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_OPERATION_MODE_SETTING : 
@@ -2384,7 +2384,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 			case EPC_CHARGE_ELECTRIC_ENERGY_SETTING : 
 				onSetChargeElectricEnergySetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DISCHARGING_AMOUNT_SETTING_2 : 
+			case EPC_DISCHARGING_AMOUNT_SETTING2 : 
 				onSetDischargingAmountSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DISCHARGE_CURRENT_SETTING : 
@@ -2406,7 +2406,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 			case EPC_RATED_CHARGE_CAPACITY : 
 				onGetRatedChargeCapacity(eoj, tid, esv, property, success);
 				return true;
-			case EPC_V2H_REMAINING_AVAILABLE_CAPACITY_3 : 
+			case EPC_V2H_REMAINING_AVAILABLE_CAPACITY3 : 
 				onGetV2HRemainingAvailableCapacity3(eoj, tid, esv, property, success);
 				return true;
 			case EPC_CHARGEABLE_DISCHARGE_ABLE_STATUS : 
@@ -2415,22 +2415,22 @@ public abstract class ElectricVehicle extends DeviceObject {
 			case EPC_RATED_DISCHARGE_CAPACITY : 
 				onGetRatedDischargeCapacity(eoj, tid, esv, property, success);
 				return true;
-			case EPC_V2H_STORED_ELECTRICITY_2 : 
+			case EPC_V2H_STORED_ELECTRICITY2 : 
 				onGetV2HStoredElectricity2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_V2H_STORED_ELECTRICITY_1 : 
+			case EPC_V2H_STORED_ELECTRICITY1 : 
 				onGetV2HStoredElectricity1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_V2H_REMAINING_AVAILABLE_CAPACITY_2 : 
+			case EPC_V2H_REMAINING_AVAILABLE_CAPACITY2 : 
 				onGetV2HRemainingAvailableCapacity2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_V2H_REMAINING_AVAILABLE_CAPACITY_1 : 
+			case EPC_V2H_REMAINING_AVAILABLE_CAPACITY1 : 
 				onGetV2HRemainingAvailableCapacity1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CHARGING_AMOUNT_SETTING_2 : 
+			case EPC_CHARGING_AMOUNT_SETTING2 : 
 				onGetChargingAmountSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DISCHARGING_AMOUNT_SETTING_1 : 
+			case EPC_DISCHARGING_AMOUNT_SETTING1 : 
 				onGetDischargingAmountSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MINIMUM_MAXIMUM_DISCHARGE_ELECTRIC_ENERGY : 
@@ -2442,7 +2442,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 			case EPC_REMAINING_BATTERY_CAPACITY1 : 
 				onGetRemainingBatteryCapacity1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CHARGING_AMOUNT_SETTING_1 : 
+			case EPC_CHARGING_AMOUNT_SETTING1 : 
 				onGetChargingAmountSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DETERIORATION_STATUS : 
@@ -2460,10 +2460,10 @@ public abstract class ElectricVehicle extends DeviceObject {
 			case EPC_SYSTEM_INTERCONNECTE_D_TYPE : 
 				onGetSystemInterconnecteDType(eoj, tid, esv, property, success);
 				return true;
-			case EPC_USED_CAPACITY_1 : 
+			case EPC_USED_CAPACITY1 : 
 				onGetUsedCapacity1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_USED_CAPACITY_2 : 
+			case EPC_USED_CAPACITY2 : 
 				onGetUsedCapacity2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RATED_VOLTAGE : 
@@ -2499,7 +2499,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 			case EPC_CHARGE_ELECTRIC_ENERGY_SETTING : 
 				onGetChargeElectricEnergySetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DISCHARGING_AMOUNT_SETTING_2 : 
+			case EPC_DISCHARGING_AMOUNT_SETTING2 : 
 				onGetDischargingAmountSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MINIMUM_MAXIMUM_CHARGE_CURRENT : 
@@ -3715,7 +3715,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetChargingAmountSetting2(byte[] edt) {
-			reqSetProperty(EPC_CHARGING_AMOUNT_SETTING_2, edt);
+			reqSetProperty(EPC_CHARGING_AMOUNT_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -3741,7 +3741,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetDischargingAmountSetting1(byte[] edt) {
-			reqSetProperty(EPC_DISCHARGING_AMOUNT_SETTING_1, edt);
+			reqSetProperty(EPC_DISCHARGING_AMOUNT_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -3767,7 +3767,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetChargingAmountSetting1(byte[] edt) {
-			reqSetProperty(EPC_CHARGING_AMOUNT_SETTING_1, edt);
+			reqSetProperty(EPC_CHARGING_AMOUNT_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -3949,7 +3949,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetDischargingAmountSetting2(byte[] edt) {
-			reqSetProperty(EPC_DISCHARGING_AMOUNT_SETTING_2, edt);
+			reqSetProperty(EPC_DISCHARGING_AMOUNT_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -4139,7 +4139,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetV2HRemainingAvailableCapacity3() {
-			reqGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY_3);
+			reqGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY3);
 			return this;
 		}
 		/**
@@ -4217,7 +4217,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetV2HStoredElectricity2() {
-			reqGetProperty(EPC_V2H_STORED_ELECTRICITY_2);
+			reqGetProperty(EPC_V2H_STORED_ELECTRICITY2);
 			return this;
 		}
 		/**
@@ -4243,7 +4243,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetV2HStoredElectricity1() {
-			reqGetProperty(EPC_V2H_STORED_ELECTRICITY_1);
+			reqGetProperty(EPC_V2H_STORED_ELECTRICITY1);
 			return this;
 		}
 		/**
@@ -4269,7 +4269,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetV2HRemainingAvailableCapacity2() {
-			reqGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY_2);
+			reqGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY2);
 			return this;
 		}
 		/**
@@ -4295,7 +4295,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetV2HRemainingAvailableCapacity1() {
-			reqGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY_1);
+			reqGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY1);
 			return this;
 		}
 		/**
@@ -4321,7 +4321,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetChargingAmountSetting2() {
-			reqGetProperty(EPC_CHARGING_AMOUNT_SETTING_2);
+			reqGetProperty(EPC_CHARGING_AMOUNT_SETTING2);
 			return this;
 		}
 		/**
@@ -4347,7 +4347,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDischargingAmountSetting1() {
-			reqGetProperty(EPC_DISCHARGING_AMOUNT_SETTING_1);
+			reqGetProperty(EPC_DISCHARGING_AMOUNT_SETTING1);
 			return this;
 		}
 		/**
@@ -4451,7 +4451,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetChargingAmountSetting1() {
-			reqGetProperty(EPC_CHARGING_AMOUNT_SETTING_1);
+			reqGetProperty(EPC_CHARGING_AMOUNT_SETTING1);
 			return this;
 		}
 		/**
@@ -4607,7 +4607,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetUsedCapacity1() {
-			reqGetProperty(EPC_USED_CAPACITY_1);
+			reqGetProperty(EPC_USED_CAPACITY1);
 			return this;
 		}
 		/**
@@ -4633,7 +4633,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetUsedCapacity2() {
-			reqGetProperty(EPC_USED_CAPACITY_2);
+			reqGetProperty(EPC_USED_CAPACITY2);
 			return this;
 		}
 		/**
@@ -4945,7 +4945,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDischargingAmountSetting2() {
-			reqGetProperty(EPC_DISCHARGING_AMOUNT_SETTING_2);
+			reqGetProperty(EPC_DISCHARGING_AMOUNT_SETTING2);
 			return this;
 		}
 		/**
@@ -5186,7 +5186,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformV2HRemainingAvailableCapacity3() {
-			reqInformProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY_3);
+			reqInformProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY3);
 			return this;
 		}
 		/**
@@ -5264,7 +5264,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformV2HStoredElectricity2() {
-			reqInformProperty(EPC_V2H_STORED_ELECTRICITY_2);
+			reqInformProperty(EPC_V2H_STORED_ELECTRICITY2);
 			return this;
 		}
 		/**
@@ -5290,7 +5290,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformV2HStoredElectricity1() {
-			reqInformProperty(EPC_V2H_STORED_ELECTRICITY_1);
+			reqInformProperty(EPC_V2H_STORED_ELECTRICITY1);
 			return this;
 		}
 		/**
@@ -5316,7 +5316,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformV2HRemainingAvailableCapacity2() {
-			reqInformProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY_2);
+			reqInformProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY2);
 			return this;
 		}
 		/**
@@ -5342,7 +5342,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformV2HRemainingAvailableCapacity1() {
-			reqInformProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY_1);
+			reqInformProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY1);
 			return this;
 		}
 		/**
@@ -5368,7 +5368,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformChargingAmountSetting2() {
-			reqInformProperty(EPC_CHARGING_AMOUNT_SETTING_2);
+			reqInformProperty(EPC_CHARGING_AMOUNT_SETTING2);
 			return this;
 		}
 		/**
@@ -5394,7 +5394,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDischargingAmountSetting1() {
-			reqInformProperty(EPC_DISCHARGING_AMOUNT_SETTING_1);
+			reqInformProperty(EPC_DISCHARGING_AMOUNT_SETTING1);
 			return this;
 		}
 		/**
@@ -5498,7 +5498,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformChargingAmountSetting1() {
-			reqInformProperty(EPC_CHARGING_AMOUNT_SETTING_1);
+			reqInformProperty(EPC_CHARGING_AMOUNT_SETTING1);
 			return this;
 		}
 		/**
@@ -5654,7 +5654,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformUsedCapacity1() {
-			reqInformProperty(EPC_USED_CAPACITY_1);
+			reqInformProperty(EPC_USED_CAPACITY1);
 			return this;
 		}
 		/**
@@ -5680,7 +5680,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformUsedCapacity2() {
-			reqInformProperty(EPC_USED_CAPACITY_2);
+			reqInformProperty(EPC_USED_CAPACITY2);
 			return this;
 		}
 		/**
@@ -5992,7 +5992,7 @@ public abstract class ElectricVehicle extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDischargingAmountSetting2() {
-			reqInformProperty(EPC_DISCHARGING_AMOUNT_SETTING_2);
+			reqInformProperty(EPC_DISCHARGING_AMOUNT_SETTING2);
 			return this;
 		}
 		/**

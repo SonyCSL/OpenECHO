@@ -36,12 +36,12 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	public static final byte EPC_BATH_AUTO_MODE_SETTING = (byte)0xE3;
 	public static final byte EPC_BATH_WATER_HEATER_STATUS = (byte)0xE2;
 	public static final byte EPC_SET_VALUE_OF_BATH_TEMPERATURE = (byte)0xE1;
-	public static final byte EPC_BATH_HOT_WATER_VOLUME_SETTING_1 = (byte)0xE7;
+	public static final byte EPC_BATH_HOT_WATER_VOLUME_SETTING1 = (byte)0xE7;
 	public static final byte EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING = (byte)0xE6;
 	public static final byte EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING = (byte)0xE5;
 	public static final byte EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING = (byte)0xE4;
 	public static final byte EPC_BATHROOM_PRIORITY_SETTING = (byte)0xE9;
-	public static final byte EPC_BATH_HOT_WATER_VOLUME_SETTING_2 = (byte)0xE8;
+	public static final byte EPC_BATH_HOT_WATER_VOLUME_SETTING2 = (byte)0xE8;
 	public static final byte EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING = (byte)0xDA;
 	public static final byte EPC_REMAINING_AUTOMATIC_OPERATION_TIME = (byte)0xDB;
 	public static final byte EPC_HOT_WATER_HEATING_STATUS = (byte)0xD0;
@@ -53,7 +53,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	public static final byte EPC_KITCHEN_HOT_WATER_SUPPLY_STATUS = (byte)0xEB;
 	public static final byte EPC_SHOWER_HOT_WATER_SUPPLY_STATUS = (byte)0xEA;
 	public static final byte EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME = (byte)0x92;
-	public static final byte EPC_BATH_HOT_WATER_VOLUME_SETTING_3 = (byte)0xEE;
+	public static final byte EPC_BATH_HOT_WATER_VOLUME_SETTING3 = (byte)0xEE;
 	public static final byte EPC_ON_TIMER_RESERVATION_SETTING = (byte)0x90;
 
 	@Override
@@ -1631,12 +1631,12 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		switch(property.epc) {
 		case EPC_BATH_AUTO_MODE_SETTING : return setBathAutoModeSetting(property.edt);
 		case EPC_SET_VALUE_OF_BATH_TEMPERATURE : return setSetValueOfBathTemperature(property.edt);
-		case EPC_BATH_HOT_WATER_VOLUME_SETTING_1 : return setBathHotWaterVolumeSetting1(property.edt);
+		case EPC_BATH_HOT_WATER_VOLUME_SETTING1 : return setBathHotWaterVolumeSetting1(property.edt);
 		case EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING : return setBathWaterTemperatureLoweringOperationSetting(property.edt);
 		case EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING : return setBathHotWaterAddingOperationSetting(property.edt);
 		case EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING : return setBathAdditionalBoilUpOperationSetting(property.edt);
 		case EPC_BATHROOM_PRIORITY_SETTING : return setBathroomPrioritySetting(property.edt);
-		case EPC_BATH_HOT_WATER_VOLUME_SETTING_2 : return setBathHotWaterVolumeSetting2(property.edt);
+		case EPC_BATH_HOT_WATER_VOLUME_SETTING2 : return setBathHotWaterVolumeSetting2(property.edt);
 		case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : return setDurationOfAutomaticOperationSetting(property.edt);
 		case EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE : return setSetValueOfHotWaterTemperature(property.edt);
 		case EPC_HOT_WATER_WARMER_SETTING : return setHotWaterWarmerSetting(property.edt);
@@ -1644,7 +1644,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		case EPC_SET_VALUE_OF_HOT_WATER_WARMER_ON_TIMER_TIME : return setSetValueOfHotWaterWarmerOnTimerTime(property.edt);
 		case EPC_HOT_WATER_WARMER_ON_TIMER_RESERVATION_SETTING : return setHotWaterWarmerOnTimerReservationSetting(property.edt);
 		case EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME : return setSetValueOfOnTimerRelativeTime(property.edt);
-		case EPC_BATH_HOT_WATER_VOLUME_SETTING_3 : return setBathHotWaterVolumeSetting3(property.edt);
+		case EPC_BATH_HOT_WATER_VOLUME_SETTING3 : return setBathHotWaterVolumeSetting3(property.edt);
 		case EPC_ON_TIMER_RESERVATION_SETTING : return setOnTimerReservationSetting(property.edt);
 
 		default : return false;
@@ -1660,12 +1660,12 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		case EPC_BATH_AUTO_MODE_SETTING : return getBathAutoModeSetting();
 		case EPC_BATH_WATER_HEATER_STATUS : return getBathWaterHeaterStatus();
 		case EPC_SET_VALUE_OF_BATH_TEMPERATURE : return getSetValueOfBathTemperature();
-		case EPC_BATH_HOT_WATER_VOLUME_SETTING_1 : return getBathHotWaterVolumeSetting1();
+		case EPC_BATH_HOT_WATER_VOLUME_SETTING1 : return getBathHotWaterVolumeSetting1();
 		case EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING : return getBathWaterTemperatureLoweringOperationSetting();
 		case EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING : return getBathHotWaterAddingOperationSetting();
 		case EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING : return getBathAdditionalBoilUpOperationSetting();
 		case EPC_BATHROOM_PRIORITY_SETTING : return getBathroomPrioritySetting();
-		case EPC_BATH_HOT_WATER_VOLUME_SETTING_2 : return getBathHotWaterVolumeSetting2();
+		case EPC_BATH_HOT_WATER_VOLUME_SETTING2 : return getBathHotWaterVolumeSetting2();
 		case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : return getDurationOfAutomaticOperationSetting();
 		case EPC_REMAINING_AUTOMATIC_OPERATION_TIME : return getRemainingAutomaticOperationTime();
 		case EPC_HOT_WATER_HEATING_STATUS : return getHotWaterHeatingStatus();
@@ -1677,7 +1677,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		case EPC_KITCHEN_HOT_WATER_SUPPLY_STATUS : return getKitchenHotWaterSupplyStatus();
 		case EPC_SHOWER_HOT_WATER_SUPPLY_STATUS : return getShowerHotWaterSupplyStatus();
 		case EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME : return getSetValueOfOnTimerRelativeTime();
-		case EPC_BATH_HOT_WATER_VOLUME_SETTING_3 : return getBathHotWaterVolumeSetting3();
+		case EPC_BATH_HOT_WATER_VOLUME_SETTING3 : return getBathHotWaterVolumeSetting3();
 		case EPC_ON_TIMER_RESERVATION_SETTING : return getOnTimerReservationSetting();
 
 		default : return null;
@@ -1693,12 +1693,12 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		case EPC_BATH_AUTO_MODE_SETTING : return isValidBathAutoModeSetting(property.edt);
 		case EPC_BATH_WATER_HEATER_STATUS : return isValidBathWaterHeaterStatus(property.edt);
 		case EPC_SET_VALUE_OF_BATH_TEMPERATURE : return isValidSetValueOfBathTemperature(property.edt);
-		case EPC_BATH_HOT_WATER_VOLUME_SETTING_1 : return isValidBathHotWaterVolumeSetting1(property.edt);
+		case EPC_BATH_HOT_WATER_VOLUME_SETTING1 : return isValidBathHotWaterVolumeSetting1(property.edt);
 		case EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING : return isValidBathWaterTemperatureLoweringOperationSetting(property.edt);
 		case EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING : return isValidBathHotWaterAddingOperationSetting(property.edt);
 		case EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING : return isValidBathAdditionalBoilUpOperationSetting(property.edt);
 		case EPC_BATHROOM_PRIORITY_SETTING : return isValidBathroomPrioritySetting(property.edt);
-		case EPC_BATH_HOT_WATER_VOLUME_SETTING_2 : return isValidBathHotWaterVolumeSetting2(property.edt);
+		case EPC_BATH_HOT_WATER_VOLUME_SETTING2 : return isValidBathHotWaterVolumeSetting2(property.edt);
 		case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : return isValidDurationOfAutomaticOperationSetting(property.edt);
 		case EPC_REMAINING_AUTOMATIC_OPERATION_TIME : return isValidRemainingAutomaticOperationTime(property.edt);
 		case EPC_HOT_WATER_HEATING_STATUS : return isValidHotWaterHeatingStatus(property.edt);
@@ -1710,7 +1710,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		case EPC_KITCHEN_HOT_WATER_SUPPLY_STATUS : return isValidKitchenHotWaterSupplyStatus(property.edt);
 		case EPC_SHOWER_HOT_WATER_SUPPLY_STATUS : return isValidShowerHotWaterSupplyStatus(property.edt);
 		case EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME : return isValidSetValueOfOnTimerRelativeTime(property.edt);
-		case EPC_BATH_HOT_WATER_VOLUME_SETTING_3 : return isValidBathHotWaterVolumeSetting3(property.edt);
+		case EPC_BATH_HOT_WATER_VOLUME_SETTING3 : return isValidBathHotWaterVolumeSetting3(property.edt);
 		case EPC_ON_TIMER_RESERVATION_SETTING : return isValidOnTimerReservationSetting(property.edt);
 
 		default : return false;
@@ -1766,7 +1766,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			case EPC_SET_VALUE_OF_BATH_TEMPERATURE : 
 				onSetSetValueOfBathTemperature(eoj, tid, esv, property, success);
 				return true;
-			case EPC_BATH_HOT_WATER_VOLUME_SETTING_1 : 
+			case EPC_BATH_HOT_WATER_VOLUME_SETTING1 : 
 				onSetBathHotWaterVolumeSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING : 
@@ -1781,7 +1781,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			case EPC_BATHROOM_PRIORITY_SETTING : 
 				onSetBathroomPrioritySetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_BATH_HOT_WATER_VOLUME_SETTING_2 : 
+			case EPC_BATH_HOT_WATER_VOLUME_SETTING2 : 
 				onSetBathHotWaterVolumeSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : 
@@ -1805,7 +1805,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			case EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME : 
 				onSetSetValueOfOnTimerRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_BATH_HOT_WATER_VOLUME_SETTING_3 : 
+			case EPC_BATH_HOT_WATER_VOLUME_SETTING3 : 
 				onSetBathHotWaterVolumeSetting3(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_RESERVATION_SETTING : 
@@ -1833,7 +1833,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			case EPC_SET_VALUE_OF_BATH_TEMPERATURE : 
 				onGetSetValueOfBathTemperature(eoj, tid, esv, property, success);
 				return true;
-			case EPC_BATH_HOT_WATER_VOLUME_SETTING_1 : 
+			case EPC_BATH_HOT_WATER_VOLUME_SETTING1 : 
 				onGetBathHotWaterVolumeSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING : 
@@ -1848,7 +1848,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			case EPC_BATHROOM_PRIORITY_SETTING : 
 				onGetBathroomPrioritySetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_BATH_HOT_WATER_VOLUME_SETTING_2 : 
+			case EPC_BATH_HOT_WATER_VOLUME_SETTING2 : 
 				onGetBathHotWaterVolumeSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : 
@@ -1884,7 +1884,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			case EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME : 
 				onGetSetValueOfOnTimerRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_BATH_HOT_WATER_VOLUME_SETTING_3 : 
+			case EPC_BATH_HOT_WATER_VOLUME_SETTING3 : 
 				onGetBathHotWaterVolumeSetting3(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_RESERVATION_SETTING : 
@@ -2962,7 +2962,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetBathHotWaterVolumeSetting1(byte[] edt) {
-			reqSetProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING_1, edt);
+			reqSetProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -3092,7 +3092,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetBathHotWaterVolumeSetting2(byte[] edt) {
-			reqSetProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING_2, edt);
+			reqSetProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -3300,7 +3300,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetBathHotWaterVolumeSetting3(byte[] edt) {
-			reqSetProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING_3, edt);
+			reqSetProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING3, edt);
 			return this;
 		}
 		/**
@@ -3542,7 +3542,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetBathHotWaterVolumeSetting1() {
-			reqGetProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING_1);
+			reqGetProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING1);
 			return this;
 		}
 		/**
@@ -3672,7 +3672,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetBathHotWaterVolumeSetting2() {
-			reqGetProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING_2);
+			reqGetProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING2);
 			return this;
 		}
 		/**
@@ -3984,7 +3984,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetBathHotWaterVolumeSetting3() {
-			reqGetProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING_3);
+			reqGetProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING3);
 			return this;
 		}
 		/**
@@ -4225,7 +4225,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformBathHotWaterVolumeSetting1() {
-			reqInformProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING_1);
+			reqInformProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING1);
 			return this;
 		}
 		/**
@@ -4355,7 +4355,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformBathHotWaterVolumeSetting2() {
-			reqInformProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING_2);
+			reqInformProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING2);
 			return this;
 		}
 		/**
@@ -4667,7 +4667,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformBathHotWaterVolumeSetting3() {
-			reqInformProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING_3);
+			reqInformProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING3);
 			return this;
 		}
 		/**

@@ -33,10 +33,10 @@ public abstract class WattHourMeter extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0280;
 
-	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_1 = (byte)0xE3;
+	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1 = (byte)0xE3;
 	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT = (byte)0xE2;
 	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE = (byte)0xE0;
-	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_2 = (byte)0xE4;
+	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2 = (byte)0xE4;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -347,10 +347,10 @@ public abstract class WattHourMeter extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_1 : return getIntegralElectricEnergyMeasurementLog1();
+		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1 : return getIntegralElectricEnergyMeasurementLog1();
 		case EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT : return getIntegralElectricEnergyUnit();
 		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE : return getIntegralElectricEnergyMeasurementValue();
-		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_2 : return getIntegralElectricEnergyMeasurementLog2();
+		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2 : return getIntegralElectricEnergyMeasurementLog2();
 
 		default : return null;
 		}
@@ -362,10 +362,10 @@ public abstract class WattHourMeter extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_1 : return isValidIntegralElectricEnergyMeasurementLog1(property.edt);
+		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1 : return isValidIntegralElectricEnergyMeasurementLog1(property.edt);
 		case EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT : return isValidIntegralElectricEnergyUnit(property.edt);
 		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE : return isValidIntegralElectricEnergyMeasurementValue(property.edt);
-		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_2 : return isValidIntegralElectricEnergyMeasurementLog2(property.edt);
+		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2 : return isValidIntegralElectricEnergyMeasurementLog2(property.edt);
 
 		default : return false;
 		}
@@ -427,7 +427,7 @@ public abstract class WattHourMeter extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_1 : 
+			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1 : 
 				onGetIntegralElectricEnergyMeasurementLog1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT : 
@@ -436,7 +436,7 @@ public abstract class WattHourMeter extends DeviceObject {
 			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE : 
 				onGetIntegralElectricEnergyMeasurementValue(eoj, tid, esv, property, success);
 				return true;
-			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_2 : 
+			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2 : 
 				onGetIntegralElectricEnergyMeasurementLog2(eoj, tid, esv, property, success);
 				return true;
 
@@ -766,7 +766,7 @@ public abstract class WattHourMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetIntegralElectricEnergyMeasurementLog1() {
-			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_1);
+			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1);
 			return this;
 		}
 		/**
@@ -844,7 +844,7 @@ public abstract class WattHourMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetIntegralElectricEnergyMeasurementLog2() {
-			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_2);
+			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2);
 			return this;
 		}
 
@@ -981,7 +981,7 @@ public abstract class WattHourMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformIntegralElectricEnergyMeasurementLog1() {
-			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_1);
+			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1);
 			return this;
 		}
 		/**
@@ -1059,7 +1059,7 @@ public abstract class WattHourMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformIntegralElectricEnergyMeasurementLog2() {
-			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_2);
+			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2);
 			return this;
 		}
 

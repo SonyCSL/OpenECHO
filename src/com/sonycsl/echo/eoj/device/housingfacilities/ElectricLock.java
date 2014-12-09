@@ -35,8 +35,8 @@ public abstract class ElectricLock extends DeviceObject {
 
 	public static final byte EPC_DOOR_OPEN_CLOSE_STATUS = (byte)0xE3;
 	public static final byte EPC_LOCK_STATUS_OF_DOOR_GUARD = (byte)0xE2;
-	public static final byte EPC_LOCK_SETTING_2 = (byte)0xE1;
-	public static final byte EPC_LOCK_SETTING_1 = (byte)0xE0;
+	public static final byte EPC_LOCK_SETTING2 = (byte)0xE1;
+	public static final byte EPC_LOCK_SETTING1 = (byte)0xE0;
 	public static final byte EPC_AUTO_LOCK_MODE_SETTING = (byte)0xE6;
 	public static final byte EPC_ALARM_STATUS = (byte)0xE5;
 	public static final byte EPC_OCCUPANT_NON_OCCUPANT_STATUS = (byte)0xE4;
@@ -45,9 +45,9 @@ public abstract class ElectricLock extends DeviceObject {
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addStatusChangeAnnouncementProperty(EPC_LOCK_SETTING_1);
-		addSetProperty(EPC_LOCK_SETTING_1);
-		addGetProperty(EPC_LOCK_SETTING_1);
+		addStatusChangeAnnouncementProperty(EPC_LOCK_SETTING1);
+		addSetProperty(EPC_LOCK_SETTING1);
+		addGetProperty(EPC_LOCK_SETTING1);
 		addStatusChangeAnnouncementProperty(EPC_ALARM_STATUS);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
@@ -557,8 +557,8 @@ public abstract class ElectricLock extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_LOCK_SETTING_2 : return setLockSetting2(property.edt);
-		case EPC_LOCK_SETTING_1 : return setLockSetting1(property.edt);
+		case EPC_LOCK_SETTING2 : return setLockSetting2(property.edt);
+		case EPC_LOCK_SETTING1 : return setLockSetting1(property.edt);
 		case EPC_AUTO_LOCK_MODE_SETTING : return setAutoLockModeSetting(property.edt);
 
 		default : return false;
@@ -573,8 +573,8 @@ public abstract class ElectricLock extends DeviceObject {
 		switch(epc) {
 		case EPC_DOOR_OPEN_CLOSE_STATUS : return getDoorOpenCloseStatus();
 		case EPC_LOCK_STATUS_OF_DOOR_GUARD : return getLockStatusOfDoorGuard();
-		case EPC_LOCK_SETTING_2 : return getLockSetting2();
-		case EPC_LOCK_SETTING_1 : return getLockSetting1();
+		case EPC_LOCK_SETTING2 : return getLockSetting2();
+		case EPC_LOCK_SETTING1 : return getLockSetting1();
 		case EPC_AUTO_LOCK_MODE_SETTING : return getAutoLockModeSetting();
 		case EPC_ALARM_STATUS : return getAlarmStatus();
 		case EPC_OCCUPANT_NON_OCCUPANT_STATUS : return getOccupantNonOccupantStatus();
@@ -591,8 +591,8 @@ public abstract class ElectricLock extends DeviceObject {
 		switch(property.epc) {
 		case EPC_DOOR_OPEN_CLOSE_STATUS : return isValidDoorOpenCloseStatus(property.edt);
 		case EPC_LOCK_STATUS_OF_DOOR_GUARD : return isValidLockStatusOfDoorGuard(property.edt);
-		case EPC_LOCK_SETTING_2 : return isValidLockSetting2(property.edt);
-		case EPC_LOCK_SETTING_1 : return isValidLockSetting1(property.edt);
+		case EPC_LOCK_SETTING2 : return isValidLockSetting2(property.edt);
+		case EPC_LOCK_SETTING1 : return isValidLockSetting1(property.edt);
 		case EPC_AUTO_LOCK_MODE_SETTING : return isValidAutoLockModeSetting(property.edt);
 		case EPC_ALARM_STATUS : return isValidAlarmStatus(property.edt);
 		case EPC_OCCUPANT_NON_OCCUPANT_STATUS : return isValidOccupantNonOccupantStatus(property.edt);
@@ -644,10 +644,10 @@ public abstract class ElectricLock extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_LOCK_SETTING_2 : 
+			case EPC_LOCK_SETTING2 : 
 				onSetLockSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_LOCK_SETTING_1 : 
+			case EPC_LOCK_SETTING1 : 
 				onSetLockSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_AUTO_LOCK_MODE_SETTING : 
@@ -672,10 +672,10 @@ public abstract class ElectricLock extends DeviceObject {
 			case EPC_LOCK_STATUS_OF_DOOR_GUARD : 
 				onGetLockStatusOfDoorGuard(eoj, tid, esv, property, success);
 				return true;
-			case EPC_LOCK_SETTING_2 : 
+			case EPC_LOCK_SETTING2 : 
 				onGetLockSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_LOCK_SETTING_1 : 
+			case EPC_LOCK_SETTING1 : 
 				onGetLockSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_AUTO_LOCK_MODE_SETTING : 
@@ -1040,7 +1040,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetLockSetting2(byte[] edt) {
-			reqSetProperty(EPC_LOCK_SETTING_2, edt);
+			reqSetProperty(EPC_LOCK_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -1066,7 +1066,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetLockSetting1(byte[] edt) {
-			reqSetProperty(EPC_LOCK_SETTING_1, edt);
+			reqSetProperty(EPC_LOCK_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -1282,7 +1282,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetLockSetting2() {
-			reqGetProperty(EPC_LOCK_SETTING_2);
+			reqGetProperty(EPC_LOCK_SETTING2);
 			return this;
 		}
 		/**
@@ -1308,7 +1308,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetLockSetting1() {
-			reqGetProperty(EPC_LOCK_SETTING_1);
+			reqGetProperty(EPC_LOCK_SETTING1);
 			return this;
 		}
 		/**
@@ -1575,7 +1575,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformLockSetting2() {
-			reqInformProperty(EPC_LOCK_SETTING_2);
+			reqInformProperty(EPC_LOCK_SETTING2);
 			return this;
 		}
 		/**
@@ -1601,7 +1601,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformLockSetting1() {
-			reqInformProperty(EPC_LOCK_SETTING_1);
+			reqInformProperty(EPC_LOCK_SETTING1);
 			return this;
 		}
 		/**

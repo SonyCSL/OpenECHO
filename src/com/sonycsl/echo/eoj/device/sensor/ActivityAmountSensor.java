@@ -34,16 +34,16 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 	public static final short ECHO_CLASS_CODE = (short)0x002A;
 
 	public static final byte EPC_HUMAN_BODY_EXISTENCE_INFORMATION = (byte)0xE3;
-	public static final byte EPC_ACTIVITY_AMOUNT_LEVEL_2 = (byte)0xE2;
+	public static final byte EPC_ACTIVITY_AMOUNT_LEVEL2 = (byte)0xE2;
 	public static final byte EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S = (byte)0xE1;
-	public static final byte EPC_ACTIVITY_AMOUNT_LEVEL_1 = (byte)0xE0;
+	public static final byte EPC_ACTIVITY_AMOUNT_LEVEL1 = (byte)0xE0;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addGetProperty(EPC_ACTIVITY_AMOUNT_LEVEL_2);
-		addGetProperty(EPC_ACTIVITY_AMOUNT_LEVEL_1);
+		addGetProperty(EPC_ACTIVITY_AMOUNT_LEVEL2);
+		addGetProperty(EPC_ACTIVITY_AMOUNT_LEVEL1);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
@@ -348,9 +348,9 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 		
 		switch(epc) {
 		case EPC_HUMAN_BODY_EXISTENCE_INFORMATION : return getHumanBodyExistenceInformation();
-		case EPC_ACTIVITY_AMOUNT_LEVEL_2 : return getActivityAmountLevel2();
+		case EPC_ACTIVITY_AMOUNT_LEVEL2 : return getActivityAmountLevel2();
 		case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S : return getMaximumNumberOfHumanBodyIdS();
-		case EPC_ACTIVITY_AMOUNT_LEVEL_1 : return getActivityAmountLevel1();
+		case EPC_ACTIVITY_AMOUNT_LEVEL1 : return getActivityAmountLevel1();
 
 		default : return null;
 		}
@@ -363,9 +363,9 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 		
 		switch(property.epc) {
 		case EPC_HUMAN_BODY_EXISTENCE_INFORMATION : return isValidHumanBodyExistenceInformation(property.edt);
-		case EPC_ACTIVITY_AMOUNT_LEVEL_2 : return isValidActivityAmountLevel2(property.edt);
+		case EPC_ACTIVITY_AMOUNT_LEVEL2 : return isValidActivityAmountLevel2(property.edt);
 		case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S : return isValidMaximumNumberOfHumanBodyIdS(property.edt);
-		case EPC_ACTIVITY_AMOUNT_LEVEL_1 : return isValidActivityAmountLevel1(property.edt);
+		case EPC_ACTIVITY_AMOUNT_LEVEL1 : return isValidActivityAmountLevel1(property.edt);
 
 		default : return false;
 		}
@@ -430,13 +430,13 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 			case EPC_HUMAN_BODY_EXISTENCE_INFORMATION : 
 				onGetHumanBodyExistenceInformation(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ACTIVITY_AMOUNT_LEVEL_2 : 
+			case EPC_ACTIVITY_AMOUNT_LEVEL2 : 
 				onGetActivityAmountLevel2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S : 
 				onGetMaximumNumberOfHumanBodyIdS(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ACTIVITY_AMOUNT_LEVEL_1 : 
+			case EPC_ACTIVITY_AMOUNT_LEVEL1 : 
 				onGetActivityAmountLevel1(eoj, tid, esv, property, success);
 				return true;
 
@@ -792,7 +792,7 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetActivityAmountLevel2() {
-			reqGetProperty(EPC_ACTIVITY_AMOUNT_LEVEL_2);
+			reqGetProperty(EPC_ACTIVITY_AMOUNT_LEVEL2);
 			return this;
 		}
 		/**
@@ -844,7 +844,7 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetActivityAmountLevel1() {
-			reqGetProperty(EPC_ACTIVITY_AMOUNT_LEVEL_1);
+			reqGetProperty(EPC_ACTIVITY_AMOUNT_LEVEL1);
 			return this;
 		}
 
@@ -1007,7 +1007,7 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformActivityAmountLevel2() {
-			reqInformProperty(EPC_ACTIVITY_AMOUNT_LEVEL_2);
+			reqInformProperty(EPC_ACTIVITY_AMOUNT_LEVEL2);
 			return this;
 		}
 		/**
@@ -1059,7 +1059,7 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformActivityAmountLevel1() {
-			reqInformProperty(EPC_ACTIVITY_AMOUNT_LEVEL_1);
+			reqInformProperty(EPC_ACTIVITY_AMOUNT_LEVEL1);
 			return this;
 		}
 

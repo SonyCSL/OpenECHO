@@ -34,7 +34,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	public static final short ECHO_CLASS_CODE = (short)0x0146;
 
 	public static final byte EPC_MEASURED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT = (byte)0xDB;
-	public static final byte EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_1 = (byte)0xBE;
+	public static final byte EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1 = (byte)0xBE;
 	public static final byte EPC_OPERATION_STATUS_OF_COMPRESSOR = (byte)0xD0;
 	public static final byte EPC_OPERATION_MODE_INFORMATION = (byte)0xD1;
 	public static final byte EPC_FAN_ROTATION_SPEED = (byte)0xD2;
@@ -42,7 +42,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	public static final byte EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT = (byte)0xB9;
 	public static final byte EPC_OPERATION_MODE_SETTING = (byte)0xB0;
 	public static final byte EPC_SPECIAL_STATE = (byte)0xAA;
-	public static final byte EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_2 = (byte)0xEE;
+	public static final byte EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2 = (byte)0xEE;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -672,7 +672,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		
 		switch(epc) {
 		case EPC_MEASURED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT : return getMeasuredPowerConsumptionOfOutdoorUnit();
-		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_1 : return getMeasuredOutdoorAirTemperature1();
+		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1 : return getMeasuredOutdoorAirTemperature1();
 		case EPC_OPERATION_STATUS_OF_COMPRESSOR : return getOperationStatusOfCompressor();
 		case EPC_OPERATION_MODE_INFORMATION : return getOperationModeInformation();
 		case EPC_FAN_ROTATION_SPEED : return getFanRotationSpeed();
@@ -680,7 +680,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		case EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT : return getMeasuredElectricCurrentConsumptionOfOutdoorUnit();
 		case EPC_OPERATION_MODE_SETTING : return getOperationModeSetting();
 		case EPC_SPECIAL_STATE : return getSpecialState();
-		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_2 : return getMeasuredOutdoorAirTemperature2();
+		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2 : return getMeasuredOutdoorAirTemperature2();
 
 		default : return null;
 		}
@@ -693,7 +693,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		
 		switch(property.epc) {
 		case EPC_MEASURED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT : return isValidMeasuredPowerConsumptionOfOutdoorUnit(property.edt);
-		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_1 : return isValidMeasuredOutdoorAirTemperature1(property.edt);
+		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1 : return isValidMeasuredOutdoorAirTemperature1(property.edt);
 		case EPC_OPERATION_STATUS_OF_COMPRESSOR : return isValidOperationStatusOfCompressor(property.edt);
 		case EPC_OPERATION_MODE_INFORMATION : return isValidOperationModeInformation(property.edt);
 		case EPC_FAN_ROTATION_SPEED : return isValidFanRotationSpeed(property.edt);
@@ -701,7 +701,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		case EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT : return isValidMeasuredElectricCurrentConsumptionOfOutdoorUnit(property.edt);
 		case EPC_OPERATION_MODE_SETTING : return isValidOperationModeSetting(property.edt);
 		case EPC_SPECIAL_STATE : return isValidSpecialState(property.edt);
-		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_2 : return isValidMeasuredOutdoorAirTemperature2(property.edt);
+		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2 : return isValidMeasuredOutdoorAirTemperature2(property.edt);
 
 		default : return false;
 		}
@@ -769,7 +769,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 			case EPC_MEASURED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT : 
 				onGetMeasuredPowerConsumptionOfOutdoorUnit(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_1 : 
+			case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1 : 
 				onGetMeasuredOutdoorAirTemperature1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_OPERATION_STATUS_OF_COMPRESSOR : 
@@ -793,7 +793,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 			case EPC_SPECIAL_STATE : 
 				onGetSpecialState(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_2 : 
+			case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2 : 
 				onGetMeasuredOutdoorAirTemperature2(eoj, tid, esv, property, success);
 				return true;
 
@@ -1336,7 +1336,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredOutdoorAirTemperature1() {
-			reqGetProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_1);
+			reqGetProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1);
 			return this;
 		}
 		/**
@@ -1544,7 +1544,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredOutdoorAirTemperature2() {
-			reqGetProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_2);
+			reqGetProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2);
 			return this;
 		}
 
@@ -1707,7 +1707,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredOutdoorAirTemperature1() {
-			reqInformProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_1);
+			reqInformProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1);
 			return this;
 		}
 		/**
@@ -1915,7 +1915,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredOutdoorAirTemperature2() {
-			reqInformProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE_2);
+			reqInformProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2);
 			return this;
 		}
 

@@ -33,16 +33,16 @@ public abstract class CurrentValueSensor extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0023;
 
-	public static final byte EPC_MEASURED_CURRENT_VALUE_2 = (byte)0xE2;
+	public static final byte EPC_MEASURED_CURRENT_VALUE2 = (byte)0xE2;
 	public static final byte EPC_RATED_VOLTAGE_TO_BE_MEASURED = (byte)0xE1;
-	public static final byte EPC_MEASURED_CURRENT_VALUE_1 = (byte)0xE0;
+	public static final byte EPC_MEASURED_CURRENT_VALUE1 = (byte)0xE0;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addGetProperty(EPC_MEASURED_CURRENT_VALUE_2);
-		addGetProperty(EPC_MEASURED_CURRENT_VALUE_1);
+		addGetProperty(EPC_MEASURED_CURRENT_VALUE2);
+		addGetProperty(EPC_MEASURED_CURRENT_VALUE1);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
@@ -297,9 +297,9 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_MEASURED_CURRENT_VALUE_2 : return getMeasuredCurrentValue2();
+		case EPC_MEASURED_CURRENT_VALUE2 : return getMeasuredCurrentValue2();
 		case EPC_RATED_VOLTAGE_TO_BE_MEASURED : return getRatedVoltageToBeMeasured();
-		case EPC_MEASURED_CURRENT_VALUE_1 : return getMeasuredCurrentValue1();
+		case EPC_MEASURED_CURRENT_VALUE1 : return getMeasuredCurrentValue1();
 
 		default : return null;
 		}
@@ -311,9 +311,9 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_MEASURED_CURRENT_VALUE_2 : return isValidMeasuredCurrentValue2(property.edt);
+		case EPC_MEASURED_CURRENT_VALUE2 : return isValidMeasuredCurrentValue2(property.edt);
 		case EPC_RATED_VOLTAGE_TO_BE_MEASURED : return isValidRatedVoltageToBeMeasured(property.edt);
-		case EPC_MEASURED_CURRENT_VALUE_1 : return isValidMeasuredCurrentValue1(property.edt);
+		case EPC_MEASURED_CURRENT_VALUE1 : return isValidMeasuredCurrentValue1(property.edt);
 
 		default : return false;
 		}
@@ -375,13 +375,13 @@ public abstract class CurrentValueSensor extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_MEASURED_CURRENT_VALUE_2 : 
+			case EPC_MEASURED_CURRENT_VALUE2 : 
 				onGetMeasuredCurrentValue2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RATED_VOLTAGE_TO_BE_MEASURED : 
 				onGetRatedVoltageToBeMeasured(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_CURRENT_VALUE_1 : 
+			case EPC_MEASURED_CURRENT_VALUE1 : 
 				onGetMeasuredCurrentValue1(eoj, tid, esv, property, success);
 				return true;
 
@@ -688,7 +688,7 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredCurrentValue2() {
-			reqGetProperty(EPC_MEASURED_CURRENT_VALUE_2);
+			reqGetProperty(EPC_MEASURED_CURRENT_VALUE2);
 			return this;
 		}
 		/**
@@ -740,7 +740,7 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredCurrentValue1() {
-			reqGetProperty(EPC_MEASURED_CURRENT_VALUE_1);
+			reqGetProperty(EPC_MEASURED_CURRENT_VALUE1);
 			return this;
 		}
 
@@ -877,7 +877,7 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredCurrentValue2() {
-			reqInformProperty(EPC_MEASURED_CURRENT_VALUE_2);
+			reqInformProperty(EPC_MEASURED_CURRENT_VALUE2);
 			return this;
 		}
 		/**
@@ -929,7 +929,7 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredCurrentValue1() {
-			reqInformProperty(EPC_MEASURED_CURRENT_VALUE_1);
+			reqInformProperty(EPC_MEASURED_CURRENT_VALUE1);
 			return this;
 		}
 

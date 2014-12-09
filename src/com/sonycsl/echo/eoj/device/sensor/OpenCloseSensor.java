@@ -33,20 +33,20 @@ public abstract class OpenCloseSensor extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0029;
 
-	public static final byte EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_1 = (byte)0xE0;
+	public static final byte EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1 = (byte)0xE0;
 	public static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
-	public static final byte EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_2 = (byte)0xB1;
+	public static final byte EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2 = (byte)0xB1;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addGetProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_1);
+		addGetProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-		addStatusChangeAnnouncementProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_2);
-		addGetProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_2);
+		addStatusChangeAnnouncementProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2);
+		addGetProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2);
 
 	}
 
@@ -322,9 +322,9 @@ public abstract class OpenCloseSensor extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_1 : return getDegreeOfOpeniNgDetectionStatus1();
+		case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1 : return getDegreeOfOpeniNgDetectionStatus1();
 		case EPC_DETECTION_THRESHOLD_LEVEL : return getDetectionThresholdLevel();
-		case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_2 : return getDegreeOfOpeniNgDetectionStatus2();
+		case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2 : return getDegreeOfOpeniNgDetectionStatus2();
 
 		default : return null;
 		}
@@ -336,9 +336,9 @@ public abstract class OpenCloseSensor extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_1 : return isValidDegreeOfOpeniNgDetectionStatus1(property.edt);
+		case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1 : return isValidDegreeOfOpeniNgDetectionStatus1(property.edt);
 		case EPC_DETECTION_THRESHOLD_LEVEL : return isValidDetectionThresholdLevel(property.edt);
-		case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_2 : return isValidDegreeOfOpeniNgDetectionStatus2(property.edt);
+		case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2 : return isValidDegreeOfOpeniNgDetectionStatus2(property.edt);
 
 		default : return false;
 		}
@@ -403,13 +403,13 @@ public abstract class OpenCloseSensor extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_1 : 
+			case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1 : 
 				onGetDegreeOfOpeniNgDetectionStatus1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DETECTION_THRESHOLD_LEVEL : 
 				onGetDetectionThresholdLevel(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_2 : 
+			case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2 : 
 				onGetDegreeOfOpeniNgDetectionStatus2(eoj, tid, esv, property, success);
 				return true;
 
@@ -765,7 +765,7 @@ public abstract class OpenCloseSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDegreeOfOpeniNgDetectionStatus1() {
-			reqGetProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_1);
+			reqGetProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1);
 			return this;
 		}
 		/**
@@ -817,7 +817,7 @@ public abstract class OpenCloseSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDegreeOfOpeniNgDetectionStatus2() {
-			reqGetProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_2);
+			reqGetProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2);
 			return this;
 		}
 
@@ -954,7 +954,7 @@ public abstract class OpenCloseSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDegreeOfOpeniNgDetectionStatus1() {
-			reqInformProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_1);
+			reqInformProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1);
 			return this;
 		}
 		/**
@@ -1006,7 +1006,7 @@ public abstract class OpenCloseSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDegreeOfOpeniNgDetectionStatus2() {
-			reqInformProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS_2);
+			reqInformProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2);
 			return this;
 		}
 

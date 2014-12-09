@@ -175,7 +175,18 @@ class DeviceProperty:
     def split_property_name(self):
         ss = re.split('[^a-zA-Z0-9]+', self.name_en)
         while '' in ss: ss.remove('')
+        while self.containsDigit(ss):
+            for i, s in enumerate(ss):
+                if s.isdigit() :
+                    ss[i - 1] += s;
+                    ss.pop(i)
         return ss;
+
+    def containsDigit(self, ss) :
+        for s in ss:
+            if s.isdigit():
+                return True
+        return False
 
     def create_field_name(self):
         ss = self.split_property_name()

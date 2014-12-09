@@ -33,16 +33,16 @@ public abstract class Battery extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x027D;
 
-	public static final byte EPC_REMAINING_STORED_ELECTRICITY_2 = (byte)0xE3;
-	public static final byte EPC_REMAINING_STORED_ELECTRICITY_1 = (byte)0xE2;
-	public static final byte EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_2 = (byte)0xE1;
-	public static final byte EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_1 = (byte)0xE0;
-	public static final byte EPC_CHARGING_AMOUNT_SETTING_1 = (byte)0xE7;
+	public static final byte EPC_REMAINING_STORED_ELECTRICITY2 = (byte)0xE3;
+	public static final byte EPC_REMAINING_STORED_ELECTRICITY1 = (byte)0xE2;
+	public static final byte EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2 = (byte)0xE1;
+	public static final byte EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1 = (byte)0xE0;
+	public static final byte EPC_CHARGING_AMOUNT_SETTING1 = (byte)0xE7;
 	public static final byte EPC_BATTERY_TYPE = (byte)0xE6;
 	public static final byte EPC_BATTERY_STATE_OF_HEALTH = (byte)0xE5;
-	public static final byte EPC_REMAINING_STORED_ELECTRICITY_3 = (byte)0xE4;
-	public static final byte EPC_CHARGING_AMOUNT_SETTING_2 = (byte)0xE9;
-	public static final byte EPC_DISCHARGING_AMOUNT_SETTING_1 = (byte)0xE8;
+	public static final byte EPC_REMAINING_STORED_ELECTRICITY3 = (byte)0xE4;
+	public static final byte EPC_CHARGING_AMOUNT_SETTING2 = (byte)0xE9;
+	public static final byte EPC_DISCHARGING_AMOUNT_SETTING1 = (byte)0xE8;
 	public static final byte EPC_MINIMUM_MAXIM_UM_DISCHARGE_ELECTRIC_ENERGY = (byte)0xC9;
 	public static final byte EPC_MINIMUM_MAXIM_UM_CHARGE_ELECTRIC_ENERGY = (byte)0xC8;
 	public static final byte EPC_OPERATION_MODE_SETTING = (byte)0xDA;
@@ -64,7 +64,7 @@ public abstract class Battery extends DeviceObject {
 	public static final byte EPC_CHARGE_CURRENT_SETTING = (byte)0xED;
 	public static final byte EPC_DISCHARGE_ELECTRIC_ENERGY_SETTING = (byte)0xEC;
 	public static final byte EPC_CHARGE_ELECTRIC_ENERGY_SETTING = (byte)0xEB;
-	public static final byte EPC_DISCHARGING_AMOUNT_SETTING_2 = (byte)0xEA;
+	public static final byte EPC_DISCHARGING_AMOUNT_SETTING2 = (byte)0xEA;
 	public static final byte EPC_MINIMUM_MAXIM_UM_CHARGE_CURRENT = (byte)0xCA;
 	public static final byte EPC_RATED_VOLTAGE_INDEPENDENT = (byte)0xEF;
 	public static final byte EPC_DISCHARGE_CURRENT_SETTING = (byte)0xEE;
@@ -74,10 +74,10 @@ public abstract class Battery extends DeviceObject {
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY_2);
-		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY_1);
+		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY2);
+		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY1);
 		addGetProperty(EPC_BATTERY_TYPE);
-		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY_3);
+		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY3);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_MODE_SETTING);
 		addSetProperty(EPC_OPERATION_MODE_SETTING);
 		addGetProperty(EPC_OPERATION_MODE_SETTING);
@@ -2194,18 +2194,18 @@ public abstract class Battery extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_2 : return setChargingDischarGingAmountSetting2(property.edt);
-		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_1 : return setChargingDischarGingAmountSetting1(property.edt);
-		case EPC_CHARGING_AMOUNT_SETTING_1 : return setChargingAmountSetting1(property.edt);
-		case EPC_CHARGING_AMOUNT_SETTING_2 : return setChargingAmountSetting2(property.edt);
-		case EPC_DISCHARGING_AMOUNT_SETTING_1 : return setDischargingAmountSetting1(property.edt);
+		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2 : return setChargingDischarGingAmountSetting2(property.edt);
+		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1 : return setChargingDischarGingAmountSetting1(property.edt);
+		case EPC_CHARGING_AMOUNT_SETTING1 : return setChargingAmountSetting1(property.edt);
+		case EPC_CHARGING_AMOUNT_SETTING2 : return setChargingAmountSetting2(property.edt);
+		case EPC_DISCHARGING_AMOUNT_SETTING1 : return setDischargingAmountSetting1(property.edt);
 		case EPC_OPERATION_MODE_SETTING : return setOperationModeSetting(property.edt);
 		case EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : return setMeasuredCumulativeDischargeElectricEnergyResetSetting(property.edt);
 		case EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : return setMeasuredCumulativeChargeElectricEnergyResetSetting(property.edt);
 		case EPC_CHARGE_CURRENT_SETTING : return setChargeCurrentSetting(property.edt);
 		case EPC_DISCHARGE_ELECTRIC_ENERGY_SETTING : return setDischargeElectricEnergySetting(property.edt);
 		case EPC_CHARGE_ELECTRIC_ENERGY_SETTING : return setChargeElectricEnergySetting(property.edt);
-		case EPC_DISCHARGING_AMOUNT_SETTING_2 : return setDischargingAmountSetting2(property.edt);
+		case EPC_DISCHARGING_AMOUNT_SETTING2 : return setDischargingAmountSetting2(property.edt);
 		case EPC_DISCHARGE_CURRENT_SETTING : return setDischargeCurrentSetting(property.edt);
 
 		default : return false;
@@ -2218,16 +2218,16 @@ public abstract class Battery extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_REMAINING_STORED_ELECTRICITY_2 : return getRemainingStoredElectricity2();
-		case EPC_REMAINING_STORED_ELECTRICITY_1 : return getRemainingStoredElectricity1();
-		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_2 : return getChargingDischarGingAmountSetting2();
-		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_1 : return getChargingDischarGingAmountSetting1();
-		case EPC_CHARGING_AMOUNT_SETTING_1 : return getChargingAmountSetting1();
+		case EPC_REMAINING_STORED_ELECTRICITY2 : return getRemainingStoredElectricity2();
+		case EPC_REMAINING_STORED_ELECTRICITY1 : return getRemainingStoredElectricity1();
+		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2 : return getChargingDischarGingAmountSetting2();
+		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1 : return getChargingDischarGingAmountSetting1();
+		case EPC_CHARGING_AMOUNT_SETTING1 : return getChargingAmountSetting1();
 		case EPC_BATTERY_TYPE : return getBatteryType();
 		case EPC_BATTERY_STATE_OF_HEALTH : return getBatteryStateOfHealth();
-		case EPC_REMAINING_STORED_ELECTRICITY_3 : return getRemainingStoredElectricity3();
-		case EPC_CHARGING_AMOUNT_SETTING_2 : return getChargingAmountSetting2();
-		case EPC_DISCHARGING_AMOUNT_SETTING_1 : return getDischargingAmountSetting1();
+		case EPC_REMAINING_STORED_ELECTRICITY3 : return getRemainingStoredElectricity3();
+		case EPC_CHARGING_AMOUNT_SETTING2 : return getChargingAmountSetting2();
+		case EPC_DISCHARGING_AMOUNT_SETTING1 : return getDischargingAmountSetting1();
 		case EPC_MINIMUM_MAXIM_UM_DISCHARGE_ELECTRIC_ENERGY : return getMinimumMaximUmDischargeElectricEnergy();
 		case EPC_MINIMUM_MAXIM_UM_CHARGE_ELECTRIC_ENERGY : return getMinimumMaximUmChargeElectricEnergy();
 		case EPC_OPERATION_MODE_SETTING : return getOperationModeSetting();
@@ -2247,7 +2247,7 @@ public abstract class Battery extends DeviceObject {
 		case EPC_CHARGE_CURRENT_SETTING : return getChargeCurrentSetting();
 		case EPC_DISCHARGE_ELECTRIC_ENERGY_SETTING : return getDischargeElectricEnergySetting();
 		case EPC_CHARGE_ELECTRIC_ENERGY_SETTING : return getChargeElectricEnergySetting();
-		case EPC_DISCHARGING_AMOUNT_SETTING_2 : return getDischargingAmountSetting2();
+		case EPC_DISCHARGING_AMOUNT_SETTING2 : return getDischargingAmountSetting2();
 		case EPC_MINIMUM_MAXIM_UM_CHARGE_CURRENT : return getMinimumMaximUmChargeCurrent();
 		case EPC_RATED_VOLTAGE_INDEPENDENT : return getRatedVoltageIndependent();
 		case EPC_DISCHARGE_CURRENT_SETTING : return getDischargeCurrentSetting();
@@ -2263,16 +2263,16 @@ public abstract class Battery extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_REMAINING_STORED_ELECTRICITY_2 : return isValidRemainingStoredElectricity2(property.edt);
-		case EPC_REMAINING_STORED_ELECTRICITY_1 : return isValidRemainingStoredElectricity1(property.edt);
-		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_2 : return isValidChargingDischarGingAmountSetting2(property.edt);
-		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_1 : return isValidChargingDischarGingAmountSetting1(property.edt);
-		case EPC_CHARGING_AMOUNT_SETTING_1 : return isValidChargingAmountSetting1(property.edt);
+		case EPC_REMAINING_STORED_ELECTRICITY2 : return isValidRemainingStoredElectricity2(property.edt);
+		case EPC_REMAINING_STORED_ELECTRICITY1 : return isValidRemainingStoredElectricity1(property.edt);
+		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2 : return isValidChargingDischarGingAmountSetting2(property.edt);
+		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1 : return isValidChargingDischarGingAmountSetting1(property.edt);
+		case EPC_CHARGING_AMOUNT_SETTING1 : return isValidChargingAmountSetting1(property.edt);
 		case EPC_BATTERY_TYPE : return isValidBatteryType(property.edt);
 		case EPC_BATTERY_STATE_OF_HEALTH : return isValidBatteryStateOfHealth(property.edt);
-		case EPC_REMAINING_STORED_ELECTRICITY_3 : return isValidRemainingStoredElectricity3(property.edt);
-		case EPC_CHARGING_AMOUNT_SETTING_2 : return isValidChargingAmountSetting2(property.edt);
-		case EPC_DISCHARGING_AMOUNT_SETTING_1 : return isValidDischargingAmountSetting1(property.edt);
+		case EPC_REMAINING_STORED_ELECTRICITY3 : return isValidRemainingStoredElectricity3(property.edt);
+		case EPC_CHARGING_AMOUNT_SETTING2 : return isValidChargingAmountSetting2(property.edt);
+		case EPC_DISCHARGING_AMOUNT_SETTING1 : return isValidDischargingAmountSetting1(property.edt);
 		case EPC_MINIMUM_MAXIM_UM_DISCHARGE_ELECTRIC_ENERGY : return isValidMinimumMaximUmDischargeElectricEnergy(property.edt);
 		case EPC_MINIMUM_MAXIM_UM_CHARGE_ELECTRIC_ENERGY : return isValidMinimumMaximUmChargeElectricEnergy(property.edt);
 		case EPC_OPERATION_MODE_SETTING : return isValidOperationModeSetting(property.edt);
@@ -2294,7 +2294,7 @@ public abstract class Battery extends DeviceObject {
 		case EPC_CHARGE_CURRENT_SETTING : return isValidChargeCurrentSetting(property.edt);
 		case EPC_DISCHARGE_ELECTRIC_ENERGY_SETTING : return isValidDischargeElectricEnergySetting(property.edt);
 		case EPC_CHARGE_ELECTRIC_ENERGY_SETTING : return isValidChargeElectricEnergySetting(property.edt);
-		case EPC_DISCHARGING_AMOUNT_SETTING_2 : return isValidDischargingAmountSetting2(property.edt);
+		case EPC_DISCHARGING_AMOUNT_SETTING2 : return isValidDischargingAmountSetting2(property.edt);
 		case EPC_MINIMUM_MAXIM_UM_CHARGE_CURRENT : return isValidMinimumMaximUmChargeCurrent(property.edt);
 		case EPC_RATED_VOLTAGE_INDEPENDENT : return isValidRatedVoltageIndependent(property.edt);
 		case EPC_DISCHARGE_CURRENT_SETTING : return isValidDischargeCurrentSetting(property.edt);
@@ -2347,19 +2347,19 @@ public abstract class Battery extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_2 : 
+			case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2 : 
 				onSetChargingDischarGingAmountSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_1 : 
+			case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1 : 
 				onSetChargingDischarGingAmountSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CHARGING_AMOUNT_SETTING_1 : 
+			case EPC_CHARGING_AMOUNT_SETTING1 : 
 				onSetChargingAmountSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CHARGING_AMOUNT_SETTING_2 : 
+			case EPC_CHARGING_AMOUNT_SETTING2 : 
 				onSetChargingAmountSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DISCHARGING_AMOUNT_SETTING_1 : 
+			case EPC_DISCHARGING_AMOUNT_SETTING1 : 
 				onSetDischargingAmountSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_OPERATION_MODE_SETTING : 
@@ -2380,7 +2380,7 @@ public abstract class Battery extends DeviceObject {
 			case EPC_CHARGE_ELECTRIC_ENERGY_SETTING : 
 				onSetChargeElectricEnergySetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DISCHARGING_AMOUNT_SETTING_2 : 
+			case EPC_DISCHARGING_AMOUNT_SETTING2 : 
 				onSetDischargingAmountSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DISCHARGE_CURRENT_SETTING : 
@@ -2399,19 +2399,19 @@ public abstract class Battery extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_REMAINING_STORED_ELECTRICITY_2 : 
+			case EPC_REMAINING_STORED_ELECTRICITY2 : 
 				onGetRemainingStoredElectricity2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_REMAINING_STORED_ELECTRICITY_1 : 
+			case EPC_REMAINING_STORED_ELECTRICITY1 : 
 				onGetRemainingStoredElectricity1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_2 : 
+			case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2 : 
 				onGetChargingDischarGingAmountSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_1 : 
+			case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1 : 
 				onGetChargingDischarGingAmountSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CHARGING_AMOUNT_SETTING_1 : 
+			case EPC_CHARGING_AMOUNT_SETTING1 : 
 				onGetChargingAmountSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_BATTERY_TYPE : 
@@ -2420,13 +2420,13 @@ public abstract class Battery extends DeviceObject {
 			case EPC_BATTERY_STATE_OF_HEALTH : 
 				onGetBatteryStateOfHealth(eoj, tid, esv, property, success);
 				return true;
-			case EPC_REMAINING_STORED_ELECTRICITY_3 : 
+			case EPC_REMAINING_STORED_ELECTRICITY3 : 
 				onGetRemainingStoredElectricity3(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CHARGING_AMOUNT_SETTING_2 : 
+			case EPC_CHARGING_AMOUNT_SETTING2 : 
 				onGetChargingAmountSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DISCHARGING_AMOUNT_SETTING_1 : 
+			case EPC_DISCHARGING_AMOUNT_SETTING1 : 
 				onGetDischargingAmountSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MINIMUM_MAXIM_UM_DISCHARGE_ELECTRIC_ENERGY : 
@@ -2486,7 +2486,7 @@ public abstract class Battery extends DeviceObject {
 			case EPC_CHARGE_ELECTRIC_ENERGY_SETTING : 
 				onGetChargeElectricEnergySetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DISCHARGING_AMOUNT_SETTING_2 : 
+			case EPC_DISCHARGING_AMOUNT_SETTING2 : 
 				onGetDischargingAmountSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MINIMUM_MAXIM_UM_CHARGE_CURRENT : 
@@ -3705,7 +3705,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetChargingDischarGingAmountSetting2(byte[] edt) {
-			reqSetProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_2, edt);
+			reqSetProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -3731,7 +3731,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetChargingDischarGingAmountSetting1(byte[] edt) {
-			reqSetProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_1, edt);
+			reqSetProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -3757,7 +3757,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetChargingAmountSetting1(byte[] edt) {
-			reqSetProperty(EPC_CHARGING_AMOUNT_SETTING_1, edt);
+			reqSetProperty(EPC_CHARGING_AMOUNT_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -3783,7 +3783,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetChargingAmountSetting2(byte[] edt) {
-			reqSetProperty(EPC_CHARGING_AMOUNT_SETTING_2, edt);
+			reqSetProperty(EPC_CHARGING_AMOUNT_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -3809,7 +3809,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetDischargingAmountSetting1(byte[] edt) {
-			reqSetProperty(EPC_DISCHARGING_AMOUNT_SETTING_1, edt);
+			reqSetProperty(EPC_DISCHARGING_AMOUNT_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -3991,7 +3991,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetDischargingAmountSetting2(byte[] edt) {
-			reqSetProperty(EPC_DISCHARGING_AMOUNT_SETTING_2, edt);
+			reqSetProperty(EPC_DISCHARGING_AMOUNT_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -4155,7 +4155,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetRemainingStoredElectricity2() {
-			reqGetProperty(EPC_REMAINING_STORED_ELECTRICITY_2);
+			reqGetProperty(EPC_REMAINING_STORED_ELECTRICITY2);
 			return this;
 		}
 		/**
@@ -4181,7 +4181,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetRemainingStoredElectricity1() {
-			reqGetProperty(EPC_REMAINING_STORED_ELECTRICITY_1);
+			reqGetProperty(EPC_REMAINING_STORED_ELECTRICITY1);
 			return this;
 		}
 		/**
@@ -4207,7 +4207,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetChargingDischarGingAmountSetting2() {
-			reqGetProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_2);
+			reqGetProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2);
 			return this;
 		}
 		/**
@@ -4233,7 +4233,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetChargingDischarGingAmountSetting1() {
-			reqGetProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_1);
+			reqGetProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1);
 			return this;
 		}
 		/**
@@ -4259,7 +4259,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetChargingAmountSetting1() {
-			reqGetProperty(EPC_CHARGING_AMOUNT_SETTING_1);
+			reqGetProperty(EPC_CHARGING_AMOUNT_SETTING1);
 			return this;
 		}
 		/**
@@ -4337,7 +4337,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetRemainingStoredElectricity3() {
-			reqGetProperty(EPC_REMAINING_STORED_ELECTRICITY_3);
+			reqGetProperty(EPC_REMAINING_STORED_ELECTRICITY3);
 			return this;
 		}
 		/**
@@ -4363,7 +4363,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetChargingAmountSetting2() {
-			reqGetProperty(EPC_CHARGING_AMOUNT_SETTING_2);
+			reqGetProperty(EPC_CHARGING_AMOUNT_SETTING2);
 			return this;
 		}
 		/**
@@ -4389,7 +4389,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDischargingAmountSetting1() {
-			reqGetProperty(EPC_DISCHARGING_AMOUNT_SETTING_1);
+			reqGetProperty(EPC_DISCHARGING_AMOUNT_SETTING1);
 			return this;
 		}
 		/**
@@ -4909,7 +4909,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDischargingAmountSetting2() {
-			reqGetProperty(EPC_DISCHARGING_AMOUNT_SETTING_2);
+			reqGetProperty(EPC_DISCHARGING_AMOUNT_SETTING2);
 			return this;
 		}
 		/**
@@ -5150,7 +5150,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformRemainingStoredElectricity2() {
-			reqInformProperty(EPC_REMAINING_STORED_ELECTRICITY_2);
+			reqInformProperty(EPC_REMAINING_STORED_ELECTRICITY2);
 			return this;
 		}
 		/**
@@ -5176,7 +5176,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformRemainingStoredElectricity1() {
-			reqInformProperty(EPC_REMAINING_STORED_ELECTRICITY_1);
+			reqInformProperty(EPC_REMAINING_STORED_ELECTRICITY1);
 			return this;
 		}
 		/**
@@ -5202,7 +5202,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformChargingDischarGingAmountSetting2() {
-			reqInformProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_2);
+			reqInformProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2);
 			return this;
 		}
 		/**
@@ -5228,7 +5228,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformChargingDischarGingAmountSetting1() {
-			reqInformProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_1);
+			reqInformProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1);
 			return this;
 		}
 		/**
@@ -5254,7 +5254,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformChargingAmountSetting1() {
-			reqInformProperty(EPC_CHARGING_AMOUNT_SETTING_1);
+			reqInformProperty(EPC_CHARGING_AMOUNT_SETTING1);
 			return this;
 		}
 		/**
@@ -5332,7 +5332,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformRemainingStoredElectricity3() {
-			reqInformProperty(EPC_REMAINING_STORED_ELECTRICITY_3);
+			reqInformProperty(EPC_REMAINING_STORED_ELECTRICITY3);
 			return this;
 		}
 		/**
@@ -5358,7 +5358,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformChargingAmountSetting2() {
-			reqInformProperty(EPC_CHARGING_AMOUNT_SETTING_2);
+			reqInformProperty(EPC_CHARGING_AMOUNT_SETTING2);
 			return this;
 		}
 		/**
@@ -5384,7 +5384,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDischargingAmountSetting1() {
-			reqInformProperty(EPC_DISCHARGING_AMOUNT_SETTING_1);
+			reqInformProperty(EPC_DISCHARGING_AMOUNT_SETTING1);
 			return this;
 		}
 		/**
@@ -5904,7 +5904,7 @@ public abstract class Battery extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDischargingAmountSetting2() {
-			reqInformProperty(EPC_DISCHARGING_AMOUNT_SETTING_2);
+			reqInformProperty(EPC_DISCHARGING_AMOUNT_SETTING2);
 			return this;
 		}
 		/**

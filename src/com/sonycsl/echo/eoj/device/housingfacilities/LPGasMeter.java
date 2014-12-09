@@ -33,14 +33,14 @@ public abstract class LPGasMeter extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0283;
 
-	public static final byte EPC_SECURITY_DATA_1 = (byte)0xE3;
+	public static final byte EPC_SECURITY_DATA1 = (byte)0xE3;
 	public static final byte EPC_ERROR_DETECTION_STATUSOF_METERING_DATA = (byte)0xE2;
-	public static final byte EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA_2 = (byte)0xE1;
-	public static final byte EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA_1 = (byte)0xE0;
+	public static final byte EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2 = (byte)0xE1;
+	public static final byte EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1 = (byte)0xE0;
 	public static final byte EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS = (byte)0xE7;
 	public static final byte EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS = (byte)0xE6;
 	public static final byte EPC_CENTER_VALVE_SHUT_OFF_STATUS = (byte)0xE5;
-	public static final byte EPC_SECURITY_DATA_2 = (byte)0xE4;
+	public static final byte EPC_SECURITY_DATA2 = (byte)0xE4;
 	public static final byte EPC_RESIDUAL_VOLUME_CONTROL_WARNING = (byte)0xE9;
 	public static final byte EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS = (byte)0xE8;
 	public static final byte EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA = (byte)0xD0;
@@ -51,9 +51,9 @@ public abstract class LPGasMeter extends DeviceObject {
 	public static final byte EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA = (byte)0xD5;
 	public static final byte EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME = (byte)0xD6;
 	public static final byte EPC_TEST_CALL_SETTING = (byte)0xD7;
-	public static final byte EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_3 = (byte)0xEC;
-	public static final byte EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_2 = (byte)0xEB;
-	public static final byte EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_1 = (byte)0xEA;
+	public static final byte EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3 = (byte)0xEC;
+	public static final byte EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2 = (byte)0xEB;
+	public static final byte EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1 = (byte)0xEA;
 	public static final byte EPC_SHUT_OFF_REASON_LOG = (byte)0xEF;
 	public static final byte EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE = (byte)0xEE;
 	public static final byte EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION = (byte)0xED;
@@ -63,8 +63,8 @@ public abstract class LPGasMeter extends DeviceObject {
 		super.setupPropertyMaps();
 		
 		addStatusChangeAnnouncementProperty(EPC_ERROR_DETECTION_STATUSOF_METERING_DATA);
-		addGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA_2);
-		addGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA_1);
+		addGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2);
+		addGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1);
 		addStatusChangeAnnouncementProperty(EPC_CENTER_VALVE_SHUT_OFF_STATUS);
 		addStatusChangeAnnouncementProperty(EPC_RESIDUAL_VOLUME_CONTROL_WARNING);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
@@ -1432,9 +1432,9 @@ public abstract class LPGasMeter extends DeviceObject {
 
 		switch(property.epc) {
 		case EPC_TEST_CALL_SETTING : return setTestCallSetting(property.edt);
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_3 : return setSetValueOfResidualVolumeControlWarningLevel3(property.edt);
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_2 : return setSetValueOfResidualVolumeControlWarningLevel2(property.edt);
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_1 : return setSetValueOfResidualVolumeControlWarningLevel1(property.edt);
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3 : return setSetValueOfResidualVolumeControlWarningLevel3(property.edt);
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2 : return setSetValueOfResidualVolumeControlWarningLevel2(property.edt);
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1 : return setSetValueOfResidualVolumeControlWarningLevel1(property.edt);
 
 		default : return false;
 		}
@@ -1446,14 +1446,14 @@ public abstract class LPGasMeter extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_SECURITY_DATA_1 : return getSecurityData1();
+		case EPC_SECURITY_DATA1 : return getSecurityData1();
 		case EPC_ERROR_DETECTION_STATUSOF_METERING_DATA : return getErrorDetectionStatusofMeteringData();
-		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA_2 : return getIntegralGasConsumptionOfMeteringData2();
-		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA_1 : return getIntegralGasConsumptionOfMeteringData1();
+		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2 : return getIntegralGasConsumptionOfMeteringData2();
+		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1 : return getIntegralGasConsumptionOfMeteringData1();
 		case EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS : return getEmergencyValveShutOffStatus();
 		case EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS : return getCenterValveShutOffRecoveryPermissionSettingStatus();
 		case EPC_CENTER_VALVE_SHUT_OFF_STATUS : return getCenterValveShutOffStatus();
-		case EPC_SECURITY_DATA_2 : return getSecurityData2();
+		case EPC_SECURITY_DATA2 : return getSecurityData2();
 		case EPC_RESIDUAL_VOLUME_CONTROL_WARNING : return getResidualVolumeControlWarning();
 		case EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS : return getShutOffValveOpenCloseStatus();
 		case EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA : return getMaximumValueOfSupplyPressureData();
@@ -1464,9 +1464,9 @@ public abstract class LPGasMeter extends DeviceObject {
 		case EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA : return getCurrentValueOfBlockPressureData();
 		case EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME : return getNumberOfBlockPressureSupplyPressureErrorDaysTime();
 		case EPC_TEST_CALL_SETTING : return getTestCallSetting();
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_3 : return getSetValueOfResidualVolumeControlWarningLevel3();
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_2 : return getSetValueOfResidualVolumeControlWarningLevel2();
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_1 : return getSetValueOfResidualVolumeControlWarningLevel1();
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3 : return getSetValueOfResidualVolumeControlWarningLevel3();
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2 : return getSetValueOfResidualVolumeControlWarningLevel2();
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1 : return getSetValueOfResidualVolumeControlWarningLevel1();
 		case EPC_SHUT_OFF_REASON_LOG : return getShutOffReasonLog();
 		case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE : return getSlightLeakTimerValueWithoutPressureIncrease();
 		case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION : return getSlightLeakTimerValueGasFlowRateContinuation();
@@ -1481,14 +1481,14 @@ public abstract class LPGasMeter extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_SECURITY_DATA_1 : return isValidSecurityData1(property.edt);
+		case EPC_SECURITY_DATA1 : return isValidSecurityData1(property.edt);
 		case EPC_ERROR_DETECTION_STATUSOF_METERING_DATA : return isValidErrorDetectionStatusofMeteringData(property.edt);
-		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA_2 : return isValidIntegralGasConsumptionOfMeteringData2(property.edt);
-		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA_1 : return isValidIntegralGasConsumptionOfMeteringData1(property.edt);
+		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2 : return isValidIntegralGasConsumptionOfMeteringData2(property.edt);
+		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1 : return isValidIntegralGasConsumptionOfMeteringData1(property.edt);
 		case EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS : return isValidEmergencyValveShutOffStatus(property.edt);
 		case EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS : return isValidCenterValveShutOffRecoveryPermissionSettingStatus(property.edt);
 		case EPC_CENTER_VALVE_SHUT_OFF_STATUS : return isValidCenterValveShutOffStatus(property.edt);
-		case EPC_SECURITY_DATA_2 : return isValidSecurityData2(property.edt);
+		case EPC_SECURITY_DATA2 : return isValidSecurityData2(property.edt);
 		case EPC_RESIDUAL_VOLUME_CONTROL_WARNING : return isValidResidualVolumeControlWarning(property.edt);
 		case EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS : return isValidShutOffValveOpenCloseStatus(property.edt);
 		case EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA : return isValidMaximumValueOfSupplyPressureData(property.edt);
@@ -1499,9 +1499,9 @@ public abstract class LPGasMeter extends DeviceObject {
 		case EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA : return isValidCurrentValueOfBlockPressureData(property.edt);
 		case EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME : return isValidNumberOfBlockPressureSupplyPressureErrorDaysTime(property.edt);
 		case EPC_TEST_CALL_SETTING : return isValidTestCallSetting(property.edt);
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_3 : return isValidSetValueOfResidualVolumeControlWarningLevel3(property.edt);
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_2 : return isValidSetValueOfResidualVolumeControlWarningLevel2(property.edt);
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_1 : return isValidSetValueOfResidualVolumeControlWarningLevel1(property.edt);
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3 : return isValidSetValueOfResidualVolumeControlWarningLevel3(property.edt);
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2 : return isValidSetValueOfResidualVolumeControlWarningLevel2(property.edt);
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1 : return isValidSetValueOfResidualVolumeControlWarningLevel1(property.edt);
 		case EPC_SHUT_OFF_REASON_LOG : return isValidShutOffReasonLog(property.edt);
 		case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE : return isValidSlightLeakTimerValueWithoutPressureIncrease(property.edt);
 		case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION : return isValidSlightLeakTimerValueGasFlowRateContinuation(property.edt);
@@ -1556,13 +1556,13 @@ public abstract class LPGasMeter extends DeviceObject {
 			case EPC_TEST_CALL_SETTING : 
 				onSetTestCallSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_3 : 
+			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3 : 
 				onSetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_2 : 
+			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2 : 
 				onSetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_1 : 
+			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1 : 
 				onSetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, esv, property, success);
 				return true;
 
@@ -1578,16 +1578,16 @@ public abstract class LPGasMeter extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_SECURITY_DATA_1 : 
+			case EPC_SECURITY_DATA1 : 
 				onGetSecurityData1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ERROR_DETECTION_STATUSOF_METERING_DATA : 
 				onGetErrorDetectionStatusofMeteringData(eoj, tid, esv, property, success);
 				return true;
-			case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA_2 : 
+			case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2 : 
 				onGetIntegralGasConsumptionOfMeteringData2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA_1 : 
+			case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1 : 
 				onGetIntegralGasConsumptionOfMeteringData1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS : 
@@ -1599,7 +1599,7 @@ public abstract class LPGasMeter extends DeviceObject {
 			case EPC_CENTER_VALVE_SHUT_OFF_STATUS : 
 				onGetCenterValveShutOffStatus(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SECURITY_DATA_2 : 
+			case EPC_SECURITY_DATA2 : 
 				onGetSecurityData2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RESIDUAL_VOLUME_CONTROL_WARNING : 
@@ -1632,13 +1632,13 @@ public abstract class LPGasMeter extends DeviceObject {
 			case EPC_TEST_CALL_SETTING : 
 				onGetTestCallSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_3 : 
+			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3 : 
 				onGetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_2 : 
+			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2 : 
 				onGetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_1 : 
+			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1 : 
 				onGetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SHUT_OFF_REASON_LOG : 
@@ -2443,7 +2443,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetSetValueOfResidualVolumeControlWarningLevel3(byte[] edt) {
-			reqSetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_3, edt);
+			reqSetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3, edt);
 			return this;
 		}
 		/**
@@ -2469,7 +2469,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetSetValueOfResidualVolumeControlWarningLevel2(byte[] edt) {
-			reqSetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_2, edt);
+			reqSetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2, edt);
 			return this;
 		}
 		/**
@@ -2495,7 +2495,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetSetValueOfResidualVolumeControlWarningLevel1(byte[] edt) {
-			reqSetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_1, edt);
+			reqSetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1, edt);
 			return this;
 		}
 
@@ -2633,7 +2633,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSecurityData1() {
-			reqGetProperty(EPC_SECURITY_DATA_1);
+			reqGetProperty(EPC_SECURITY_DATA1);
 			return this;
 		}
 		/**
@@ -2685,7 +2685,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetIntegralGasConsumptionOfMeteringData2() {
-			reqGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA_2);
+			reqGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2);
 			return this;
 		}
 		/**
@@ -2711,7 +2711,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetIntegralGasConsumptionOfMeteringData1() {
-			reqGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA_1);
+			reqGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1);
 			return this;
 		}
 		/**
@@ -2815,7 +2815,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSecurityData2() {
-			reqGetProperty(EPC_SECURITY_DATA_2);
+			reqGetProperty(EPC_SECURITY_DATA2);
 			return this;
 		}
 		/**
@@ -3101,7 +3101,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSetValueOfResidualVolumeControlWarningLevel3() {
-			reqGetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_3);
+			reqGetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3);
 			return this;
 		}
 		/**
@@ -3127,7 +3127,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSetValueOfResidualVolumeControlWarningLevel2() {
-			reqGetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_2);
+			reqGetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2);
 			return this;
 		}
 		/**
@@ -3153,7 +3153,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSetValueOfResidualVolumeControlWarningLevel1() {
-			reqGetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_1);
+			reqGetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1);
 			return this;
 		}
 		/**
@@ -3368,7 +3368,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSecurityData1() {
-			reqInformProperty(EPC_SECURITY_DATA_1);
+			reqInformProperty(EPC_SECURITY_DATA1);
 			return this;
 		}
 		/**
@@ -3420,7 +3420,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformIntegralGasConsumptionOfMeteringData2() {
-			reqInformProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA_2);
+			reqInformProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2);
 			return this;
 		}
 		/**
@@ -3446,7 +3446,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformIntegralGasConsumptionOfMeteringData1() {
-			reqInformProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA_1);
+			reqInformProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1);
 			return this;
 		}
 		/**
@@ -3550,7 +3550,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSecurityData2() {
-			reqInformProperty(EPC_SECURITY_DATA_2);
+			reqInformProperty(EPC_SECURITY_DATA2);
 			return this;
 		}
 		/**
@@ -3836,7 +3836,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel3() {
-			reqInformProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_3);
+			reqInformProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3);
 			return this;
 		}
 		/**
@@ -3862,7 +3862,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel2() {
-			reqInformProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_2);
+			reqInformProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2);
 			return this;
 		}
 		/**
@@ -3888,7 +3888,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel1() {
-			reqInformProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL_1);
+			reqInformProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1);
 			return this;
 		}
 		/**

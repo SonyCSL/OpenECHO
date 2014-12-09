@@ -35,8 +35,8 @@ public abstract class Humidifier extends DeviceObject {
 
 	public static final byte EPC_WATER_AMOUNT_LEVEL = (byte)0xC5;
 	public static final byte EPC_SPECIAL_OPERATION_MODE_SETTING = (byte)0xC4;
-	public static final byte EPC_HUMIDIFYING_SETTING_2 = (byte)0xC1;
-	public static final byte EPC_HUMIDIFYING_SETTING_1 = (byte)0xC0;
+	public static final byte EPC_HUMIDIFYING_SETTING2 = (byte)0xC1;
+	public static final byte EPC_HUMIDIFYING_SETTING1 = (byte)0xC0;
 	public static final byte EPC_IMPLEMENTED_ION_EMISSION_METHOD = (byte)0xC3;
 	public static final byte EPC_ION_EMISSION_SETTING = (byte)0xC2;
 	public static final byte EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY = (byte)0xB4;
@@ -47,10 +47,10 @@ public abstract class Humidifier extends DeviceObject {
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addSetProperty(EPC_HUMIDIFYING_SETTING_2);
-		addGetProperty(EPC_HUMIDIFYING_SETTING_2);
-		addSetProperty(EPC_HUMIDIFYING_SETTING_1);
-		addGetProperty(EPC_HUMIDIFYING_SETTING_1);
+		addSetProperty(EPC_HUMIDIFYING_SETTING2);
+		addGetProperty(EPC_HUMIDIFYING_SETTING2);
+		addSetProperty(EPC_HUMIDIFYING_SETTING1);
+		addGetProperty(EPC_HUMIDIFYING_SETTING1);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
@@ -727,8 +727,8 @@ public abstract class Humidifier extends DeviceObject {
 
 		switch(property.epc) {
 		case EPC_SPECIAL_OPERATION_MODE_SETTING : return setSpecialOperationModeSetting(property.edt);
-		case EPC_HUMIDIFYING_SETTING_2 : return setHumidifyingSetting2(property.edt);
-		case EPC_HUMIDIFYING_SETTING_1 : return setHumidifyingSetting1(property.edt);
+		case EPC_HUMIDIFYING_SETTING2 : return setHumidifyingSetting2(property.edt);
+		case EPC_HUMIDIFYING_SETTING1 : return setHumidifyingSetting1(property.edt);
 		case EPC_ION_EMISSION_SETTING : return setIonEmissionSetting(property.edt);
 		case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER : return setRelativeTimeValueSetOfOffTimer(property.edt);
 		case EPC_RESERVATION_SET_OF_OFF_TIMER : return setReservationSetOfOffTimer(property.edt);
@@ -745,8 +745,8 @@ public abstract class Humidifier extends DeviceObject {
 		switch(epc) {
 		case EPC_WATER_AMOUNT_LEVEL : return getWaterAmountLevel();
 		case EPC_SPECIAL_OPERATION_MODE_SETTING : return getSpecialOperationModeSetting();
-		case EPC_HUMIDIFYING_SETTING_2 : return getHumidifyingSetting2();
-		case EPC_HUMIDIFYING_SETTING_1 : return getHumidifyingSetting1();
+		case EPC_HUMIDIFYING_SETTING2 : return getHumidifyingSetting2();
+		case EPC_HUMIDIFYING_SETTING1 : return getHumidifyingSetting1();
 		case EPC_IMPLEMENTED_ION_EMISSION_METHOD : return getImplementedIonEmissionMethod();
 		case EPC_ION_EMISSION_SETTING : return getIonEmissionSetting();
 		case EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY : return getMeasuredValueOfRelativeHumidity();
@@ -765,8 +765,8 @@ public abstract class Humidifier extends DeviceObject {
 		switch(property.epc) {
 		case EPC_WATER_AMOUNT_LEVEL : return isValidWaterAmountLevel(property.edt);
 		case EPC_SPECIAL_OPERATION_MODE_SETTING : return isValidSpecialOperationModeSetting(property.edt);
-		case EPC_HUMIDIFYING_SETTING_2 : return isValidHumidifyingSetting2(property.edt);
-		case EPC_HUMIDIFYING_SETTING_1 : return isValidHumidifyingSetting1(property.edt);
+		case EPC_HUMIDIFYING_SETTING2 : return isValidHumidifyingSetting2(property.edt);
+		case EPC_HUMIDIFYING_SETTING1 : return isValidHumidifyingSetting1(property.edt);
 		case EPC_IMPLEMENTED_ION_EMISSION_METHOD : return isValidImplementedIonEmissionMethod(property.edt);
 		case EPC_ION_EMISSION_SETTING : return isValidIonEmissionSetting(property.edt);
 		case EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY : return isValidMeasuredValueOfRelativeHumidity(property.edt);
@@ -823,10 +823,10 @@ public abstract class Humidifier extends DeviceObject {
 			case EPC_SPECIAL_OPERATION_MODE_SETTING : 
 				onSetSpecialOperationModeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_HUMIDIFYING_SETTING_2 : 
+			case EPC_HUMIDIFYING_SETTING2 : 
 				onSetHumidifyingSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_HUMIDIFYING_SETTING_1 : 
+			case EPC_HUMIDIFYING_SETTING1 : 
 				onSetHumidifyingSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ION_EMISSION_SETTING : 
@@ -857,10 +857,10 @@ public abstract class Humidifier extends DeviceObject {
 			case EPC_SPECIAL_OPERATION_MODE_SETTING : 
 				onGetSpecialOperationModeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_HUMIDIFYING_SETTING_2 : 
+			case EPC_HUMIDIFYING_SETTING2 : 
 				onGetHumidifyingSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_HUMIDIFYING_SETTING_1 : 
+			case EPC_HUMIDIFYING_SETTING1 : 
 				onGetHumidifyingSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_IMPLEMENTED_ION_EMISSION_METHOD : 
@@ -1372,7 +1372,7 @@ public abstract class Humidifier extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetHumidifyingSetting2(byte[] edt) {
-			reqSetProperty(EPC_HUMIDIFYING_SETTING_2, edt);
+			reqSetProperty(EPC_HUMIDIFYING_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -1398,7 +1398,7 @@ public abstract class Humidifier extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetHumidifyingSetting1(byte[] edt) {
-			reqSetProperty(EPC_HUMIDIFYING_SETTING_1, edt);
+			reqSetProperty(EPC_HUMIDIFYING_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -1666,7 +1666,7 @@ public abstract class Humidifier extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetHumidifyingSetting2() {
-			reqGetProperty(EPC_HUMIDIFYING_SETTING_2);
+			reqGetProperty(EPC_HUMIDIFYING_SETTING2);
 			return this;
 		}
 		/**
@@ -1692,7 +1692,7 @@ public abstract class Humidifier extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetHumidifyingSetting1() {
-			reqGetProperty(EPC_HUMIDIFYING_SETTING_1);
+			reqGetProperty(EPC_HUMIDIFYING_SETTING1);
 			return this;
 		}
 		/**
@@ -2011,7 +2011,7 @@ public abstract class Humidifier extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformHumidifyingSetting2() {
-			reqInformProperty(EPC_HUMIDIFYING_SETTING_2);
+			reqInformProperty(EPC_HUMIDIFYING_SETTING2);
 			return this;
 		}
 		/**
@@ -2037,7 +2037,7 @@ public abstract class Humidifier extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformHumidifyingSetting1() {
-			reqInformProperty(EPC_HUMIDIFYING_SETTING_1);
+			reqInformProperty(EPC_HUMIDIFYING_SETTING1);
 			return this;
 		}
 		/**

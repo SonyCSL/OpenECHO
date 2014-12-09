@@ -33,11 +33,11 @@ public abstract class Sprinkler extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0267;
 
-	public static final byte EPC_SPRINKLE_TIME_SETTING_1 = (byte)0xE3;
+	public static final byte EPC_SPRINKLE_TIME_SETTING1 = (byte)0xE3;
 	public static final byte EPC_NUMBER_OF_SPRINKLES_SETTING = (byte)0xE2;
 	public static final byte EPC_SPRINKLE_INTERVAL_SETTING = (byte)0xE1;
 	public static final byte EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING = (byte)0xE0;
-	public static final byte EPC_SPRINKLE_TIME_SETTING_2 = (byte)0xE4;
+	public static final byte EPC_SPRINKLE_TIME_SETTING2 = (byte)0xE4;
 	public static final byte EPC_SPRINKLE_DURATION_SETTING = (byte)0xE5;
 
 	@Override
@@ -574,11 +574,11 @@ public abstract class Sprinkler extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_SPRINKLE_TIME_SETTING_1 : return setSprinkleTimeSetting1(property.edt);
+		case EPC_SPRINKLE_TIME_SETTING1 : return setSprinkleTimeSetting1(property.edt);
 		case EPC_NUMBER_OF_SPRINKLES_SETTING : return setNumberOfSprinklesSetting(property.edt);
 		case EPC_SPRINKLE_INTERVAL_SETTING : return setSprinkleIntervalSetting(property.edt);
 		case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING : return setSprinkleValveOpenCloseSetting(property.edt);
-		case EPC_SPRINKLE_TIME_SETTING_2 : return setSprinkleTimeSetting2(property.edt);
+		case EPC_SPRINKLE_TIME_SETTING2 : return setSprinkleTimeSetting2(property.edt);
 		case EPC_SPRINKLE_DURATION_SETTING : return setSprinkleDurationSetting(property.edt);
 
 		default : return false;
@@ -591,11 +591,11 @@ public abstract class Sprinkler extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_SPRINKLE_TIME_SETTING_1 : return getSprinkleTimeSetting1();
+		case EPC_SPRINKLE_TIME_SETTING1 : return getSprinkleTimeSetting1();
 		case EPC_NUMBER_OF_SPRINKLES_SETTING : return getNumberOfSprinklesSetting();
 		case EPC_SPRINKLE_INTERVAL_SETTING : return getSprinkleIntervalSetting();
 		case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING : return getSprinkleValveOpenCloseSetting();
-		case EPC_SPRINKLE_TIME_SETTING_2 : return getSprinkleTimeSetting2();
+		case EPC_SPRINKLE_TIME_SETTING2 : return getSprinkleTimeSetting2();
 		case EPC_SPRINKLE_DURATION_SETTING : return getSprinkleDurationSetting();
 
 		default : return null;
@@ -608,11 +608,11 @@ public abstract class Sprinkler extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_SPRINKLE_TIME_SETTING_1 : return isValidSprinkleTimeSetting1(property.edt);
+		case EPC_SPRINKLE_TIME_SETTING1 : return isValidSprinkleTimeSetting1(property.edt);
 		case EPC_NUMBER_OF_SPRINKLES_SETTING : return isValidNumberOfSprinklesSetting(property.edt);
 		case EPC_SPRINKLE_INTERVAL_SETTING : return isValidSprinkleIntervalSetting(property.edt);
 		case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING : return isValidSprinkleValveOpenCloseSetting(property.edt);
-		case EPC_SPRINKLE_TIME_SETTING_2 : return isValidSprinkleTimeSetting2(property.edt);
+		case EPC_SPRINKLE_TIME_SETTING2 : return isValidSprinkleTimeSetting2(property.edt);
 		case EPC_SPRINKLE_DURATION_SETTING : return isValidSprinkleDurationSetting(property.edt);
 
 		default : return false;
@@ -662,7 +662,7 @@ public abstract class Sprinkler extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_SPRINKLE_TIME_SETTING_1 : 
+			case EPC_SPRINKLE_TIME_SETTING1 : 
 				onSetSprinkleTimeSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_NUMBER_OF_SPRINKLES_SETTING : 
@@ -674,7 +674,7 @@ public abstract class Sprinkler extends DeviceObject {
 			case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING : 
 				onSetSprinkleValveOpenCloseSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SPRINKLE_TIME_SETTING_2 : 
+			case EPC_SPRINKLE_TIME_SETTING2 : 
 				onSetSprinkleTimeSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SPRINKLE_DURATION_SETTING : 
@@ -693,7 +693,7 @@ public abstract class Sprinkler extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_SPRINKLE_TIME_SETTING_1 : 
+			case EPC_SPRINKLE_TIME_SETTING1 : 
 				onGetSprinkleTimeSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_NUMBER_OF_SPRINKLES_SETTING : 
@@ -705,7 +705,7 @@ public abstract class Sprinkler extends DeviceObject {
 			case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING : 
 				onGetSprinkleValveOpenCloseSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SPRINKLE_TIME_SETTING_2 : 
+			case EPC_SPRINKLE_TIME_SETTING2 : 
 				onGetSprinkleTimeSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SPRINKLE_DURATION_SETTING : 
@@ -1110,7 +1110,7 @@ public abstract class Sprinkler extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetSprinkleTimeSetting1(byte[] edt) {
-			reqSetProperty(EPC_SPRINKLE_TIME_SETTING_1, edt);
+			reqSetProperty(EPC_SPRINKLE_TIME_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -1214,7 +1214,7 @@ public abstract class Sprinkler extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetSprinkleTimeSetting2(byte[] edt) {
-			reqSetProperty(EPC_SPRINKLE_TIME_SETTING_2, edt);
+			reqSetProperty(EPC_SPRINKLE_TIME_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -1378,7 +1378,7 @@ public abstract class Sprinkler extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSprinkleTimeSetting1() {
-			reqGetProperty(EPC_SPRINKLE_TIME_SETTING_1);
+			reqGetProperty(EPC_SPRINKLE_TIME_SETTING1);
 			return this;
 		}
 		/**
@@ -1482,7 +1482,7 @@ public abstract class Sprinkler extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSprinkleTimeSetting2() {
-			reqGetProperty(EPC_SPRINKLE_TIME_SETTING_2);
+			reqGetProperty(EPC_SPRINKLE_TIME_SETTING2);
 			return this;
 		}
 		/**
@@ -1645,7 +1645,7 @@ public abstract class Sprinkler extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSprinkleTimeSetting1() {
-			reqInformProperty(EPC_SPRINKLE_TIME_SETTING_1);
+			reqInformProperty(EPC_SPRINKLE_TIME_SETTING1);
 			return this;
 		}
 		/**
@@ -1749,7 +1749,7 @@ public abstract class Sprinkler extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSprinkleTimeSetting2() {
-			reqInformProperty(EPC_SPRINKLE_TIME_SETTING_2);
+			reqInformProperty(EPC_SPRINKLE_TIME_SETTING2);
 			return this;
 		}
 		/**

@@ -35,22 +35,22 @@ public abstract class ElectricShutter extends DeviceObject {
 
 	public static final byte EPC_SHUTTER_SPEED = (byte)0xE3;
 	public static final byte EPC_BLIND_ANGLE_SETTING = (byte)0xE2;
-	public static final byte EPC_EXTENT_OF_OPENING_1 = (byte)0xE1;
-	public static final byte EPC_OPEN_CLOSE_SETTING_1 = (byte)0xE0;
-	public static final byte EPC_OPEN_CLOSE_SETTING_2 = (byte)0xE7;
-	public static final byte EPC_EXTENT_OF_OPENING_2 = (byte)0xE4;
+	public static final byte EPC_EXTENT_OF_OPENING1 = (byte)0xE1;
+	public static final byte EPC_OPEN_CLOSE_SETTING1 = (byte)0xE0;
+	public static final byte EPC_OPEN_CLOSE_SETTING2 = (byte)0xE7;
+	public static final byte EPC_EXTENT_OF_OPENING2 = (byte)0xE4;
 	public static final byte EPC_ELECTRIC_LOCK_SETTING = (byte)0xE5;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addStatusChangeAnnouncementProperty(EPC_OPEN_CLOSE_SETTING_1);
-		addSetProperty(EPC_OPEN_CLOSE_SETTING_1);
-		addGetProperty(EPC_OPEN_CLOSE_SETTING_1);
-		addStatusChangeAnnouncementProperty(EPC_OPEN_CLOSE_SETTING_2);
-		addSetProperty(EPC_OPEN_CLOSE_SETTING_2);
-		addGetProperty(EPC_OPEN_CLOSE_SETTING_2);
+		addStatusChangeAnnouncementProperty(EPC_OPEN_CLOSE_SETTING1);
+		addSetProperty(EPC_OPEN_CLOSE_SETTING1);
+		addGetProperty(EPC_OPEN_CLOSE_SETTING1);
+		addStatusChangeAnnouncementProperty(EPC_OPEN_CLOSE_SETTING2);
+		addSetProperty(EPC_OPEN_CLOSE_SETTING2);
+		addGetProperty(EPC_OPEN_CLOSE_SETTING2);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
@@ -653,10 +653,10 @@ public abstract class ElectricShutter extends DeviceObject {
 		switch(property.epc) {
 		case EPC_SHUTTER_SPEED : return setShutterSpeed(property.edt);
 		case EPC_BLIND_ANGLE_SETTING : return setBlindAngleSetting(property.edt);
-		case EPC_EXTENT_OF_OPENING_1 : return setExtentOfOpening1(property.edt);
-		case EPC_OPEN_CLOSE_SETTING_1 : return setOpenCloseSetting1(property.edt);
-		case EPC_OPEN_CLOSE_SETTING_2 : return setOpenCloseSetting2(property.edt);
-		case EPC_EXTENT_OF_OPENING_2 : return setExtentOfOpening2(property.edt);
+		case EPC_EXTENT_OF_OPENING1 : return setExtentOfOpening1(property.edt);
+		case EPC_OPEN_CLOSE_SETTING1 : return setOpenCloseSetting1(property.edt);
+		case EPC_OPEN_CLOSE_SETTING2 : return setOpenCloseSetting2(property.edt);
+		case EPC_EXTENT_OF_OPENING2 : return setExtentOfOpening2(property.edt);
 		case EPC_ELECTRIC_LOCK_SETTING : return setElectricLockSetting(property.edt);
 
 		default : return false;
@@ -671,10 +671,10 @@ public abstract class ElectricShutter extends DeviceObject {
 		switch(epc) {
 		case EPC_SHUTTER_SPEED : return getShutterSpeed();
 		case EPC_BLIND_ANGLE_SETTING : return getBlindAngleSetting();
-		case EPC_EXTENT_OF_OPENING_1 : return getExtentOfOpening1();
-		case EPC_OPEN_CLOSE_SETTING_1 : return getOpenCloseSetting1();
-		case EPC_OPEN_CLOSE_SETTING_2 : return getOpenCloseSetting2();
-		case EPC_EXTENT_OF_OPENING_2 : return getExtentOfOpening2();
+		case EPC_EXTENT_OF_OPENING1 : return getExtentOfOpening1();
+		case EPC_OPEN_CLOSE_SETTING1 : return getOpenCloseSetting1();
+		case EPC_OPEN_CLOSE_SETTING2 : return getOpenCloseSetting2();
+		case EPC_EXTENT_OF_OPENING2 : return getExtentOfOpening2();
 		case EPC_ELECTRIC_LOCK_SETTING : return getElectricLockSetting();
 
 		default : return null;
@@ -689,10 +689,10 @@ public abstract class ElectricShutter extends DeviceObject {
 		switch(property.epc) {
 		case EPC_SHUTTER_SPEED : return isValidShutterSpeed(property.edt);
 		case EPC_BLIND_ANGLE_SETTING : return isValidBlindAngleSetting(property.edt);
-		case EPC_EXTENT_OF_OPENING_1 : return isValidExtentOfOpening1(property.edt);
-		case EPC_OPEN_CLOSE_SETTING_1 : return isValidOpenCloseSetting1(property.edt);
-		case EPC_OPEN_CLOSE_SETTING_2 : return isValidOpenCloseSetting2(property.edt);
-		case EPC_EXTENT_OF_OPENING_2 : return isValidExtentOfOpening2(property.edt);
+		case EPC_EXTENT_OF_OPENING1 : return isValidExtentOfOpening1(property.edt);
+		case EPC_OPEN_CLOSE_SETTING1 : return isValidOpenCloseSetting1(property.edt);
+		case EPC_OPEN_CLOSE_SETTING2 : return isValidOpenCloseSetting2(property.edt);
+		case EPC_EXTENT_OF_OPENING2 : return isValidExtentOfOpening2(property.edt);
 		case EPC_ELECTRIC_LOCK_SETTING : return isValidElectricLockSetting(property.edt);
 
 		default : return false;
@@ -748,16 +748,16 @@ public abstract class ElectricShutter extends DeviceObject {
 			case EPC_BLIND_ANGLE_SETTING : 
 				onSetBlindAngleSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_EXTENT_OF_OPENING_1 : 
+			case EPC_EXTENT_OF_OPENING1 : 
 				onSetExtentOfOpening1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OPEN_CLOSE_SETTING_1 : 
+			case EPC_OPEN_CLOSE_SETTING1 : 
 				onSetOpenCloseSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OPEN_CLOSE_SETTING_2 : 
+			case EPC_OPEN_CLOSE_SETTING2 : 
 				onSetOpenCloseSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_EXTENT_OF_OPENING_2 : 
+			case EPC_EXTENT_OF_OPENING2 : 
 				onSetExtentOfOpening2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ELECTRIC_LOCK_SETTING : 
@@ -782,16 +782,16 @@ public abstract class ElectricShutter extends DeviceObject {
 			case EPC_BLIND_ANGLE_SETTING : 
 				onGetBlindAngleSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_EXTENT_OF_OPENING_1 : 
+			case EPC_EXTENT_OF_OPENING1 : 
 				onGetExtentOfOpening1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OPEN_CLOSE_SETTING_1 : 
+			case EPC_OPEN_CLOSE_SETTING1 : 
 				onGetOpenCloseSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OPEN_CLOSE_SETTING_2 : 
+			case EPC_OPEN_CLOSE_SETTING2 : 
 				onGetOpenCloseSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_EXTENT_OF_OPENING_2 : 
+			case EPC_EXTENT_OF_OPENING2 : 
 				onGetExtentOfOpening2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ELECTRIC_LOCK_SETTING : 
@@ -1294,7 +1294,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetExtentOfOpening1(byte[] edt) {
-			reqSetProperty(EPC_EXTENT_OF_OPENING_1, edt);
+			reqSetProperty(EPC_EXTENT_OF_OPENING1, edt);
 			return this;
 		}
 		/**
@@ -1320,7 +1320,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOpenCloseSetting1(byte[] edt) {
-			reqSetProperty(EPC_OPEN_CLOSE_SETTING_1, edt);
+			reqSetProperty(EPC_OPEN_CLOSE_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -1346,7 +1346,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOpenCloseSetting2(byte[] edt) {
-			reqSetProperty(EPC_OPEN_CLOSE_SETTING_2, edt);
+			reqSetProperty(EPC_OPEN_CLOSE_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -1372,7 +1372,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetExtentOfOpening2(byte[] edt) {
-			reqSetProperty(EPC_EXTENT_OF_OPENING_2, edt);
+			reqSetProperty(EPC_EXTENT_OF_OPENING2, edt);
 			return this;
 		}
 		/**
@@ -1588,7 +1588,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetExtentOfOpening1() {
-			reqGetProperty(EPC_EXTENT_OF_OPENING_1);
+			reqGetProperty(EPC_EXTENT_OF_OPENING1);
 			return this;
 		}
 		/**
@@ -1614,7 +1614,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOpenCloseSetting1() {
-			reqGetProperty(EPC_OPEN_CLOSE_SETTING_1);
+			reqGetProperty(EPC_OPEN_CLOSE_SETTING1);
 			return this;
 		}
 		/**
@@ -1640,7 +1640,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOpenCloseSetting2() {
-			reqGetProperty(EPC_OPEN_CLOSE_SETTING_2);
+			reqGetProperty(EPC_OPEN_CLOSE_SETTING2);
 			return this;
 		}
 		/**
@@ -1666,7 +1666,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetExtentOfOpening2() {
-			reqGetProperty(EPC_EXTENT_OF_OPENING_2);
+			reqGetProperty(EPC_EXTENT_OF_OPENING2);
 			return this;
 		}
 		/**
@@ -1881,7 +1881,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformExtentOfOpening1() {
-			reqInformProperty(EPC_EXTENT_OF_OPENING_1);
+			reqInformProperty(EPC_EXTENT_OF_OPENING1);
 			return this;
 		}
 		/**
@@ -1907,7 +1907,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOpenCloseSetting1() {
-			reqInformProperty(EPC_OPEN_CLOSE_SETTING_1);
+			reqInformProperty(EPC_OPEN_CLOSE_SETTING1);
 			return this;
 		}
 		/**
@@ -1933,7 +1933,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOpenCloseSetting2() {
-			reqInformProperty(EPC_OPEN_CLOSE_SETTING_2);
+			reqInformProperty(EPC_OPEN_CLOSE_SETTING2);
 			return this;
 		}
 		/**
@@ -1959,7 +1959,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformExtentOfOpening2() {
-			reqInformProperty(EPC_EXTENT_OF_OPENING_2);
+			reqInformProperty(EPC_EXTENT_OF_OPENING2);
 			return this;
 		}
 		/**

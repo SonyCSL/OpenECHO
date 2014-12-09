@@ -33,15 +33,15 @@ public abstract class IlluminanceSensor extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x000D;
 
-	public static final byte EPC_MEASURED_ILLUMINANCE_VALUE_2 = (byte)0xE1;
-	public static final byte EPC_MEASURED_ILLUMINANCE_VALUE_1 = (byte)0xE0;
+	public static final byte EPC_MEASURED_ILLUMINANCE_VALUE2 = (byte)0xE1;
+	public static final byte EPC_MEASURED_ILLUMINANCE_VALUE1 = (byte)0xE0;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addGetProperty(EPC_MEASURED_ILLUMINANCE_VALUE_2);
-		addGetProperty(EPC_MEASURED_ILLUMINANCE_VALUE_1);
+		addGetProperty(EPC_MEASURED_ILLUMINANCE_VALUE2);
+		addGetProperty(EPC_MEASURED_ILLUMINANCE_VALUE1);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
@@ -247,8 +247,8 @@ public abstract class IlluminanceSensor extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_MEASURED_ILLUMINANCE_VALUE_2 : return getMeasuredIlluminanceValue2();
-		case EPC_MEASURED_ILLUMINANCE_VALUE_1 : return getMeasuredIlluminanceValue1();
+		case EPC_MEASURED_ILLUMINANCE_VALUE2 : return getMeasuredIlluminanceValue2();
+		case EPC_MEASURED_ILLUMINANCE_VALUE1 : return getMeasuredIlluminanceValue1();
 
 		default : return null;
 		}
@@ -260,8 +260,8 @@ public abstract class IlluminanceSensor extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_MEASURED_ILLUMINANCE_VALUE_2 : return isValidMeasuredIlluminanceValue2(property.edt);
-		case EPC_MEASURED_ILLUMINANCE_VALUE_1 : return isValidMeasuredIlluminanceValue1(property.edt);
+		case EPC_MEASURED_ILLUMINANCE_VALUE2 : return isValidMeasuredIlluminanceValue2(property.edt);
+		case EPC_MEASURED_ILLUMINANCE_VALUE1 : return isValidMeasuredIlluminanceValue1(property.edt);
 
 		default : return false;
 		}
@@ -323,10 +323,10 @@ public abstract class IlluminanceSensor extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_MEASURED_ILLUMINANCE_VALUE_2 : 
+			case EPC_MEASURED_ILLUMINANCE_VALUE2 : 
 				onGetMeasuredIlluminanceValue2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_ILLUMINANCE_VALUE_1 : 
+			case EPC_MEASURED_ILLUMINANCE_VALUE1 : 
 				onGetMeasuredIlluminanceValue1(eoj, tid, esv, property, success);
 				return true;
 
@@ -610,7 +610,7 @@ public abstract class IlluminanceSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredIlluminanceValue2() {
-			reqGetProperty(EPC_MEASURED_ILLUMINANCE_VALUE_2);
+			reqGetProperty(EPC_MEASURED_ILLUMINANCE_VALUE2);
 			return this;
 		}
 		/**
@@ -636,7 +636,7 @@ public abstract class IlluminanceSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredIlluminanceValue1() {
-			reqGetProperty(EPC_MEASURED_ILLUMINANCE_VALUE_1);
+			reqGetProperty(EPC_MEASURED_ILLUMINANCE_VALUE1);
 			return this;
 		}
 
@@ -773,7 +773,7 @@ public abstract class IlluminanceSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredIlluminanceValue2() {
-			reqInformProperty(EPC_MEASURED_ILLUMINANCE_VALUE_2);
+			reqInformProperty(EPC_MEASURED_ILLUMINANCE_VALUE2);
 			return this;
 		}
 		/**
@@ -799,7 +799,7 @@ public abstract class IlluminanceSensor extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredIlluminanceValue1() {
-			reqInformProperty(EPC_MEASURED_ILLUMINANCE_VALUE_1);
+			reqInformProperty(EPC_MEASURED_ILLUMINANCE_VALUE1);
 			return this;
 		}
 

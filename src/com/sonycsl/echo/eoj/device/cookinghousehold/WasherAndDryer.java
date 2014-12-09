@@ -33,13 +33,13 @@ public abstract class WasherAndDryer extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x03D3;
 
-	public static final byte EPC_WATER_VOLUME_SETTING_1 = (byte)0xE3;
+	public static final byte EPC_WATER_VOLUME_SETTING1 = (byte)0xE3;
 	public static final byte EPC_CURRENT_STAGE_OF_WASHER_AND_DRYER_CYCLE = (byte)0xE2;
 	public static final byte EPC_PRESOAKING_TIME_SETTING = (byte)0xE1;
 	public static final byte EPC_RINSING_PROCESS_SETTING = (byte)0xE7;
 	public static final byte EPC_NUMBER_OF_TIMES_OF_RINSING_SETTING = (byte)0xE6;
 	public static final byte EPC_WASHING_TIME_SETTING = (byte)0xE5;
-	public static final byte EPC_WATER_VOLUME_SETTING_2 = (byte)0xE4;
+	public static final byte EPC_WATER_VOLUME_SETTING2 = (byte)0xE4;
 	public static final byte EPC_DRYING_TIME_SETTING = (byte)0xE9;
 	public static final byte EPC_SPIN_DRYING_TIME_SETTING = (byte)0xE8;
 	public static final byte EPC_REMAINING_WASHING_TIME = (byte)0xDB;
@@ -47,12 +47,12 @@ public abstract class WasherAndDryer extends DeviceObject {
 	public static final byte EPC_ELAPSED_TIME_ON_THE_ON_TIMER = (byte)0xDF;
 	public static final byte EPC_ON_TIMER_SETTING = (byte)0x91;
 	public static final byte EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING = (byte)0x92;
-	public static final byte EPC_WASHER_AND_DRYER_CYCLE_SETTING_1_NOTE_1 = (byte)0xD0;
-	public static final byte EPC_WASHER_AND_DRYER_CYCLE_SETTING_2_NOTE_1 = (byte)0xD1;
+	public static final byte EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1 = (byte)0xD0;
+	public static final byte EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1 = (byte)0xD1;
 	public static final byte EPC_DRYING_CYCLE_SETTING_NOTE1 = (byte)0xD2;
-	public static final byte EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_1 = (byte)0xD3;
-	public static final byte EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_2 = (byte)0xD4;
-	public static final byte EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_3 = (byte)0xD5;
+	public static final byte EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST1 = (byte)0xD3;
+	public static final byte EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST2 = (byte)0xD4;
+	public static final byte EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST3 = (byte)0xD5;
 	public static final byte EPC_WATER_FLOW_RATE_SETTING = (byte)0xD6;
 	public static final byte EPC_ROTATION_SPEED_FOR_SPIN_DRYING_SETTING = (byte)0xD7;
 	public static final byte EPC_DEGREE_OF_DRYING_SETTING = (byte)0xD8;
@@ -2240,18 +2240,18 @@ public abstract class WasherAndDryer extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_WATER_VOLUME_SETTING_1 : return setWaterVolumeSetting1(property.edt);
+		case EPC_WATER_VOLUME_SETTING1 : return setWaterVolumeSetting1(property.edt);
 		case EPC_PRESOAKING_TIME_SETTING : return setPresoakingTimeSetting(property.edt);
 		case EPC_RINSING_PROCESS_SETTING : return setRinsingProcessSetting(property.edt);
 		case EPC_NUMBER_OF_TIMES_OF_RINSING_SETTING : return setNumberOfTimesOfRinsingSetting(property.edt);
 		case EPC_WASHING_TIME_SETTING : return setWashingTimeSetting(property.edt);
-		case EPC_WATER_VOLUME_SETTING_2 : return setWaterVolumeSetting2(property.edt);
+		case EPC_WATER_VOLUME_SETTING2 : return setWaterVolumeSetting2(property.edt);
 		case EPC_DRYING_TIME_SETTING : return setDryingTimeSetting(property.edt);
 		case EPC_SPIN_DRYING_TIME_SETTING : return setSpinDryingTimeSetting(property.edt);
 		case EPC_ON_TIMER_SETTING : return setOnTimerSetting(property.edt);
 		case EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING : return setRelativeTimeBasedOnTimerSetting(property.edt);
-		case EPC_WASHER_AND_DRYER_CYCLE_SETTING_1_NOTE_1 : return setWasherAndDryerCycleSetting1Note1(property.edt);
-		case EPC_WASHER_AND_DRYER_CYCLE_SETTING_2_NOTE_1 : return setWasherAndDryerCycleSetting2Note1(property.edt);
+		case EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1 : return setWasherAndDryerCycleSetting1Note1(property.edt);
+		case EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1 : return setWasherAndDryerCycleSetting2Note1(property.edt);
 		case EPC_DRYING_CYCLE_SETTING_NOTE1 : return setDryingCycleSettingNote1(property.edt);
 		case EPC_WATER_FLOW_RATE_SETTING : return setWaterFlowRateSetting(property.edt);
 		case EPC_ROTATION_SPEED_FOR_SPIN_DRYING_SETTING : return setRotationSpeedForSpinDryingSetting(property.edt);
@@ -2273,13 +2273,13 @@ public abstract class WasherAndDryer extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_WATER_VOLUME_SETTING_1 : return getWaterVolumeSetting1();
+		case EPC_WATER_VOLUME_SETTING1 : return getWaterVolumeSetting1();
 		case EPC_CURRENT_STAGE_OF_WASHER_AND_DRYER_CYCLE : return getCurrentStageOfWasherAndDryerCycle();
 		case EPC_PRESOAKING_TIME_SETTING : return getPresoakingTimeSetting();
 		case EPC_RINSING_PROCESS_SETTING : return getRinsingProcessSetting();
 		case EPC_NUMBER_OF_TIMES_OF_RINSING_SETTING : return getNumberOfTimesOfRinsingSetting();
 		case EPC_WASHING_TIME_SETTING : return getWashingTimeSetting();
-		case EPC_WATER_VOLUME_SETTING_2 : return getWaterVolumeSetting2();
+		case EPC_WATER_VOLUME_SETTING2 : return getWaterVolumeSetting2();
 		case EPC_DRYING_TIME_SETTING : return getDryingTimeSetting();
 		case EPC_SPIN_DRYING_TIME_SETTING : return getSpinDryingTimeSetting();
 		case EPC_REMAINING_WASHING_TIME : return getRemainingWashingTime();
@@ -2287,12 +2287,12 @@ public abstract class WasherAndDryer extends DeviceObject {
 		case EPC_ELAPSED_TIME_ON_THE_ON_TIMER : return getElapsedTimeOnTheOnTimer();
 		case EPC_ON_TIMER_SETTING : return getOnTimerSetting();
 		case EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING : return getRelativeTimeBasedOnTimerSetting();
-		case EPC_WASHER_AND_DRYER_CYCLE_SETTING_1_NOTE_1 : return getWasherAndDryerCycleSetting1Note1();
-		case EPC_WASHER_AND_DRYER_CYCLE_SETTING_2_NOTE_1 : return getWasherAndDryerCycleSetting2Note1();
+		case EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1 : return getWasherAndDryerCycleSetting1Note1();
+		case EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1 : return getWasherAndDryerCycleSetting2Note1();
 		case EPC_DRYING_CYCLE_SETTING_NOTE1 : return getDryingCycleSettingNote1();
-		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_1 : return getWasherAndDryerCycleOptionList1();
-		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_2 : return getWasherAndDryerCycleOptionList2();
-		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_3 : return getWasherAndDryerCycleOptionList3();
+		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST1 : return getWasherAndDryerCycleOptionList1();
+		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST2 : return getWasherAndDryerCycleOptionList2();
+		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST3 : return getWasherAndDryerCycleOptionList3();
 		case EPC_WATER_FLOW_RATE_SETTING : return getWaterFlowRateSetting();
 		case EPC_ROTATION_SPEED_FOR_SPIN_DRYING_SETTING : return getRotationSpeedForSpinDryingSetting();
 		case EPC_DEGREE_OF_DRYING_SETTING : return getDegreeOfDryingSetting();
@@ -2316,13 +2316,13 @@ public abstract class WasherAndDryer extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_WATER_VOLUME_SETTING_1 : return isValidWaterVolumeSetting1(property.edt);
+		case EPC_WATER_VOLUME_SETTING1 : return isValidWaterVolumeSetting1(property.edt);
 		case EPC_CURRENT_STAGE_OF_WASHER_AND_DRYER_CYCLE : return isValidCurrentStageOfWasherAndDryerCycle(property.edt);
 		case EPC_PRESOAKING_TIME_SETTING : return isValidPresoakingTimeSetting(property.edt);
 		case EPC_RINSING_PROCESS_SETTING : return isValidRinsingProcessSetting(property.edt);
 		case EPC_NUMBER_OF_TIMES_OF_RINSING_SETTING : return isValidNumberOfTimesOfRinsingSetting(property.edt);
 		case EPC_WASHING_TIME_SETTING : return isValidWashingTimeSetting(property.edt);
-		case EPC_WATER_VOLUME_SETTING_2 : return isValidWaterVolumeSetting2(property.edt);
+		case EPC_WATER_VOLUME_SETTING2 : return isValidWaterVolumeSetting2(property.edt);
 		case EPC_DRYING_TIME_SETTING : return isValidDryingTimeSetting(property.edt);
 		case EPC_SPIN_DRYING_TIME_SETTING : return isValidSpinDryingTimeSetting(property.edt);
 		case EPC_REMAINING_WASHING_TIME : return isValidRemainingWashingTime(property.edt);
@@ -2330,12 +2330,12 @@ public abstract class WasherAndDryer extends DeviceObject {
 		case EPC_ELAPSED_TIME_ON_THE_ON_TIMER : return isValidElapsedTimeOnTheOnTimer(property.edt);
 		case EPC_ON_TIMER_SETTING : return isValidOnTimerSetting(property.edt);
 		case EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING : return isValidRelativeTimeBasedOnTimerSetting(property.edt);
-		case EPC_WASHER_AND_DRYER_CYCLE_SETTING_1_NOTE_1 : return isValidWasherAndDryerCycleSetting1Note1(property.edt);
-		case EPC_WASHER_AND_DRYER_CYCLE_SETTING_2_NOTE_1 : return isValidWasherAndDryerCycleSetting2Note1(property.edt);
+		case EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1 : return isValidWasherAndDryerCycleSetting1Note1(property.edt);
+		case EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1 : return isValidWasherAndDryerCycleSetting2Note1(property.edt);
 		case EPC_DRYING_CYCLE_SETTING_NOTE1 : return isValidDryingCycleSettingNote1(property.edt);
-		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_1 : return isValidWasherAndDryerCycleOptionList1(property.edt);
-		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_2 : return isValidWasherAndDryerCycleOptionList2(property.edt);
-		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_3 : return isValidWasherAndDryerCycleOptionList3(property.edt);
+		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST1 : return isValidWasherAndDryerCycleOptionList1(property.edt);
+		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST2 : return isValidWasherAndDryerCycleOptionList2(property.edt);
+		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST3 : return isValidWasherAndDryerCycleOptionList3(property.edt);
 		case EPC_WATER_FLOW_RATE_SETTING : return isValidWaterFlowRateSetting(property.edt);
 		case EPC_ROTATION_SPEED_FOR_SPIN_DRYING_SETTING : return isValidRotationSpeedForSpinDryingSetting(property.edt);
 		case EPC_DEGREE_OF_DRYING_SETTING : return isValidDegreeOfDryingSetting(property.edt);
@@ -2396,7 +2396,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_WATER_VOLUME_SETTING_1 : 
+			case EPC_WATER_VOLUME_SETTING1 : 
 				onSetWaterVolumeSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_PRESOAKING_TIME_SETTING : 
@@ -2411,7 +2411,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 			case EPC_WASHING_TIME_SETTING : 
 				onSetWashingTimeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_WATER_VOLUME_SETTING_2 : 
+			case EPC_WATER_VOLUME_SETTING2 : 
 				onSetWaterVolumeSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DRYING_TIME_SETTING : 
@@ -2426,10 +2426,10 @@ public abstract class WasherAndDryer extends DeviceObject {
 			case EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING : 
 				onSetRelativeTimeBasedOnTimerSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_WASHER_AND_DRYER_CYCLE_SETTING_1_NOTE_1 : 
+			case EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1 : 
 				onSetWasherAndDryerCycleSetting1Note1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_WASHER_AND_DRYER_CYCLE_SETTING_2_NOTE_1 : 
+			case EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1 : 
 				onSetWasherAndDryerCycleSetting2Note1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DRYING_CYCLE_SETTING_NOTE1 : 
@@ -2475,7 +2475,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_WATER_VOLUME_SETTING_1 : 
+			case EPC_WATER_VOLUME_SETTING1 : 
 				onGetWaterVolumeSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_CURRENT_STAGE_OF_WASHER_AND_DRYER_CYCLE : 
@@ -2493,7 +2493,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 			case EPC_WASHING_TIME_SETTING : 
 				onGetWashingTimeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_WATER_VOLUME_SETTING_2 : 
+			case EPC_WATER_VOLUME_SETTING2 : 
 				onGetWaterVolumeSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DRYING_TIME_SETTING : 
@@ -2517,22 +2517,22 @@ public abstract class WasherAndDryer extends DeviceObject {
 			case EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING : 
 				onGetRelativeTimeBasedOnTimerSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_WASHER_AND_DRYER_CYCLE_SETTING_1_NOTE_1 : 
+			case EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1 : 
 				onGetWasherAndDryerCycleSetting1Note1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_WASHER_AND_DRYER_CYCLE_SETTING_2_NOTE_1 : 
+			case EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1 : 
 				onGetWasherAndDryerCycleSetting2Note1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DRYING_CYCLE_SETTING_NOTE1 : 
 				onGetDryingCycleSettingNote1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_1 : 
+			case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST1 : 
 				onGetWasherAndDryerCycleOptionList1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_2 : 
+			case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST2 : 
 				onGetWasherAndDryerCycleOptionList2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_3 : 
+			case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST3 : 
 				onGetWasherAndDryerCycleOptionList3(eoj, tid, esv, property, success);
 				return true;
 			case EPC_WATER_FLOW_RATE_SETTING : 
@@ -3936,7 +3936,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetWaterVolumeSetting1(byte[] edt) {
-			reqSetProperty(EPC_WATER_VOLUME_SETTING_1, edt);
+			reqSetProperty(EPC_WATER_VOLUME_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -4066,7 +4066,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetWaterVolumeSetting2(byte[] edt) {
-			reqSetProperty(EPC_WATER_VOLUME_SETTING_2, edt);
+			reqSetProperty(EPC_WATER_VOLUME_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -4196,7 +4196,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetWasherAndDryerCycleSetting1Note1(byte[] edt) {
-			reqSetProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING_1_NOTE_1, edt);
+			reqSetProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1, edt);
 			return this;
 		}
 		/**
@@ -4222,7 +4222,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetWasherAndDryerCycleSetting2Note1(byte[] edt) {
-			reqSetProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING_2_NOTE_1, edt);
+			reqSetProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1, edt);
 			return this;
 		}
 		/**
@@ -4620,7 +4620,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetWaterVolumeSetting1() {
-			reqGetProperty(EPC_WATER_VOLUME_SETTING_1);
+			reqGetProperty(EPC_WATER_VOLUME_SETTING1);
 			return this;
 		}
 		/**
@@ -4776,7 +4776,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetWaterVolumeSetting2() {
-			reqGetProperty(EPC_WATER_VOLUME_SETTING_2);
+			reqGetProperty(EPC_WATER_VOLUME_SETTING2);
 			return this;
 		}
 		/**
@@ -4984,7 +4984,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetWasherAndDryerCycleSetting1Note1() {
-			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING_1_NOTE_1);
+			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1);
 			return this;
 		}
 		/**
@@ -5010,7 +5010,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetWasherAndDryerCycleSetting2Note1() {
-			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING_2_NOTE_1);
+			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1);
 			return this;
 		}
 		/**
@@ -5062,7 +5062,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetWasherAndDryerCycleOptionList1() {
-			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_1);
+			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST1);
 			return this;
 		}
 		/**
@@ -5088,7 +5088,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetWasherAndDryerCycleOptionList2() {
-			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_2);
+			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST2);
 			return this;
 		}
 		/**
@@ -5114,7 +5114,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetWasherAndDryerCycleOptionList3() {
-			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_3);
+			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST3);
 			return this;
 		}
 		/**
@@ -5563,7 +5563,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformWaterVolumeSetting1() {
-			reqInformProperty(EPC_WATER_VOLUME_SETTING_1);
+			reqInformProperty(EPC_WATER_VOLUME_SETTING1);
 			return this;
 		}
 		/**
@@ -5719,7 +5719,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformWaterVolumeSetting2() {
-			reqInformProperty(EPC_WATER_VOLUME_SETTING_2);
+			reqInformProperty(EPC_WATER_VOLUME_SETTING2);
 			return this;
 		}
 		/**
@@ -5927,7 +5927,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformWasherAndDryerCycleSetting1Note1() {
-			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING_1_NOTE_1);
+			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1);
 			return this;
 		}
 		/**
@@ -5953,7 +5953,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformWasherAndDryerCycleSetting2Note1() {
-			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING_2_NOTE_1);
+			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1);
 			return this;
 		}
 		/**
@@ -6005,7 +6005,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformWasherAndDryerCycleOptionList1() {
-			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_1);
+			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST1);
 			return this;
 		}
 		/**
@@ -6031,7 +6031,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformWasherAndDryerCycleOptionList2() {
-			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_2);
+			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST2);
 			return this;
 		}
 		/**
@@ -6057,7 +6057,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformWasherAndDryerCycleOptionList3() {
-			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST_3);
+			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST3);
 			return this;
 		}
 		/**

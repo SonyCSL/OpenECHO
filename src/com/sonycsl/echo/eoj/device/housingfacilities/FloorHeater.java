@@ -35,13 +35,13 @@ public abstract class FloorHeater extends DeviceObject {
 
 	public static final byte EPC_MEASURED_FLOOR_TEMPERATURE = (byte)0xE3;
 	public static final byte EPC_MEASURED_ROOM_TEMPERATURE = (byte)0xE2;
-	public static final byte EPC_TEMPERATURE_SETTING_2 = (byte)0xE1;
-	public static final byte EPC_TEMPERATURE_SETTING_1 = (byte)0xE0;
-	public static final byte EPC_DAILY_TIMER_SETTING_1 = (byte)0xE7;
+	public static final byte EPC_TEMPERATURE_SETTING2 = (byte)0xE1;
+	public static final byte EPC_TEMPERATURE_SETTING1 = (byte)0xE0;
+	public static final byte EPC_DAILY_TIMER_SETTING1 = (byte)0xE7;
 	public static final byte EPC_DAILY_TIMER_SETTING = (byte)0xE6;
 	public static final byte EPC_SPECIAL_OPERATION_SETTING = (byte)0xE5;
 	public static final byte EPC_ZONE_CHANGE_SETTING = (byte)0xE4;
-	public static final byte EPC_DAILY_TIMER_SETTING_2 = (byte)0xE8;
+	public static final byte EPC_DAILY_TIMER_SETTING2 = (byte)0xE8;
 	public static final byte EPC_RELATIVE_OFF_TIMER_SETTING = (byte)0x96;
 	public static final byte EPC_TIME_SET_BY_OFF_TIMER = (byte)0x95;
 	public static final byte EPC_OFF_TIMER_RESERVATION_SETTING = (byte)0x94;
@@ -53,10 +53,10 @@ public abstract class FloorHeater extends DeviceObject {
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addSetProperty(EPC_TEMPERATURE_SETTING_2);
-		addGetProperty(EPC_TEMPERATURE_SETTING_2);
-		addSetProperty(EPC_TEMPERATURE_SETTING_1);
-		addGetProperty(EPC_TEMPERATURE_SETTING_1);
+		addSetProperty(EPC_TEMPERATURE_SETTING2);
+		addGetProperty(EPC_TEMPERATURE_SETTING2);
+		addSetProperty(EPC_TEMPERATURE_SETTING1);
+		addGetProperty(EPC_TEMPERATURE_SETTING1);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
@@ -1187,13 +1187,13 @@ public abstract class FloorHeater extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_TEMPERATURE_SETTING_2 : return setTemperatureSetting2(property.edt);
-		case EPC_TEMPERATURE_SETTING_1 : return setTemperatureSetting1(property.edt);
-		case EPC_DAILY_TIMER_SETTING_1 : return setDailyTimerSetting1(property.edt);
+		case EPC_TEMPERATURE_SETTING2 : return setTemperatureSetting2(property.edt);
+		case EPC_TEMPERATURE_SETTING1 : return setTemperatureSetting1(property.edt);
+		case EPC_DAILY_TIMER_SETTING1 : return setDailyTimerSetting1(property.edt);
 		case EPC_DAILY_TIMER_SETTING : return setDailyTimerSetting(property.edt);
 		case EPC_SPECIAL_OPERATION_SETTING : return setSpecialOperationSetting(property.edt);
 		case EPC_ZONE_CHANGE_SETTING : return setZoneChangeSetting(property.edt);
-		case EPC_DAILY_TIMER_SETTING_2 : return setDailyTimerSetting2(property.edt);
+		case EPC_DAILY_TIMER_SETTING2 : return setDailyTimerSetting2(property.edt);
 		case EPC_RELATIVE_OFF_TIMER_SETTING : return setRelativeOffTimerSetting(property.edt);
 		case EPC_TIME_SET_BY_OFF_TIMER : return setTimeSetByOffTimer(property.edt);
 		case EPC_OFF_TIMER_RESERVATION_SETTING : return setOffTimerReservationSetting(property.edt);
@@ -1213,13 +1213,13 @@ public abstract class FloorHeater extends DeviceObject {
 		switch(epc) {
 		case EPC_MEASURED_FLOOR_TEMPERATURE : return getMeasuredFloorTemperature();
 		case EPC_MEASURED_ROOM_TEMPERATURE : return getMeasuredRoomTemperature();
-		case EPC_TEMPERATURE_SETTING_2 : return getTemperatureSetting2();
-		case EPC_TEMPERATURE_SETTING_1 : return getTemperatureSetting1();
-		case EPC_DAILY_TIMER_SETTING_1 : return getDailyTimerSetting1();
+		case EPC_TEMPERATURE_SETTING2 : return getTemperatureSetting2();
+		case EPC_TEMPERATURE_SETTING1 : return getTemperatureSetting1();
+		case EPC_DAILY_TIMER_SETTING1 : return getDailyTimerSetting1();
 		case EPC_DAILY_TIMER_SETTING : return getDailyTimerSetting();
 		case EPC_SPECIAL_OPERATION_SETTING : return getSpecialOperationSetting();
 		case EPC_ZONE_CHANGE_SETTING : return getZoneChangeSetting();
-		case EPC_DAILY_TIMER_SETTING_2 : return getDailyTimerSetting2();
+		case EPC_DAILY_TIMER_SETTING2 : return getDailyTimerSetting2();
 		case EPC_RELATIVE_OFF_TIMER_SETTING : return getRelativeOffTimerSetting();
 		case EPC_TIME_SET_BY_OFF_TIMER : return getTimeSetByOffTimer();
 		case EPC_OFF_TIMER_RESERVATION_SETTING : return getOffTimerReservationSetting();
@@ -1239,13 +1239,13 @@ public abstract class FloorHeater extends DeviceObject {
 		switch(property.epc) {
 		case EPC_MEASURED_FLOOR_TEMPERATURE : return isValidMeasuredFloorTemperature(property.edt);
 		case EPC_MEASURED_ROOM_TEMPERATURE : return isValidMeasuredRoomTemperature(property.edt);
-		case EPC_TEMPERATURE_SETTING_2 : return isValidTemperatureSetting2(property.edt);
-		case EPC_TEMPERATURE_SETTING_1 : return isValidTemperatureSetting1(property.edt);
-		case EPC_DAILY_TIMER_SETTING_1 : return isValidDailyTimerSetting1(property.edt);
+		case EPC_TEMPERATURE_SETTING2 : return isValidTemperatureSetting2(property.edt);
+		case EPC_TEMPERATURE_SETTING1 : return isValidTemperatureSetting1(property.edt);
+		case EPC_DAILY_TIMER_SETTING1 : return isValidDailyTimerSetting1(property.edt);
 		case EPC_DAILY_TIMER_SETTING : return isValidDailyTimerSetting(property.edt);
 		case EPC_SPECIAL_OPERATION_SETTING : return isValidSpecialOperationSetting(property.edt);
 		case EPC_ZONE_CHANGE_SETTING : return isValidZoneChangeSetting(property.edt);
-		case EPC_DAILY_TIMER_SETTING_2 : return isValidDailyTimerSetting2(property.edt);
+		case EPC_DAILY_TIMER_SETTING2 : return isValidDailyTimerSetting2(property.edt);
 		case EPC_RELATIVE_OFF_TIMER_SETTING : return isValidRelativeOffTimerSetting(property.edt);
 		case EPC_TIME_SET_BY_OFF_TIMER : return isValidTimeSetByOffTimer(property.edt);
 		case EPC_OFF_TIMER_RESERVATION_SETTING : return isValidOffTimerReservationSetting(property.edt);
@@ -1300,13 +1300,13 @@ public abstract class FloorHeater extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_TEMPERATURE_SETTING_2 : 
+			case EPC_TEMPERATURE_SETTING2 : 
 				onSetTemperatureSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_TEMPERATURE_SETTING_1 : 
+			case EPC_TEMPERATURE_SETTING1 : 
 				onSetTemperatureSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DAILY_TIMER_SETTING_1 : 
+			case EPC_DAILY_TIMER_SETTING1 : 
 				onSetDailyTimerSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DAILY_TIMER_SETTING : 
@@ -1318,7 +1318,7 @@ public abstract class FloorHeater extends DeviceObject {
 			case EPC_ZONE_CHANGE_SETTING : 
 				onSetZoneChangeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DAILY_TIMER_SETTING_2 : 
+			case EPC_DAILY_TIMER_SETTING2 : 
 				onSetDailyTimerSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RELATIVE_OFF_TIMER_SETTING : 
@@ -1358,13 +1358,13 @@ public abstract class FloorHeater extends DeviceObject {
 			case EPC_MEASURED_ROOM_TEMPERATURE : 
 				onGetMeasuredRoomTemperature(eoj, tid, esv, property, success);
 				return true;
-			case EPC_TEMPERATURE_SETTING_2 : 
+			case EPC_TEMPERATURE_SETTING2 : 
 				onGetTemperatureSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_TEMPERATURE_SETTING_1 : 
+			case EPC_TEMPERATURE_SETTING1 : 
 				onGetTemperatureSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DAILY_TIMER_SETTING_1 : 
+			case EPC_DAILY_TIMER_SETTING1 : 
 				onGetDailyTimerSetting1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DAILY_TIMER_SETTING : 
@@ -1376,7 +1376,7 @@ public abstract class FloorHeater extends DeviceObject {
 			case EPC_ZONE_CHANGE_SETTING : 
 				onGetZoneChangeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DAILY_TIMER_SETTING_2 : 
+			case EPC_DAILY_TIMER_SETTING2 : 
 				onGetDailyTimerSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RELATIVE_OFF_TIMER_SETTING : 
@@ -2164,7 +2164,7 @@ public abstract class FloorHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetTemperatureSetting2(byte[] edt) {
-			reqSetProperty(EPC_TEMPERATURE_SETTING_2, edt);
+			reqSetProperty(EPC_TEMPERATURE_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -2190,7 +2190,7 @@ public abstract class FloorHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetTemperatureSetting1(byte[] edt) {
-			reqSetProperty(EPC_TEMPERATURE_SETTING_1, edt);
+			reqSetProperty(EPC_TEMPERATURE_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -2216,7 +2216,7 @@ public abstract class FloorHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetDailyTimerSetting1(byte[] edt) {
-			reqSetProperty(EPC_DAILY_TIMER_SETTING_1, edt);
+			reqSetProperty(EPC_DAILY_TIMER_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -2320,7 +2320,7 @@ public abstract class FloorHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetDailyTimerSetting2(byte[] edt) {
-			reqSetProperty(EPC_DAILY_TIMER_SETTING_2, edt);
+			reqSetProperty(EPC_DAILY_TIMER_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -2666,7 +2666,7 @@ public abstract class FloorHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetTemperatureSetting2() {
-			reqGetProperty(EPC_TEMPERATURE_SETTING_2);
+			reqGetProperty(EPC_TEMPERATURE_SETTING2);
 			return this;
 		}
 		/**
@@ -2692,7 +2692,7 @@ public abstract class FloorHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetTemperatureSetting1() {
-			reqGetProperty(EPC_TEMPERATURE_SETTING_1);
+			reqGetProperty(EPC_TEMPERATURE_SETTING1);
 			return this;
 		}
 		/**
@@ -2718,7 +2718,7 @@ public abstract class FloorHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDailyTimerSetting1() {
-			reqGetProperty(EPC_DAILY_TIMER_SETTING_1);
+			reqGetProperty(EPC_DAILY_TIMER_SETTING1);
 			return this;
 		}
 		/**
@@ -2822,7 +2822,7 @@ public abstract class FloorHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDailyTimerSetting2() {
-			reqGetProperty(EPC_DAILY_TIMER_SETTING_2);
+			reqGetProperty(EPC_DAILY_TIMER_SETTING2);
 			return this;
 		}
 		/**
@@ -3167,7 +3167,7 @@ public abstract class FloorHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformTemperatureSetting2() {
-			reqInformProperty(EPC_TEMPERATURE_SETTING_2);
+			reqInformProperty(EPC_TEMPERATURE_SETTING2);
 			return this;
 		}
 		/**
@@ -3193,7 +3193,7 @@ public abstract class FloorHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformTemperatureSetting1() {
-			reqInformProperty(EPC_TEMPERATURE_SETTING_1);
+			reqInformProperty(EPC_TEMPERATURE_SETTING1);
 			return this;
 		}
 		/**
@@ -3219,7 +3219,7 @@ public abstract class FloorHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDailyTimerSetting1() {
-			reqInformProperty(EPC_DAILY_TIMER_SETTING_1);
+			reqInformProperty(EPC_DAILY_TIMER_SETTING1);
 			return this;
 		}
 		/**
@@ -3323,7 +3323,7 @@ public abstract class FloorHeater extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDailyTimerSetting2() {
-			reqInformProperty(EPC_DAILY_TIMER_SETTING_2);
+			reqInformProperty(EPC_DAILY_TIMER_SETTING2);
 			return this;
 		}
 		/**
