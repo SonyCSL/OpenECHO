@@ -89,8 +89,11 @@ String[] btnStrs = {
   "SWITCH_ON", "SWITCH_OFF"
 };
 
-void setup() {
+void settings() {
   size(210, (btnStrs.length)*30);
+}
+
+void setup() {
   frameRate(30);
 
   // 次に、学習と再生のユーザーインターフェースを作成します。
