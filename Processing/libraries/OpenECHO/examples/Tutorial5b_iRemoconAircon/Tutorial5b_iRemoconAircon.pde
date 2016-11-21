@@ -194,8 +194,11 @@ public class iRemoconAircon extends HomeAirConditioner {
 ControlP5 cp5 ;
 iRemoconAircon aircon ;
 
-void setup(){
-  size(210,(btnStrs.length)*30);
+void settings() {
+  size(210, (btnStrs.length)*30);
+}
+
+void setup() {
   frameRate(30);
 
   cp5 = new ControlP5(this) ;
