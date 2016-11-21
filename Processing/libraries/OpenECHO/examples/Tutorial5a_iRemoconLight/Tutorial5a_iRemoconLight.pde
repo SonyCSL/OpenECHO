@@ -81,9 +81,12 @@ public class iRemoconLight extends GeneralLighting {
 ControlP5 cp5 ;
 iRemoconLight light ;
 
-void setup(){
+void settings() {
+  size(210, (btnStrs.length)*30);
+}
+
+void setup() {
   Echo.addEventListener(new Echo.Logger(System.out));
-  size(210,(btnStrs.length)*30);
   frameRate(30);
 
   // 次に、学習と再生のユーザーインターフェースを作成します。
