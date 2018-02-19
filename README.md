@@ -1,4 +1,9 @@
-###概要
+## OpenECHO
+
+![OpenECHO Logo](logo.png)
+
+
+### 概要
 
 OpenECHOは、家電やセンサーデバイスなど、スマートハウスで用いられる機器のための通信プロトコルである[ECHONET Lite][]をJavaで実装したドライバライブラリです([C++版][]もあります)。
 詳細規定が存在する全ての機器+コントローラの制御が可能です。ネットワーク上の機器を認識して通信することができるのみならず、機器クラスを継承することでオリジナルの機器ノードを作成することもできます。分電盤・コントローラ・エアコン・照明・蓄電池・エコキュート・電動ブラインドなどの実動実績があります（とりあえず動いたレベルですが）。
@@ -8,10 +13,10 @@ OpenECHOは、家電やセンサーデバイスなど、スマートハウスで
 
 OpenECHOを用いて実装されたAndroidホームサーバー「Kadecot」による[動作実験ビデオ](http://www.youtube.com/watch?v=SwpHSAvoV9I)があります。
 
-###ライセンス
+### ライセンス
 本ソフトウェアの著作権は[株式会社ソニーコンピュータサイエンス研究所][]が保持しており、GPL3ライセンスで配布されています。ライセンスに従い，自由にご利用ください。
 
-###ドキュメンテーションとProcessing用バイナリ
+### ドキュメンテーションとProcessing用バイナリ
 
 本ライブラリは、Processing Foundationにより配布されている[Processing][]からも利用しやすいように構成されています。
 このProcessing版のサンプル開発・ドキュメンテーションは神奈川工科大学　スマートハウス研究センター　エネルギーマネジメントシステム標準化における接続・制御技術研究事業の成果物です。Processing版を使いやすくまとめたものが[神奈川工科大学スマートハウス研究センター][]からも配布されています。
@@ -19,15 +24,15 @@ OpenECHOを用いて実装されたAndroidホームサーバー「Kadecot」に�
 Processing版はProcessing/フォルダの下にあります。
 こちらはOpenECHO/ECHONET Liteの入門用としても最適です。チュートリアルが[OpenECHO for Processing/Tutorial.pdf](https://github.com/SonyCSL/OpenECHO/blob/master/Processing/Tutorial.pdf?raw=true)にありますのでぜひご利用ください。[英語版もあります](https://github.com/SonyCSL/OpenECHO/blob/master/Processing/Tutorial-en.pdf?raw=true)。
 
-###バージョン
+### バージョン
 
 * tag [1.10_ReleaseC](https://github.com/SonyCSL/OpenECHO/releases/tag/1.10_ReleaseC)がECHONET Lite規格書の[Version 1.10](http://www.echonet.gr.jp/spec/spec_v110_lite.htm), 機器オブジェクト詳細規定の[Release C](http://www.echonet.gr.jp/spec/spec_app_c.htm)に対応しています。
 
-###用いているデータベース
+### 用いているデータベース
 本ライブラリの作成には、弊社から公開されている[ECHONET Liteデータベース][]を用いています。
 [ECHONET Liteデータベース][]の最新仕様へのアップデート・やフィードバックも随時募集しています。データベースのライセンスはパブリックドメインですのでぜひご協力ください。
 
-###互換性と動作レポート
+### 互換性と動作レポート
 OpenECHOは標準的なJavaの機能だけで実装されており、Windows, Linux, Mac, Androidなど様々な環境での動作実績があります。
 
 以下勝手にリンクしていますので、問題があればお知らせください。
@@ -46,3 +51,12 @@ OpenECHOは標準的なJavaの機能だけで実装されており、Windows, Li
 [Processing]: http://processing.org "Processing"
 [神奈川工科大学スマートハウス研究センター]: http://smarthouse-center.org/sdk/ "神奈川工科大学スマートハウス研究センター"
 [ECHONET Liteデータベース]: https://github.com/SonyCSL/ECHONETLite-ObjectDatabase "ECHONET Liteデータベース"
+
+### Contributors
+
+[tokuhisa](https://github.com/tokuhisa)
+[sowd](https://github.com/sowd)
+[tomoki](https://github.com/tomoki)
+[issekiamp](https://github.com/issekiamp)
+[KosukeMita](https://github.com/KosukeMita)
+[takumas](https://github.com/takumas)
