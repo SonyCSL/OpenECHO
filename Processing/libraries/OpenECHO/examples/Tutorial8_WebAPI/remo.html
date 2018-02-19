@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+	function ctrl(epc,edt){
+	     $.getJSON("http://localhost:31413/?prop="+epc+"&value="+edt+"&jsoncallback=?") ;
+	}
+    </script>
+  </head>
+
+  <body>
+    <table align="center">
+	<tr>
+		<td colspan="2" align="center">
+			<input type="button" value="ON"   onclick="ctrl(0x80,0x30)"></input>
+		</td><td colspan="2" align="center">
+			<input type="button" value="OFF"  onclick="ctrl(0x80,0x31)"></input>
+		</td>
+	</tr>
+	<tr>
+		<td><input type="button" value="Auto" onclick="ctrl(0xb0,0x41)"></input></td>
+		<td><input type="button" value="Cool" onclick="ctrl(0xb0,0x42)"></input></td>
+		<td><input type="button" value="Heat" onclick="ctrl(0xb0,0x43)"></input></td>
+		<td><input type="button" value="Dry"  onclick="ctrl(0xb0,0x44)"></input></td>
+	</tr>
+	<tr>
+	</tr>
+	<tr align="center">
+		<td><input type="button" value="18" onclick="ctrl(0xb3,18)"></input></td>
+		<td><input type="button" value="22" onclick="ctrl(0xb3,22)"></input></td>
+		<td><input type="button" value="26" onclick="ctrl(0xb3,26)"></input></td>
+		<td><input type="button" value="30" onclick="ctrl(0xb3,30)"></input></td>
+	</tr>
+    </table>
+  </body>
+
+</html>

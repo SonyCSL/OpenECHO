@@ -1,0 +1,32 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+function ctrl(epc,edt){
+	$.getJSON("http://localhost:31413/?prop="+epc+"&value="+edt+"&jsoncallback=?") ;
+}
+
+onload = function(){		$.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&callback=?"
+		,function( rep ){
+			$(document.body).append( (rep.main.temp-273.15) + ' degree' ) ;
+			if( rep.main.temp-273.15 < 18 ){
+				ctrl( 0x80,0x30 ) ;	// Power on
+				ctrl( 0xb0,0x43 ) ;	// Heat mode
+				ctrl( 0xb3,18 ) ;	// 18 degree
+			} else if( rep.main.temp-273.15 > 28 ){
+				ctrl( 0x80,0x30 ) ;	// Power on
+				ctrl( 0xb0,0x42 ) ;	// Cool mode
+				ctrl( 0xb3,28 ) ;	// 28 degree
+			} else {
+				ctrl( 0x80,0x31 ) ;	// Power off
+			}
+		}
+	) ;
+} ;
+
+</script>
+</head>
+<body>
+</body>
+</html>
