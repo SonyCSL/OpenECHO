@@ -123,6 +123,8 @@ public final class EchoNode {
 	public void removeDevice(DeviceObject device) {
 		if(device == null) return;
 		if(device.getNode() != this) return;
+		device.setNode(null);
+		// TODO: Release allocated instance code because new instance code is generated when addDevice is called
 		mDevices.remove(device);
 	}
 	
